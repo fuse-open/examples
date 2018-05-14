@@ -1,0 +1,14 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Physics"
+  ],
+  "Mobile": {
+  	"Orientations": "Portrait"
+  },
+  "Includes": [
+    "MainView.ux:UXFile",
+    "Assets/Cities/*.jpg:Bundle"
+  ]
+}

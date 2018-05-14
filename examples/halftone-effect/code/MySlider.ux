@@ -1,0 +1,37 @@
+<!-- snippet-begin:CustomSlider -->
+<RangeControl ux:Class="MySlider" Focus.IsFocusable="true" MinHeight="30" Padding="5" Margin="18,4" HitTestMode="LocalBounds">
+	<string ux:Property="Text" />
+	<float4 ux:Property="Highlight" />
+
+	<LinearRangeBehavior />
+	<StackLayout />
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var sliderValue = Observable(50);
+		var sliderText = Observable(function() { return sliderValue.value.toFixed(2) })
+		module.exports = {
+			sliderValue: sliderValue,
+			sliderText: sliderText
+		};
+	</JavaScript>
+
+	<Panel Alignment="Top" Margin="6,10,0,0">
+		<DataBinding Target="this.Value" Key="sliderValue" />
+		<Text ux:Name="currentValue" Value="{sliderText}" Alignment="Right" Opacity="0.7" />
+		<Panel ux:Name="thumb" Anchor="50%,50%" Alignment="Left" Width="15" Height="15" HitTestMode="LocalBounds">
+			<Rectangle Color="{ReadProperty Highlight}" />
+		</Panel>
+		<Panel Layer="Background">
+			<Rectangle Height="6" Color="{ReadProperty Highlight}" Opacity="0.3" />
+			<Rectangle Height="6" Color="#fff" />
+		</Panel>
+	</Panel>
+	<Text Value="{ReadProperty Text}" Alignment="BottomLeft" Margin="6,0,0,0" />
+
+	<ProgressAnimation>
+		<Move Target="thumb" X="1" RelativeTo="ParentSize" />
+	</ProgressAnimation>
+
+</RangeControl>
+<!-- snippet-end -->

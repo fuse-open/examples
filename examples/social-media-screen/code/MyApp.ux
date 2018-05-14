@@ -1,0 +1,121 @@
+<App>
+	<EdgeNavigator ux:Name="EdgeNavigator">
+		<JavaScript>
+			// snippet-begin:FetchingJson
+			var Observable = require("FuseJS/Observable");
+
+			var sidebarOpen = Observable(false);
+			function setSidebarOpen() {
+				sidebarOpen.value = true;
+			};
+			function setSidebarClosed() {
+				sidebarOpen.value = false;
+			};
+
+			var data = Observable();
+
+			fetch('http://az664292.vo.msecnd.net/files/P6FteBeij9A7jTXL-edgenavresponse.json')
+			.then(function(response) { return response.json(); })
+			.then(function(responseObject) { data.value = responseObject; });
+
+			module.exports = {
+				data: data,
+				sidebarOpen: sidebarOpen,
+				setSidebarOpen: setSidebarOpen,
+				setSidebarClosed: setSidebarClosed
+			};
+			// snippet-end
+		</JavaScript>
+
+		<!-- snippet-begin:AddAPanel -->
+		<!-- Add a panel to the left edge -->
+		<Sidebar Width="180" ux:Name="menu" EdgeNavigation.Edge="Left">
+			<ActivatingAnimation>
+				<Change mainAppTranslation.X="180" />
+				<!-- Change to cross out -->
+				<Change topMenuTranslation.Y="0" />
+				<Change bottomMenuTranslation.Y="0" />
+				<Change middleRectangle.Opacity="0" Easing="CircularOut" />
+				<Change topMenuRotation.Degrees="45" Easing="ExponentialIn" />
+				<Change bottomMenuRotation.Degrees="-45" Easing="ExponentialIn" />
+				<Change topRectangle.Width="28" />
+				<Change bottomRectangle.Width="28" />
+			</ActivatingAnimation>
+			<WhileActive>
+				<Callback Handler="{setSidebarOpen}" />
+			</WhileActive>
+			<WhileInactive>
+				<Callback Handler="{setSidebarClosed}" />
+			</WhileInactive>
+		</Sidebar>
+
+		<DockPanel ux:Name="content" Background="#fff">
+			<!-- Use this to move the main app area with the side menu -->
+			<Translation ux:Name="mainAppTranslation" />
+
+			<StatusBarBackground Dock="Top" />
+			<BottomFrameBackground Dock="Bottom" />
+
+			<StackPanel Dock="Top">
+
+				<!-- This is the top ledge -->
+				<Grid Columns="auto,1*,auto"  Background="White">
+					<!-- snippet-begin:TheHamburger -->
+					<Panel Margin="7,5,5,5" Height="32" Width="32" HitTestMode="LocalBounds">
+						<WhileTrue Value="{sidebarOpen}">
+							<Clicked>
+								<NavigateTo Target="content" />
+							</Clicked>
+						</WhileTrue>
+						<WhileFalse Value="{sidebarOpen}">
+							<Clicked>
+								<NavigateTo Target="menu" />
+							</Clicked>
+						</WhileFalse>
+						<Rectangle ux:Name="topRectangle" Height="2" Width="26" Color="#000">
+							<Translation Y="-9" ux:Name="topMenuTranslation" />
+							<Rotation ux:Name="topMenuRotation" />
+						</Rectangle>
+						<Rectangle ux:Name="middleRectangle" Height="2" Width="26" Color="#000" />
+						<Rectangle ux:Name="bottomRectangle" Height="2" Width="26" Color="#000">
+							<Translation Y="9" ux:Name="bottomMenuTranslation" />
+							<Rotation ux:Name="bottomMenuRotation" />
+						</Rectangle>
+					</Panel>
+					<!-- snippet-end -->
+
+					<Text FontSize="22" Alignment="VerticalCenter" TextAlignment="Center"
+						Value="NEWS" Padding="2">
+						<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+					</Text>
+
+					<Panel Margin="5,5,7,5" Height="32" Width="32" HitTestMode="LocalBounds">
+						<Clicked>
+							<DebugAction Message="Search clicked" />
+						</Clicked>
+						<Circle Height="20" Width="20">
+							<Stroke Width="2" Brush="#000" />
+						</Circle>
+						<Rectangle Width="7" Height="3" Color="#000">
+							<Translation X="8" Y="8" />
+							<Rotation Degrees="45" />
+						</Rectangle>
+					</Panel>
+				</Grid>
+				<Rectangle Height="1" Margin="0,5,0,0" Color="#333c48" />
+			</StackPanel>
+
+			<!-- snippet-begin:MainScrollArea -->
+			<!-- This is the main scroll area -->
+			<ScrollView>
+				<StackPanel Alignment="Top">
+					<Panel Height="7" />
+					<Each Items="{data.responseData}">
+						<NewsItem />
+					</Each>
+				</StackPanel>
+			</ScrollView>
+			<!-- snippet-end -->
+		</DockPanel>
+	</EdgeNavigator>
+</App>

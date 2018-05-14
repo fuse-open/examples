@@ -1,0 +1,87 @@
+<App Background="#fff">
+    <iOS.StatusBarConfig Style="Dark" />
+
+    <JavaScript>
+        function Image(authorName, authorPlace, authorFile, imageFile, imageTitle) {
+            this.authorName = authorName;
+            this.authorPlace = authorPlace;
+            this.authorFile = authorFile;
+            this.imageFile = imageFile;
+            this.imageTitle = imageTitle;
+        }
+
+        var list = [
+            new Image("Vincent Guth", "Paris", "Assets/Authors/VincentGuth.jpeg", "Assets/Images/VG.jpg", "Northern Lights"),
+            new Image("John Towner", "Oakland, CA", "Assets/Authors/JohnTowner.jpeg", "Assets/Images/JT.jpg", "La Défense, France"),
+            new Image("Elijah Henderson", "Nashville", "Assets/Authors/ElijahHenderson.jpeg", "Assets/Images/EH.jpg", "Elijah's Harbor Christian Retreat"),
+            new Image("Anders Jildén", "Stockholm, Sweden", "Assets/Authors/AndersJilden.jpeg", "Assets/Images/AJ.jpg", "Artipelag, Värmdö, Sweden"),
+            new Image("Joshua Earle", "UK", "Assets/Authors/JoshuaEarle.jpeg", "Assets/Images/JE.jpg", "Villa de Leyva, Colombia")
+        ];
+
+        module.exports = {
+            list: list
+        };
+    </JavaScript>
+
+    <Panel ux:Class="Icon">
+        <FileSource ux:Property="File" />
+        <float ux:Property="Size" />
+        <Image File="{ReadProperty File}" Color="#8e979e" Width="{ReadProperty Size}" Height="{ReadProperty Size}" />
+    </Panel>
+
+    <StackPanel ux:Class="ListItem" Background="#fff">
+        <StackPanel ux:Name="content">
+            <Panel ux:Name="header" Height="68" Padding="24,0" Background="#fffffff8">
+                <DockPanel Alignment="VerticalCenter">
+                    <Icon File="Assets/Icons/more.png" Size="24" Dock="Right" />
+                    <Circle Dock="Left" Width="40" Height="40">
+                        <ImageFill File="{authorFile}" />
+                    </Circle>
+                    <StackPanel Padding="16,0">
+                        <Text Value="{authorName}" Color="#8e979e" FontSize="16" Alignment="Left" />
+                        <Text Value="{authorPlace}" Color="#8e979e" FontSize="12" Alignment="Left" />
+                    </StackPanel>
+                </DockPanel>
+            </Panel>
+
+            <Image Height="256" File="{imageFile}" StretchMode="UniformToFill" />
+        </StackPanel>
+
+        <Panel Height="56" Padding="24,0">
+            <DockPanel Alignment="VerticalCenter">
+                <StackPanel Dock="Right" Orientation="Horizontal" ItemSpacing="16">
+                    <Icon File="Assets/Icons/favorite.png" Size="18" />
+                    <Icon File="Assets/Icons/chat.png" Size="18" />
+                </StackPanel>
+                <Text Value="{imageTitle}" Color="#8e979e" FontSize="20" Alignment="CenterLeft" ClipToBounds="true" Margin="0,0,16,0" />
+            </DockPanel>
+        </Panel>
+
+        <ScrollingAnimation From="y(this)" To="y(this) + height(content)">
+            <Move Target="header" Y="1" RelativeTo="Size" RelativeNode="content" />
+        </ScrollingAnimation>
+        <ScrollingAnimation From="y(this) + height(content) - height(header)" To="y(this) + height(content)">
+            <Move Target="header" Y="-1" RelativeTo="Size" />
+        </ScrollingAnimation>
+    </StackPanel>
+
+    <Panel ux:Class="Header" Height="56">
+        <Grid Columns="56,1*,56">
+            <Icon File="Assets/Icons/menu.png" Size="24" />
+            <Text Value="STICKY HEADERS" Color="#8e979e" FontSize="20" Alignment="Center" />
+            <Icon File="Assets/Icons/search.png" Size="24" />
+        </Grid>
+        <Rectangle Height="1" Alignment="Bottom" Color="#e6e9f0" />
+    </Panel>
+
+    <ClientPanel>
+        <Header Dock="Top" />
+        <ScrollView Background="#f3f4f6">
+            <StackPanel ItemSpacing="8">
+                <Each Items="{list}">
+                    <ListItem />
+                </Each>
+            </StackPanel>
+        </ScrollView>
+    </ClientPanel>
+</App>

@@ -1,0 +1,83 @@
+<Panel Margin="0,0,0,16">
+	<StackPanel Y="10%">
+		<Text ux:Name="howImportantText" Value="How important" Alignment="Center" Color="White" FontSize="24" Offset="0,-10" Opacity="0"/>
+		<Text ux:Name="isYourTaskText" Value="is your task?" Alignment="Center" Color="White" Offset="0,-10" Opacity="0"/>
+	</StackPanel>
+
+
+	<!-- snippet-begin:TheEllipses -->
+	<Panel ux:Name="ellipse1" Alignment="Bottom" Width="60" Height="60" Opacity="0">
+		<Image File="Assets/skull.png" Margin="17"/>
+		<Circle Color="Red1">
+			<Stroke Color="Red3" Width="2" Offset="4" />
+		</Circle>
+
+		<Translation ux:Name="ellipseTrans1" />
+		<Scaling ux:Name="ellipseScaling1" Y="0.1" X="0.1"/>
+	</Panel>
+
+	<Text ux:Class="EllipseText" Alignment="Center" FontSize="26"/>
+	<Panel ux:Name="ellipse2" Alignment="Bottom"  Width="60" Height="60" Opacity="0">
+		<EllipseText Value="!!!" Color="Orange1"/>
+		<Circle Color="White1"/>
+		<Translation ux:Name="ellipseTrans2" />
+		<Scaling ux:Name="ellipseScaling2" Y="0.1" X="0.1"/>
+	</Panel>
+	<Panel ux:Name="ellipse3" Alignment="Bottom" Width="60" Height="60" Opacity="0">
+		<EllipseText Value="!!" Color="Gray1"/>
+		<Circle Color="White1"/>
+		<Translation ux:Name="ellipseTrans3" />
+		<Scaling ux:Name="ellipseScaling3" Y="0.1" X="0.1"/>
+	</Panel>
+	<Panel ux:Name="ellipse4" Alignment="Bottom" Width="60" Height="60" Opacity="0">
+		<EllipseText Value="!" Color="Gray2"/>
+		<Circle Color="White1" />
+		<Translation ux:Name="ellipseTrans4" />
+		<Scaling ux:Name="ellipseScaling4" Y="0.1" X="0.1"/>
+	</Panel>
+	<!-- snippet-end -->
+
+	<WhileTrue ux:Name="showAddTaskButtons">
+		<Change howImportantText.Offset="0,0" Duration="0.2" Delay="0.22" DelayBack="0" Easing="CubicOut"/>
+		<Change isYourTaskText.Offset="0,0" Duration="0.2" Delay="0.2" DelayBack="0" Easing="CubicOut"/>
+
+		<Change howImportantText.Opacity="1" Duration="0.2" Delay="0.22" DelayBack="0"/>
+		<Change isYourTaskText.Opacity="1" Duration="0.2" Delay="0.2" DelayBack="0"/>
+
+		<Change addTaskButtons.Color="#000d" Duration="0.15" DelayBack="0.25"/>
+
+		<!-- snippet-begin:TheButtonAnimations -->
+		<Change Target="ellipseScaling1.Vector">
+			<Keyframe Time="0.1" Value="1.4,1.0"/>
+			<Keyframe Time="0.2" Value="0.8,1.0"/>
+			<Keyframe Time="0.3" Value="1.0,1.0"/>
+		</Change>
+		<Change ellipseTrans1.Y="-80"  Duration="0.2" Delay="0" Easing="QuinticInOut"/>
+		<Change ellipse1.Opacity="1" Duration="0.3" Easing="QuinticOut"/>
+
+		<Change Target="ellipseScaling2.Vector">
+			<Keyframe Time="0.15" Value="1.0,1.4"/>
+			<Keyframe Time="0.3" Value="1.0,0.9"/>
+			<Keyframe Time="0.4" Value="1.0,1.0"/>
+		</Change>
+		<Change ellipseTrans2.Y="-160"  Duration="0.25" Delay="0" Easing="QuinticInOut" />
+		<Change ellipse2.Opacity="1" Duration="0.4" Easing="QuinticOut"/>
+
+		<Change Target="ellipseScaling3.Vector">
+			<Keyframe Time="0.2" Value="1.0,1.6"/>
+			<Keyframe Time="0.3" Value="1.0,0.9"/>
+			<Keyframe Time="0.4" Value="1.0,1.0"/>
+		</Change>
+		<Change ellipseTrans3.Y="-240" Duration="0.3" Delay="0" Easing="QuinticInOut"/>
+		<Change ellipse3.Opacity="1" Duration="0.45" Easing="QuinticOut"/>
+
+		<Change Target="ellipseScaling4.Vector">
+			<Keyframe Time="0.25" Value="1.0,1.4"/>
+			<Keyframe Time="0.4" Value="1.0,0.9"/>
+			<Keyframe Time="0.5" Value="1.0,1.0"/>
+		</Change>
+		<Change ellipseTrans4.Y="-320" Duration="0.35" Delay="0" Easing="QuinticInOut"/>
+		<Change ellipse4.Opacity="1" Duration="0.5" Easing="QuinticOut"/>
+		<!-- snippet-end -->
+	</WhileTrue>
+</Panel>

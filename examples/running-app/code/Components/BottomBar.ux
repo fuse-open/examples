@@ -1,0 +1,37 @@
+<Grid ux:Class="BottomBar" Columns="1*, auto, 1*, auto, 1*, auto, 1*" Height="56">
+
+	<Rectangle ux:Class="Divider" Width="1" Color="#fff7" Margin="0,12" />
+	
+	<Container ux:Class="IconAndLabel" Subtree="iconContainer">
+		<string ux:Property="Text" />
+		
+		<DockPanel ux:Binding="Children" Height="56" Padding="0,7">
+			<Panel ux:Name="iconContainer" Alignment="Center" />
+			<BaseText Dock="Bottom" Color="#aaa" Alignment="HorizontalCenter" FontSize="8" Value="{ReadProperty Text}" />
+		</DockPanel>
+	</Container>
+	
+	<IconAndLabel Text="HOME">
+		<HomeIcon />
+	</IconAndLabel>
+
+	<Divider />
+
+	<IconAndLabel Text="LOGS">
+		<LogsIcon />
+	</IconAndLabel>
+
+	<Divider />
+
+	<IconAndLabel Text="GOALS">
+		<GoalsIcon />
+	</IconAndLabel>
+
+	<Divider />
+
+	<IconAndLabel Text="PROFILE">
+		<ProfileIcon />
+	</IconAndLabel>
+	
+	<Rectangle Layer="Background" Color="#333" />
+</Grid>

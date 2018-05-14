@@ -1,0 +1,24 @@
+<Panel ux:Class="StripedLines" >
+	<!-- snippet-begin:StripedLines -->
+<Panel ux:Class="StripedLine" StripeColor="FadedMediumGray">
+		<float4 ux:Property="StripeColor" />
+		<int ux:Property="NSegments" />
+	</Panel>
+
+	<StripedLine ux:Class="VerticalStripedLine">
+		<Grid RowCount="{ReadProperty this.NSegments}">
+			<Each Count="{ReadProperty this.NSegments}">
+				<Rectangle Color="{ReadProperty this.StripeColor}" Margin="1" Width="1"/>
+			</Each>
+		</Grid>
+	</StripedLine>
+
+	<StripedLine ux:Class="HorizontalStripedLine">
+		<Grid ColumnCount="{ReadProperty this.NSegments}">
+			<Each Count="{ReadProperty this.NSegments}">
+				<Rectangle Color="{ReadProperty this.StripeColor}" Margin="1" Height="1"/>
+			</Each>
+		</Grid>
+	</StripedLine>
+	<!-- snippet-end -->
+</Panel>

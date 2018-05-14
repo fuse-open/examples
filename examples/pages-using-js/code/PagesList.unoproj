@@ -1,0 +1,12 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "MainView.ux:UXFile",
+    "NavBarTitle.ux:UXFile",
+    "SubPage.ux:UXFile",
+    "MainView.js:File"
+  ]
+}

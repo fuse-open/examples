@@ -1,0 +1,15 @@
+<!-- snippet-begin:EdgeNav -->
+<App>
+	<EdgeNavigator HitTestMode="LocalBoundsAndChildren">
+		<!-- Add a panel handled by the EdgeNavigator -->
+		<Panel Width="150" EdgeNavigation.Edge="Left" Background="#f63" />
+
+		<!-- The main content -->
+		<Panel>
+			<Text Alignment="Center">
+				This is an example of EdgeNavigator!
+			</Text>
+		</Panel>
+	</EdgeNavigator>
+</App>
+<!-- snippet-end -->

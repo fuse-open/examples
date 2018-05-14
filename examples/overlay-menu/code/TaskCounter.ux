@@ -1,0 +1,22 @@
+<!-- snippet-begin:TaskCounterClass -->
+<Grid ux:Class="TaskCounter" Rows="1*,3*,2*"
+	  Margin="10,20" Padding="10" Color="White">
+	<string ux:Property="Severity" />
+	<float4 ux:Property="SeverityColor" />
+
+	<string ux:Property="Count" />
+	<string ux:Property="Text" />
+
+	<Panel Alignment="TopCenter" Y="-20" Background="White" Layer="Overlay">
+		<Text Value="{ReadProperty this.Severity}"
+			  Color="{ReadProperty this.SeverityColor}"
+			  FontSize="22" Margin="3,0"/>
+	</Panel>
+	<Rectangle Layer="Background">
+		<Stroke Width="2" Color="Gray2" />
+	</Rectangle>
+	<Text Value="{ReadProperty this.Text}" Alignment="Center" FontSize="10"/>
+	<Text Value="{ReadProperty this.Count}" FontSize="70" Alignment="Center"/>
+	<Image File="Assets/arrowForward.png" Color="Gray2" Width="20" Height="20"/>
+</Grid>
+<!-- snippet-end -->

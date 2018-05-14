@@ -1,0 +1,4 @@
+<Panel ux:Class="TextButton" Height="36">
+	<string ux:Property="Text" />
+	<Text Margin="6,0" Alignment="VerticalCenter" Value="{ReadProperty Text}" Color="AccentColor" Font="RobotoMedium" FontSize="14" />
+</Panel>

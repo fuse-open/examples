@@ -1,0 +1,17 @@
+{
+  "RootNamespace": "",
+  "Packages": [
+    "Fuse",
+    "Fuse.Camera",
+    "FuseJS"
+  ],
+  "Mobile": {
+    "Orientations": "Portrait"
+  },
+  "Includes": [
+    "MainView.js:File",
+    "MainView.ux:UXFile",
+    "MySlider.ux:UXFile",
+    "Icons/*.jpg:Bundle"
+  ]
+}

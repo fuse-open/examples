@@ -1,0 +1,65 @@
+<App Background="#eee">
+	<DockPanel>
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+
+		<Panel>
+			<StackPanel Orientation="Horizontal" Margin="40" Alignment="BottomCenter">
+				<PageIndicator Navigation="myPages">
+					<Circle ux:Template="Dot" Width="5" Height="5" Margin="5">
+						<SolidColor Color="1,1,1,0.3" ux:Name="TheColor"/>
+						<ActivatingAnimation>
+							<Change TheColor.Color="#fff"/>
+							<Scale Factor="1.2" />
+						</ActivatingAnimation>
+					</Circle>
+				</PageIndicator>
+			</StackPanel>
+
+			<Rectangle ux:Class="MyRectangle" Width="100" Height="100" Margin="10" Color="White" CornerRadius="5" />
+
+			<PageControl ux:Name="myPages" HitTestMode="LocalBoundsAndChildren">
+				<Page>
+					<StackPanel Alignment="Top">
+						<StatusBarBackground />
+						<FuseLogo Margin="0, 40, 0, 20"  />
+						<Text TextAlignment="Center" Color="#fff">staggered animation</Text>
+					</StackPanel>
+					<StaggeredAnimation />
+				</Page>
+
+				<Page>
+					<StackPanel Alignment="Top">
+						<StatusBarBackground />
+						<FuseLogo Margin="0, 40, 0, 20"  />
+						<Text TextAlignment="Center" Color="#fff">anchored animation</Text>
+					</StackPanel>
+					<AnchoredAnimation />
+				</Page>
+
+				<Page>
+					<StackPanel Alignment="Top">
+						<StatusBarBackground />
+						<FuseLogo Margin="0, 40, 0, 20"  />
+						<Text TextAlignment="Center" Color="#fff">event based animation</Text>
+						<Text TextAlignment="Center" Color="#fff" Margin="0,12,0,0">tap and press</Text>
+					</StackPanel>
+					<ClickEvents />
+				</Page>
+
+				<Page>
+					<StackPanel Alignment="Top">
+						<StatusBarBackground />
+						<FuseLogo Margin="0, 40, 0, 20"  />
+						<Text TextAlignment="Center" Color="#fff">basic scrolling</Text>
+					</StackPanel>
+					<ScrollingBasics/>
+				</Page>
+
+			</PageControl>
+
+		</Panel>
+		<BottomBarBackground Dock="Bottom" />
+
+	</DockPanel>
+
+</App>

@@ -1,0 +1,17 @@
+{
+    "title": "Day-night switch",
+    "synopsis": "A custom day-night switch",
+    "publishedAt": "2016-04-19",
+    "tags": [
+        "Custom control",
+        "Gesture",
+		"Animation"
+    ],
+    "uxConcepts": [
+        "ToggleControl",
+        "BackwardAnimation",
+        "Keyframe",
+        "SwipingAnimation"
+    ],
+    "jsConcepts": []
+}

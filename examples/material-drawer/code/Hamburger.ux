@@ -1,0 +1,5 @@
+<StackPanel ux:Class="Hamburger" ItemSpacing="3" HitTestMode="LocalBounds" Width="56" Height="56" ContentAlignment="Center">
+	<Each Count="3">
+		<Rectangle Width="22" Height="2" Color="#fff" />
+	</Each>
+</StackPanel>

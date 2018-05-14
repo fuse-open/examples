@@ -1,0 +1,25 @@
+{
+    "title": "Swipe places",
+    "synopsis": "The famous card swipe control",
+    "publishedAt": "2015-08-27",
+    "tags": [
+        "Physics",
+        "Animation",
+		"Gesture"
+    ],
+    "uxConcepts": [
+        "PointAttractor",
+        "Draggable",
+        "WhileDragging",
+        "Each",
+        "Rotation",
+        "InForceFieldAnimation",
+        "EnteredForceField",
+        "ExitedForceField"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "setTimeout",
+        "data-binding"
+    ]
+}

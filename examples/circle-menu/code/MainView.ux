@@ -1,0 +1,137 @@
+<App>
+	<ClientPanel>
+	<ImageFill File="Assets/bg.jpg" StretchMode="UniformToFill" WrapMode="ClampToEdge"/>
+
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+
+		<ux:Include File="Resources.ux" />
+
+		<JavaScript File="MainView.js" />
+
+
+		<Panel ux:Class="WobbleButton" ux:Name="self" TransformOrigin="Center">
+			<Cross ux:Name="cross" HitTestMode="None"/>
+
+
+			<!-- snippet-begin:TheButtonIcons -->
+			<ClockIcon ux:Name="icon1" Margin="40,30,0,20" Width="30" Height="30" Alignment="Left" Opacity="0" IsEnabled="false">
+				<Translation ux:Name="trans1" X="1.5" RelativeTo="Size" />
+				<Clicked>
+					<Toggle Target="expanded" />
+				</Clicked>
+			</ClockIcon>
+			<TalkIcon ux:Name="icon2" Margin="70,70,0,0" Width="30" Height="30" Alignment="TopLeft" Opacity="0" IsEnabled="false">
+				<Translation ux:Name="trans2" X="1" Y="1" RelativeTo="Size" />
+				<Clicked>
+					<Toggle Target="expanded" />
+				</Clicked>
+			</TalkIcon>
+			<LocationIcon ux:Name="icon3" Margin="30,40,20,0" Width="30" Height="30" Alignment="Top" Opacity="0" IsEnabled="false">
+				<Translation ux:Name="trans3" Y="1.5" RelativeTo="Size" />
+				<Clicked>
+					<Toggle Target="expanded" />
+				</Clicked>
+			</LocationIcon>
+			<!-- snippet-end -->
+
+			<!-- snippet-begin:TheTwoCircles -->
+			<Circle ux:Name="overlayCircle" Color="#0004" Opacity="0" Width="20%" Height="20%" Alignment="Center" >
+				<Clicked>
+					<Toggle Target="expanded" />
+				</Clicked>
+			</Circle>
+			<Circle ux:Name="circle" Color="#F23363" Width="20%" Height="20%" >
+
+			</Circle>
+			<!-- snippet-end -->
+
+			<WhileTrue ux:Name="enableOptions">
+				<Change icon1.IsEnabled="true" />
+				<Change icon2.IsEnabled="true" />
+				<Change icon3.IsEnabled="true" />
+			</WhileTrue>
+
+			<!-- snippet-begin:AnimatingTheButton -->
+			<WhileTrue ux:Name="expanded">
+				<Change circle.Height="100%" Easing="CubicInOut" Duration="0.2" DelayBack="0"/>
+				<Change circle.Width="100%" Easing="CubicInOut" Duration="0.2"  DelayBack="0"/>
+
+				<Change enableOptions.Value="true" Delay="0.1" />
+				<Change overlayCircle.Opacity="1" Delay="0.1" Duration="0.1" />
+				<Rotate Target="cross" Degrees="-45" Duration="0.2" Easing="CubicInOut" />
+
+				<Change trans1.X="0" Delay="0" Duration="0.4" Easing="BounceOut" EasingBack="QuadraticInOut" DurationBack="0.2"    DelayBack="0"/>
+				<Change trans2.X="0" Delay="0.05" Duration="0.4" Easing="BounceOut" EasingBack="QuadraticInOut" DurationBack="0.2" DelayBack="0"/>
+				<Change trans2.Y="0" Delay="0.05" Duration="0.4" Easing="BounceOut" EasingBack="QuadraticInOut" DurationBack="0.2" DelayBack="0"/>
+				<Change trans3.Y="0" Delay="0.1" Duration="0.4" Easing="BounceOut" EasingBack="QuadraticInOut" DurationBack="0.2"  DelayBack="0"/>
+
+				<Change icon1.Opacity="1" Delay="0.1" Duration="0.1" Easing="QuadraticInOut" DelayBack="0"/>
+				<Change icon2.Opacity="1" Delay="0.1" Duration="0.1" Easing="QuadraticInOut" DelayBack="0"/>
+				<Change icon3.Opacity="1" Delay="0.1" Duration="0.1" Easing="QuadraticInOut" DelayBack="0"/>
+			</WhileTrue>
+			<!-- snippet-end -->
+
+		</Panel>
+
+		<Panel>
+
+			<WobbleButton Width="300" Height="300" Alignment="BottomRight" Offset="100,100" />
+
+			<Grid Rows="1.3*,2*,6*">
+				<Grid Columns="1*,1*" Dock="Top" Padding="20">
+					<HamburgerIcon Alignment="Left" Width="20" StretchMode="Fill" Height="17" Color="#fff9" />
+					<Panel Width="60" Height="60" Alignment="Right">
+						<SmallAvatarIcon Width="40" Height="40"/>
+						<Clicked>
+							<Toggle Target="showItems" />
+							<Toggle Target="hideHeadlines" />
+							<Scale Factor="0.9" Duration="0.05" Easing="QuadraticInOut" />
+						</Clicked>
+					</Panel>
+				</Grid>
+
+				<Grid Columns="2*,1*" Height="80" Alignment="Top">
+					<WhileFalse ux:Name="hideHeadlines" Bypass="Standard">
+						<Move Target="leftHeadline" X="-1.2" RelativeTo="Size" Duration="0.5" Easing="CircularInOut" />
+						<Move Target="rightHeadline" X="1.2" RelativeTo="Size" Duration="0.5" Easing="CircularInOut" />
+					</WhileFalse>
+					<Panel  ux:Name="leftHeadline" Padding="30,0,0,0">
+						<Grid Rows="3*,2*">
+							<DefaultText FontSize="40.3" Value="Monday" Alignment="CenterLeft" />
+							<Panel Height="30" Alignment="Bottom">
+								<MutedText FontSize="15" Value="February 8, 2015" Alignment="CenterLeft" />
+							</Panel>
+						</Grid>
+					</Panel>
+
+					<Panel ux:Name="rightHeadline" Padding="0,0,30,0">
+						<Grid Rows="3*,2*" Columns="1*,1*">
+							<SunnyIcon Row="0" Column="0" Width="35" Height="35" />
+							<DefaultText FontSize="37" Value="58°" Width="60" Alignment="Center" />
+							<Panel Row="1" Column="0" ColumnSpan="2" Alignment="Bottom" Height="30">
+								<MutedText FontSize="12" Value="San Fransisco" Alignment="Center" />
+							</Panel>
+						</Grid>
+					</Panel>
+				</Grid>
+
+				<Panel Margin="20,0,0,0">
+					<WhileTrue ux:Name="showItems">
+						<ScrollView ux:Name="itemsScrollView">
+							<RemovingAnimation>
+								<Change itemsScrollView.Opacity="0" Duration="0.6" Easing="ExponentialOut" />
+							</RemovingAnimation>
+							<StackPanel>
+								<Each Items="{items}">
+									<CalendarItem MinHeight="70" />
+								</Each>
+							</StackPanel>
+						</ScrollView>
+					</WhileTrue>
+				</Panel>
+			</Grid>
+		</Panel>
+	</ClientPanel>
+
+
+</App>

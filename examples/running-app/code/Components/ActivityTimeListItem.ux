@@ -1,0 +1,13 @@
+<Grid ux:Class="ActivityTimeListItem" Columns="auto,1*">
+	<Rectangle>
+		<Circle Alignment="Top" Width="15" Height="15" Color="#ff0">
+			<Stroke Width="2" Color="BorderColor" />
+			<HardShadow Distance="3" />
+		</Circle>
+		<Rectangle Width="2" Color="BorderColor" />
+	</Rectangle>
+	<StackPanel Margin="15,0,0,25">
+		<BaseText>9:52 am</BaseText>
+		<BaseText Color="#50B3C2">1.45 miles, 17m 11s</BaseText>
+	</StackPanel>
+</Grid>

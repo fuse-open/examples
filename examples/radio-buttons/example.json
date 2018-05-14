@@ -1,0 +1,16 @@
+{
+    "title": "Radio buttons",
+    "synopsis": "Using the Selection API to create a set of radio buttons",
+    "publishedAt": "2016-12-15",
+    "tags": [
+        "Custom control",
+        "Selection"
+    ],
+    "uxConcepts": [
+        "Selection",
+		"WhileSelected",
+		"ToggleSelection",
+		"Scale"
+    ],
+    "jsConcepts": []
+}

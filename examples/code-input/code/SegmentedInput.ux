@@ -1,0 +1,89 @@
+<StackPanel ux:Class="SegmentedInput" HitTestMode="LocalBounds">
+    <string ux:Property="Label" />
+    <string ux:Property="Code" />
+
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+
+        var editMode = Observable(false);
+        function enterEditMode() {
+            editMode.value = true;
+        };
+        function exitEditMode() {
+            editMode.value = false;
+        };
+
+        var codeLength = 5;
+        var code = this.Code;
+        var splitCode = code.map(function(item) {
+            var entered = item.split("");
+            while (entered.length < codeLength) {
+                entered.push("");
+            }
+            return entered;
+        }).expand();
+
+        var symbols = splitCode.map(function(item, index) {
+            var obj = {symbol: item, selected: false};
+            if (index == code.value.length) {
+                obj.selected = true;
+            }
+            return obj;
+        });
+
+        module.exports = {
+            code: code,
+            codeLength: codeLength,
+            symbols: symbols,
+            editMode: editMode,
+            enterEditMode: enterEditMode,
+            exitEditMode: exitEditMode
+        };
+    </JavaScript>
+
+    <Panel ux:Class="SymbolBox">
+        <string ux:Property="Symbol" />
+
+        <WhileTrue Value="{editMode}">
+            <Change backgroundRect.Margin="8,0" Delay="0.2" DelayBack="0" />
+            <Change backgroundRect.CornerRadius="1" Delay="0.2" DelayBack="0" />
+            <Change label.Opacity="1" Delay="0.2" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+        </WhileTrue>
+
+        <WhileTrue Value="{selected} && {editMode}">
+            <Change backgroundRect.Color="Black" Delay="0.2" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+        </WhileTrue>
+
+        <Text ux:Name="label" Alignment="Center" Value="{ReadProperty Symbol}" FontSize="32" Color="Highlight" Opacity="0" />
+        <Rectangle ux:Name="backgroundRect" Color="Highlight" Height="2" Alignment="Bottom">
+            <LayoutAnimation>
+                <Move X="1" Y="1" RelativeTo="PositionChange" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+                <Resize X="1" Y="1" RelativeTo="SizeChange" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+            </LayoutAnimation>
+        </Rectangle>
+    </Panel>
+
+    <Clicked>
+        <GiveFocus Target="codeInput" />
+    </Clicked>
+
+    <TextInput ux:Name="codeInput" Value="{code}" MaxLength="{codeLength}" InputHint="Number"
+        Layer="Background" Visibility="Hidden" HitTestMode="None"
+        Focus.Gained="{enterEditMode}" Focus.Lost="{exitEditMode}" />
+
+    <Panel Height="24">
+        <Text Value="{ReadProperty Label}" FontSize="20" Color="Highlight" Alignment="TopLeft" TransformOrigin="TopLeft">
+            <Translation ux:Name="labelTrans" Y="1" RelativeTo="ParentSize" />
+            <WhileTrue Value="{editMode}">
+                <Change labelTrans.Y="0" Delay="0.2" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+                <Scale Factor="0.8" Delay="0.2" Duration="0.42" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+            </WhileTrue>
+        </Text>
+    </Panel>
+
+    <Grid ColumnCount="{codeLength}" Height="40">
+        <Each Items="{symbols}">
+            <SymbolBox Symbol="{symbol}" />
+        </Each>
+    </Grid>
+</StackPanel>

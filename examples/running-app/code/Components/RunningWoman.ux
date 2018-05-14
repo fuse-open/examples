@@ -1,0 +1,18 @@
+<!-- snippet-begin:RunningWoman -->
+<Panel ux:Class="RunningWoman">
+	<RunningWomanRightArm Alignment="Center" TransformOrigin="Anchor" Anchor="81%,11%" Offset="30,-45">
+		<Rotation ux:Name="rightArmRotation" Degrees="90" />
+	</RunningWomanRightArm>
+
+	<RunningWomanBody Alignment="Center" />
+
+	<RunningWomanLeftArm Alignment="Center" TransformOrigin="Anchor" Anchor="10%,54%" Offset="50,-45">
+		<Rotation ux:Name="leftArmRotation" Degrees="40" />
+	</RunningWomanLeftArm>
+	
+	<WhileActive Bypass="Never">
+		<Change leftArmRotation.Degrees="0" Duration="1.8" Delay="0.3" DurationBack="0.3" Easing="ElasticOut" />
+		<Change rightArmRotation.Degrees="0"  Duration="2" Delay="0.2" DurationBack="0.3" Easing="ElasticOut" />
+	</WhileActive>
+</Panel>
+<!-- snippet-end -->

@@ -1,0 +1,63 @@
+<Panel ux:Class="MenuButton">
+	<Grid ux:Name="menuButtons" Columns="40,1.5*,1*" Opacity="0">
+		<DockPanel Alignment="CenterRight" Column="1" HitTestMode="LocalBoundsAndChildren">
+			<Image File="Icons/refund.png" Dock="Left" Width="16" Color="#018BDB"/>
+			<Text Value="Refund" Margin="5,0" Color="#018BDB" FontSize="14"/>
+			<Scaling ux:Name="refundScaling" Factor="0.2"/>
+			<Clicked>
+				<Toggle Target="menuLayout" />
+			</Clicked>
+		</DockPanel>
+		<DockPanel Alignment="CenterRight" Margin="5,0,0,0" Column="2" HitTestMode="LocalBoundsAndChildren">
+			<Image File="Icons/share.png" Dock="Left"  Width="16" Color="#018BDB"/>
+			<Text Value="Share"  Margin="5,0" Color="#018BDB" FontSize="14"/>
+			<Scaling ux:Name="shareScaling" Factor="0.2"/>
+			<Clicked>
+				<Toggle Target="menuLayout" />
+			</Clicked>
+		</DockPanel>
+	</Grid>
+	<Panel ux:Name="sp" Alignment="Right">
+		<!-- snippet-begin:LayoutAnimation -->
+		<LayoutAnimation>
+			<Move X="1" Duration="0.3" RelativeTo="LayoutChange" Easing="BackIn" />
+		</LayoutAnimation>
+		<!-- snippet-end -->
+		<!-- snippet-begin:CirclesButton -->
+		<Panel Width="40" Alignment="Right" HitTestMode="LocalBoundsAndChildren">
+			<Rectangle ux:Name="dividerRect" Width="1" Height="60%" Color="#ddd" Alignment="Right" Opacity="0" Offset="10,0"/>
+			<Image ux:Name="arrow" File="Icons/arrow.png" Width="16" Opacity="0" />
+			<Circle Width="20" Height="20" ux:Name="c1" Color="#018BDB" Alignment="Left">
+				<Scaling ux:Name="circleScale1" Factor="0.25" />
+			</Circle>
+			<Circle Width="20" Height="20" ux:Name="c2" Color="#018BDB" Alignment="HorizontalCenter">
+				<Scaling ux:Name="circleScale2" Factor="0.25" />
+			</Circle>
+			<Circle Width="20" Height="20" ux:Name="c3" Color="#018BDB" Alignment="Right">
+				<Scaling ux:Name="circleScale3" Factor="0.25" />
+			</Circle>
+			<Clicked>
+				<Toggle Target="menuLayout" />
+			</Clicked>
+		</Panel>
+		<!-- snippet-end -->
+
+		<!-- snippet-begin:MenuAnimation -->
+		<WhileTrue ux:Name="menuLayout" >
+			<Change sp.Alignment="Left" DurationBack="0"/>
+			<Change circleScale1.Factor="1" Duration="0.3" DelayBack="0"/>
+			<Change circleScale2.Factor="1" Duration="0.3" DelayBack="0.025"/>
+			<Change circleScale3.Factor="1" Duration="0.3" DelayBack="0.05"/>
+			<Move Target="c1" X="0.5" RelativeTo="Size" Duration=".3" DelayBack="0"/>
+			<Move Target="c3" X="-0.5" RelativeTo="Size" Duration=".3" DelayBack="0"/>
+
+			<Change menuButtons.Opacity="1" Duration="0.4" DurationBack=".2" />
+
+			<Change Easing="BackOut" shareScaling.Factor="1"  Duration="0.5" DelayBack="0.1" DurationBack="0.1"/>
+			<Change Easing="BackOut" refundScaling.Factor="1" Duration="0.5" Delay="0.1" DelayBack="0" DurationBack="0.1"/>
+			<Change arrow.Opacity="1"       Duration="0.4"             DurationBack="0.15" DelayBack="0"/>
+			<Change dividerRect.Opacity="1" Duration="0.2" Delay="0.2" DurationBack="0.15" DelayBack="0"/>
+		</WhileTrue>
+		<!-- snippet-end -->
+	</Panel>
+</Panel>

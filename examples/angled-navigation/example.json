@@ -1,0 +1,17 @@
+{
+    "title": "Angled navigation",
+    "synopsis": "Advanced use of Entering-/ExitingAnimation",
+    "publishedAt": "2015-07-29",
+    "tags": [
+        "Animation",
+        "Navigation"
+    ],
+    "uxConcepts": [
+        "EnteringAnimation",
+        "ExitingAnimation",
+        "ActivatingAnimation"
+    ],
+    "jsConcepts": [
+        "Observable"
+    ]
+}

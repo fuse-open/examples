@@ -1,0 +1,95 @@
+<Panel ux:Class="StaticResources">
+	<float4 ux:Global="BorderColor" ux:Value="#333" />
+	
+	<Font ux:Global="BaseFont" File="Assets/Fonts/Nunito-Bold.ttf" />
+	<Font ux:Global="BoldFont" File="Assets/Fonts/Nunito-Black.ttf" />
+	
+	<Text ux:Class="BaseText" Font="BaseFont" FontSize="14" Color="#222" />
+	<BaseText ux:Class="BoldText" Font="BoldFont" />
+	
+	<!-- snippet-begin:Images -->
+	<Image ux:Class="RunningWomanRightArm" StretchMode="Uniform" Width="41" Height="69">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/running-woman/arm-right@1x.png" Density="1" />
+			<FileImageSource File="Assets/running-woman/arm-right@2x.png" Density="2" />
+			<FileImageSource File="Assets/running-woman/arm-right@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<!-- strip-begin:... and so on ...-->
+	<Image ux:Class="RunningWomanBody" StretchMode="Uniform" Width="221" Height="237">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/running-woman/body@1x.png" Density="1" />
+			<FileImageSource File="Assets/running-woman/body@2x.png" Density="2" />
+			<FileImageSource File="Assets/running-woman/body@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="RunningWomanLeftArm" StretchMode="Uniform" Width="47" Height="53">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/running-woman/arm-left@1x.png" Density="1" />
+			<FileImageSource File="Assets/running-woman/arm-left@2x.png" Density="2" />
+			<FileImageSource File="Assets/running-woman/arm-left@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="ForwardIcon" Width="10" Height="13">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/forward@1x.png" Density="1" />
+			<FileImageSource File="Assets/forward@2x.png" Density="2" />
+			<FileImageSource File="Assets/forward@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="BackwardIcon" Width="10" Height="13">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/backward@1x.png" Density="1" />
+			<FileImageSource File="Assets/backward@2x.png" Density="2" />
+			<FileImageSource File="Assets/backward@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="PlusIcon" Width="12" Height="12">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/plus@1x.png" Density="1" />
+			<FileImageSource File="Assets/plus@2x.png" Density="2" />
+			<FileImageSource File="Assets/plus@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="BottomBarIcon" StretchMode="PixelPrecise" />
+
+	<BottomBarIcon ux:Class="HomeIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/home@1x.png" Density="1" />
+			<FileImageSource File="Assets/home@2x.png" Density="2" />
+			<FileImageSource File="Assets/home@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</BottomBarIcon>
+
+	<BottomBarIcon ux:Class="LogsIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/logs@1x.png" Density="1" />
+			<FileImageSource File="Assets/logs@2x.png" Density="2" />
+			<FileImageSource File="Assets/logs@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</BottomBarIcon>
+
+	<BottomBarIcon ux:Class="GoalsIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/goals@1x.png" Density="1" />
+			<FileImageSource File="Assets/goals@2x.png" Density="2" />
+			<FileImageSource File="Assets/goals@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</BottomBarIcon>
+
+	<BottomBarIcon ux:Class="ProfileIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/profile@1x.png" Density="1" />
+			<FileImageSource File="Assets/profile@2x.png" Density="2" />
+			<FileImageSource File="Assets/profile@4x.png" Density="4" />
+		</MultiDensityImageSource>
+	</BottomBarIcon>
+	<!-- strip-end -->
+	<!-- snippet-end -->
+</Panel>

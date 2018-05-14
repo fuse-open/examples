@@ -1,0 +1,12 @@
+{
+  "RootNamespace": "",
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "MainView.js:File",
+    "MainView.ux:UXFile",
+    "Assets/Pictures/*.jpg:Bundle"
+  ]
+}

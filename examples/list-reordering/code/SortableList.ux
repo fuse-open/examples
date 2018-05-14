@@ -1,0 +1,106 @@
+<Panel ux:Class="SortableList">
+	
+	<ScrollView ux:Dependency="parentScrollView" />
+	<object ux:Property="Items" />
+	<string ux:Property="Label" />
+
+	<JavaScript>
+	var Observable = require("FuseJS/Observable");
+	var items = this.Items.inner();
+
+	var selected = null;
+	var reordering = Observable(false);
+
+	function select(args) {
+		if (selected === null) {
+			selected = args.data.id;
+			items.forEach(function(x) {
+				if (x.id === selected) {
+					x.selected.value = true;
+				}
+			});
+		}
+		reordering.value = true;
+	}
+
+	function deselect() {
+		selected = null;
+		items.forEach(function(x) {
+			x.selected.value = false;
+		});
+		reordering.value = false;
+	}
+
+	function hover(args) {
+		if (reordering.value === true && selected !== null) {
+			var from;
+			var to;
+			items.forEach(function(item, index) {
+				if (item.id === selected) {
+					from = index;
+				}
+				if (item.id === args.data.id) {
+					to = index;
+				}
+			});
+			if (to !== from && to !== undefined) {
+				var tmp = items.toArray();
+				var elem = tmp[from];
+				tmp.splice(from, 1);
+				tmp.splice(to, 0, elem);
+				items.replaceAll(tmp);
+			}
+		}
+	}
+
+	module.exports = {
+		items: items,
+		reordering: reordering,
+		select: select,
+		deselect: deselect,
+		hover: hover
+	};
+	</JavaScript>
+
+	<WhileTrue Value="{reordering}">
+		<Change parentScrollView.UserScroll="false" />
+	</WhileTrue>
+
+	<Released>
+		<Callback Handler="{deselect}" />
+	</Released>
+
+	<DockPanel ux:Class="Item" Height="56">
+ 		<Text Value="{title}" Alignment="CenterLeft" TextColor="#444" Margin="8,0" />
+ 		<Panel Width="56" Dock="Right" HitTestMode="LocalBounds">
+			<Pressed>
+				<Callback Handler="{select}" />
+			</Pressed>
+			<StackPanel Width="16" ItemSpacing="2" Alignment="Center">
+				<Each Count="4">
+					<Rectangle Height="2" Color="#bbb" CornerRadius="1" />
+				</Each>
+			</StackPanel>
+ 		</Panel>
+		<LayoutAnimation>
+			<Move RelativeTo="PositionChange" Vector="1" Duration="0.16" />
+		</LayoutAnimation>
+		<WhileHovering>
+			<Callback Handler="{hover}" />
+		</WhileHovering>
+		<WhileTrue Value="{selected}">
+			<Change underlay.Opacity="0.6" Duration="0.24" />
+		</WhileTrue>
+		<Rectangle ux:Name="underlay" Color="#fff" Opacity="1" CornerRadius="2" Layer="Background" />
+	</DockPanel>
+
+	<StackPanel ItemSpacing="8">
+		<Text Value="{ReadProperty Label}" TextColor="#777" FontSize="18" Font="Bold" Margin="8,0" Alignment="CenterLeft" />
+		<StackPanel ItemSpacing="1">
+			<Each Items="{items}" IdentityKey="id">
+				<Item />
+			</Each>
+		</StackPanel>
+	</StackPanel>
+
+</Panel>

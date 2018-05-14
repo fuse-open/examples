@@ -1,0 +1,74 @@
+<App>
+	<Panel>
+		<Fuse.iOS.StatusBarConfig Style="{currentStatusbarStyle}" Animation="Fade"/>
+		<Font File="fonts/Roboto-Bold.ttf" ux:Global="RobotoBold"/>
+		<JavaScript File="MainView.js"/>
+
+		<Panel ux:Name="selected" HitTestMode="None"/>
+
+		<DockPanel Background="#CDDBEE">
+			<TopFrameBackground Dock="Top"/>
+			<Panel>
+
+				<Each Items="{pages}">
+					<!-- snippet-begin:TheCards -->
+					<Panel Offset="{offset}" ux:Name="unselected">
+						<Panel ux:Name="self" LayoutMaster="unselected">
+							<Grid ux:Name="hamburger" RowCount="3" Height="30" Width="30" Alignment="TopLeft" Margin="20" Opacity="0">
+								<Each Count="3">
+									<Rectangle Height="4" Color="{textColor}" CornerRadius="2"/>
+								</Each>
+							</Grid>
+
+							<Text ux:Name="text" Value="{name}" Margin="25" Color="{textColor}" Font="RobotoBold" FontSize="14"/>
+
+							<Rectangle ux:Name="backgroundRect" CornerRadius="10" Layer="Background">
+								<SolidColor ux:Name="backgroundRectCol" Color="{color}"/>
+							</Rectangle>
+
+							<WhileTrue Value="{isSelected}">
+								<Move Target="text" X="40" Duration="0.3" Easing="QuadraticInOut"/>
+								<Change hamburger.Opacity="1" Duration="0.3" Easing="QuadraticInOut" />
+							</WhileTrue>
+
+							<Clicked>
+								<Callback Handler="{selectMe}" />
+								<Change backgroundRectCol.Color="#fff" Duration="0.0" DurationBack="0.28" />
+							</Clicked>
+
+							<LayoutAnimation>
+								<Move RelativeTo="PositionChange" X="1" Y="1" Duration="0.3" Easing="QuadraticInOut"/>
+							</LayoutAnimation>
+
+							<StateGroup Rest="menu" Active="{state}">
+								<State Name="menu">
+
+								</State>
+								<State Name="selectedOrUnder">
+									<Change self.LayoutMaster="selected" DelayBack="0"/>
+									<Change backgroundRect.CornerRadius="0" Duration="0.3" Delay="0.1"/>
+									<Change self.Padding="0,20,0,0" Duration="0.3" DelayBack="0" Easing="QuadraticInOut" />
+								</State>
+								<State Name="aboveSelected">
+									<Move X="1" RelativeTo="Size" Duration="0.3" Easing="CircularInOut"/>
+								</State>
+							</StateGroup>
+						</Panel>
+					</Panel>
+					<!-- snippet-end -->
+				</Each>
+				<Panel Width="25" Height="25" Alignment="TopLeft" Margin="20">
+					<Rectangle Height="4" Color="#7298B1" CornerRadius="2"/>
+					<Rectangle Width="4" Color="#7298B1" CornerRadius="2"/>
+					<Translation ux:Name="crossTrans" RelativeTo="Size"/>
+					<Rotation ux:Name="crossRot" Degrees="-45"/>
+
+					<WhileTrue Value="{pageSelected}">
+						<Change crossTrans.Y="1" Duration="0.5" Easing="CircularInOut"/>
+						<Change crossRot.Degrees="0" Duration="0.5" Easing="CircularInOut"/>
+					</WhileTrue>
+				</Panel>
+			</Panel>
+		</DockPanel>
+	</Panel>
+</App>

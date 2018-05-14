@@ -1,0 +1,117 @@
+<App>
+	<PageControl>
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+		<Page Background="#EC498A">
+			<Text FontSize="20" Color="#fff" Alignment="Center">Swipe left</Text>
+		</Page>
+		<Page>
+			<Panel Background="#6334A4">
+				<!-- snippet-begin:baseicon -->
+				<Panel ux:Class="Icon" Width="80" Height="80">
+					<Image Source="{Resource iconFile}" Width="60%" Height="60%"/>
+					<Circle Color="#6334A4">
+						<Stroke Brush="#fff" Width="3"/>
+					</Circle>
+				</Panel>
+				<!-- snippet-end -->
+
+				<!-- snippet-begin:DerivingIcon -->
+				<Icon ux:Class="Payment">
+					<FileImageSource File="Icons/payment.png" ux:Key="iconFile"/>
+				</Icon>
+				<Icon ux:Class="Notes">
+					<FileImageSource File="Icons/notes.png" ux:Key="iconFile"/>
+				</Icon>
+				<Icon ux:Class="Camera">
+					<FileImageSource File="Icons/camera.png" ux:Key="iconFile"/>
+				</Icon>
+				<!-- snippet-end -->
+				<Viewbox  Alignment="Center">
+					<Panel Height="800" Width="500">
+						<Panel Height="80%" Alignment="Bottom">
+							<Panel ux:Name="panel2">
+								<Camera   ux:Name="camera" Opacity="0">
+									<Image ux:Name="arrow1" File="Icons/Arrow.png" Offset="0,80" Width="50" Height="50" Opacity="0"/>
+								</Camera>
+
+								<Payment    ux:Name="payment" Opacity="0">
+									<Translation ux:Name="paymentTrans" />
+									<Rotation ux:Name="paymentRot" Degrees="45" />
+								</Payment>
+								<Notes   ux:Name="notes" Opacity="0">
+									<Translation ux:Name="notesTrans" />
+									<Rotation ux:Name="notesRot" Degrees="-45" />
+								</Notes>
+
+								<Image ux:Name="arrow2" File="Icons/Arrow.png" Offset="0,80" Width="50" Height="50" Opacity="0"/>
+							</Panel>
+
+
+
+							<!-- snippet-begin:SendIcon -->
+							<Panel ux:Name="Send" Width="80" Height="80" Opacity="0">
+								<Panel ux:Name="sendImage">
+									<Image File="Icons/send.png" Width="60%" Height="60%"/>
+									<Image File="Icons/send.png" Width="90%" Height="90%" Color="#6334A4"/>
+									<Scaling ux:Name="sendScaling" Factor="0.7"/>
+									<Translation X="5" />
+									<Rotation Degrees="-45" />
+								</Panel>
+								<Circle Color="#6334A4">
+									<Stroke Brush="#fff" Width="3"/>
+								</Circle>
+							</Panel>
+							<!-- snippet-end -->
+
+						</Panel>
+
+						<Text ux:Class="T" TextColor="#fff8" FontSize="18" Alignment="Center" Margin="0,5" Opacity="0"/>
+						<Panel Alignment="Top" Height="90%">
+							<StackPanel Alignment="BottomCenter">
+								<T ux:Name="text1">Take a photo.</T>
+								<T ux:Name="text2">Add price and a license.</T>
+								<T ux:Name="text3">Share.</T>
+								<T ux:Name="text4" Color="#fff" Margin="0,15">Done!</T>
+							</StackPanel>
+						</Panel>
+
+						<WhileActive>
+							<Change timeline.TargetProgress="1" />
+						</WhileActive>
+
+						<!-- snippet-begin:Timeline -->
+						<Timeline ux:Name="timeline">
+							<Change camera.Opacity="1"     Duration="1" />
+							<Change text1.Opacity="1"      Duration="1" />
+							<Move Target="camera" Y="-2"   Duration="1"   Delay="1" Easing="BackOut" RelativeTo="Size" />
+							<Change paymentTrans.X="-30"   Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change notesTrans.X="30"      Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change payment.Opacity="1"    Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change notes.Opacity="1"      Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change paymentRot.Degrees="0" Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change notesRot.Degrees="0"   Duration="1"   Delay="1" Easing="BackOut"/>
+							<Change text2.Opacity="1"      Duration="1"   Delay="1"/>
+
+							<Change arrow1.Opacity="1"     Duration="0.6"   Delay="1.5"/>
+							<Change text3.Opacity="1"      Duration="1"   Delay="2"/>
+
+							<Move Target="panel2" Y="-0.25" Duration="1"   Delay="3" Easing="BackOut" RelativeTo="Size"/>
+							<Change Send.Opacity="1"       Duration="1"   Delay="3"/>
+							<Change text3.Opacity="1"      Duration="1"   Delay="3"/>
+
+							<Change arrow2.Opacity="1"     Duration="0.6"   Delay="3.5"/>
+							<Move Target="sendImage"       Duration="0.8" Delay="3.5" Easing="BackOut" X="25"/>
+							<Change sendScaling.Factor="1" Duration="0.8" Delay="3.5" Easing="BackOut" />
+
+							<Change text4.Opacity="1"      Duration="1" Delay="4.7" />
+
+
+						</Timeline>
+						<!-- snippet-end -->
+					</Panel>
+				</Viewbox>
+			</Panel>
+
+		</Page>
+	</PageControl>
+</App>

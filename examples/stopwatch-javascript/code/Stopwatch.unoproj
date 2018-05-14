@@ -1,0 +1,14 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Mobile": {
+  	"Orientations": "Portrait"
+  },
+  "Includes": [
+    "MainView.ux:UXFile",
+    "WatchFace.ux:UXFile",
+    "DroidSans/DroidSansMono.ttf:File"
+  ]
+}

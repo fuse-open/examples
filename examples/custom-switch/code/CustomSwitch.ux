@@ -1,0 +1,71 @@
+<App>
+	<ClientPanel>
+
+		<Text Dock="Top" FontSize="28" TextAlignment="Center" TextColor="#11abfe" Margin="0,15,0,15" Value="Settings"/>
+
+		<Text ux:Class="HeaderText" FontSize="24" TextColor="#11abfe" TextAlignment="Center" />
+		<Text ux:Class="DescriptionText" TextWrapping="Wrap" FontSize="14" TextAlignment="Center" />
+		<Image ux:Class="Icon" Height="80" Width="80" Color="#dedede" />
+
+		<Grid RowCount="2">
+			<DockPanel ux:Name="firstBox" Color="White" ClipToBounds="true">
+				<StackPanel Dock="Top" ItemSpacing="35" Margin="4,35,4,0">
+					<HeaderText ux:Name="firstHeader" Value="Enable chat"/>
+					<DescriptionText Value="Automatically enable chat for all the contacts in your list"/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Alignment="Center" ItemSpacing="35">
+					<Panel>
+						<Icon ux:Name="chatBack" File="Assets/Chat2OnlyBack.png" />
+						<Icon ux:Name="chatFront" File="Assets/Chat2OnlyFront.png" />
+					</Panel>
+					<Panel>
+						<MySwitch Alignment="VerticalCenter">
+							<WhileTrue>
+								<Change blueCircleScaling.Factor="10" Duration="0.25" Easing="QuadraticOut" Delay="0.20" />
+								<Change firstHeader.TextColor="White" Duration="0.25" Delay="0.20" />
+								<Change chatBack.Color="White" Duration="0.25" Delay="0.35" Easing="QuadraticOut" />
+								<Change chatFront.Color="#0c85c7" Duration="0.25" Delay="0.25" Easing="QuadraticOut" />
+								<Change blueCircle.Color="#11abfe" Duration="0.25" Easing="QuadraticOut" Delay="0.20" />
+								<Change firstBox.Color="#11abfe" Duration="0.05" Delay="0.35" />
+								<Change blueCircleTranslation.X="19" Duration="0" DurationBack="0" Delay="0.25" Easing="QuadraticInOut"/>
+							</WhileTrue>
+						</MySwitch>
+						<Circle ux:Name="blueCircle" Color="White">
+							<Translation ux:Name="blueCircleTranslation" X="-19" />
+							<Scaling ux:Name="blueCircleScaling" Factor="0" />
+						</Circle>
+					</Panel>
+				</StackPanel>
+			</DockPanel>
+			<!-- snippet-begin:Entry -->
+			<DockPanel ux:Name="secondBox" Color="White" ClipToBounds="true">
+				<StackPanel Dock="Top" ItemSpacing="35" Margin="4,35,4,0">
+					<HeaderText ux:Name="secondHeader" Value="Automatic synchronization"/>
+					<DescriptionText Value="Synchronize all contact information when connecting using USB"/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Alignment="Center" ItemSpacing="35">
+					<Icon File="Assets/Connect.png" ux:Name="connectIcon" />
+					<Panel>
+						<MySwitch Alignment="VerticalCenter">
+							<WhileTrue>
+								<Change greenCircleScaling.Factor="10" Duration="0.25" Easing="QuadraticOut" Delay="0.20" />
+								<Change secondHeader.TextColor="White" Duration="0.25" Delay="0.20" />
+								<Change connectIcon.Color="White" Duration="0.25" Delay="0.35" />
+								<Change greenCircle.Color="#8cb542" Duration="0.25" Easing="QuadraticOut" Delay="0.20" />
+								<Change secondBox.Color="#8cb542" Duration="0.05" Delay="0.35" />
+								<Change greenCircleTranslation.X="19" Duration="0" DurationBack="0" Delay="0.25" Easing="QuadraticInOut"/>
+							</WhileTrue>
+						</MySwitch>
+						<Circle ux:Name="greenCircle" Color="White">
+							<Translation ux:Name="greenCircleTranslation" X="-19" />
+							<Scaling ux:Name="greenCircleScaling" Factor="0" />
+						</Circle>
+					</Panel>
+				</StackPanel>
+			</DockPanel>
+			<!-- snippet-end -->
+		</Grid>
+	</ClientPanel>
+</App>

@@ -1,0 +1,10 @@
+<Panel ux:Class="FuseLogo">
+	<Image StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/fuse@1.png" />
+			<FileImageSource Density="2" File="Assets/fuse@2.png" />
+			<FileImageSource Density="3" File="Assets/fuse@3.png" />
+			<FileImageSource Density="4" File="Assets/fuse@4.png" />
+		</MultiDensityImageSource>
+	</Image>
+</Panel>

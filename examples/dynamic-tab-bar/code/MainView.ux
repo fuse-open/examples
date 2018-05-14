@@ -1,0 +1,150 @@
+<App>
+	<ClientPanel>
+		<Grid Columns="auto,1*,auto" Height="50" Dock="Top" Margin="5">
+			<Grid ColumnCount="2" RowCount="2" Width="22" Height="22" Margin="10">
+				<Each Count="4">
+					<Circle Color="color4" Margin="1.5"/>
+				</Each>
+			</Grid>
+			<Text ux:Name="titleText" Value="HAUNT" Color="color0" FontSize="25" Alignment="Center">
+				<Font File="Assets/Fonts/Roboto-Black.ttf" />
+			</Text>
+			<Image File="Assets/search.png" Color="color4" Width="30" Height="30" Margin="10"/>
+		</Grid>
+
+
+
+		<!-- snippet-begin:TabBar -->
+		<Panel Dock="Top" Height="60" >
+			<Rectangle ux:Name="indicator" CornerRadius="30" Color="color0" LayoutMaster="p1" Margin="0,10" Width="100%" ZOffset="0.1"/>
+			<Grid ColumnCount="5" Margin="-30,0">
+				<Panel ux:Name="p1" Column="0" ColumnSpan="2"/>
+				<Panel ux:Name="p4" Column="3" ColumnSpan="2"/>
+			</Grid>
+
+			<Grid ZOffset="1" Margin="-20,0">
+				<Column ux:Name="col1" Width="1" WidthMetric="Proportion"/>
+				<Column ux:Name="col2" Width="1" WidthMetric="Proportion"/>
+				<Column ux:Name="col3" Width="1" WidthMetric="Proportion"/>
+				<Column ux:Name="col4" Width="1" WidthMetric="Proportion"/>
+
+				<Text ux:Class="TabHeader" Color="White" Alignment="CenterLeft" Opacity="0" Margin="20,0,0,0" MinWidth="100"/>
+				<Image ux:Class="TabIcon" Width="25" Height="25" />
+
+				<Panel HitTestMode="LocalBounds">
+					<Grid Columns="auto,1*" Margin="40,0" Alignment="Left">
+						<TabIcon ux:Name="c1" File="Assets/basket.png" Color="color0"/>
+						<TabHeader ux:Name="h1" Value="Products" />
+					</Grid>
+					<Clicked>
+						<Set nav.Active="page1" />
+					</Clicked>
+				</Panel>
+				<Panel HitTestMode="LocalBounds">
+					<Grid Columns="auto,1*" Margin="30,0" Alignment="Left">
+						<TabIcon ux:Name="c2" File="Assets/accountbalance.png" Color="color1"/>
+						<TabHeader ux:Name="h2" Value="Places"/>
+					</Grid>
+					<Clicked>
+						<Set nav.Active="page2" />
+					</Clicked>
+				</Panel>
+				<Panel HitTestMode="LocalBounds">
+					<Grid Columns="auto,1*" Margin="30,0" Alignment="Left">
+						<TabIcon ux:Name="c3" File="Assets/play.png" Color="color2"/>
+						<TabHeader ux:Name="h3" Value="Reviews"/>
+
+					</Grid>
+					<Clicked>
+						<Set nav.Active="page3" />
+					</Clicked>
+				</Panel>
+				<Panel HitTestMode="LocalBounds">
+					<Grid Columns="auto,1*" Margin="30,0" Alignment="Left">
+						<TabIcon ux:Name="c4" File="Assets/person.png" Color="color3" />
+						<TabHeader ux:Name="h4" Value="Friends"/>
+					</Grid>
+					<Clicked>
+						<Set nav.Active="page4" />
+					</Clicked>
+				</Panel>
+			</Grid>
+		</Panel>
+		<!-- snippet-end -->
+		<!-- snippet-begin:PageControl -->
+		<PageControl ux:Name="nav">
+			<NavigationMotion GotoEasing="BackOut" />
+			<Attractor ux:Name="indicatorColorAttractor" Target="indicator.Color" Value="color0" />
+			<Rectangle ux:Name="bgColor" Layer="Background" Color="color0" Opacity="0.12"/>
+			<Attractor ux:Name="bgColorAttractor" Target="bgColor.Color" Value="color0" />
+			<Attractor ux:Name="titleTextAttractor" Target="titleText.Color" Value="color0" />
+
+			<WhileTrue ux:Name="shrinkIndicatorWidth">
+				<Change indicator.Width="90" Duration="0.25"/>
+			</WhileTrue>
+
+			<Image ux:Class="PagePlaceholder" Margin="8,10,8,0" StretchMode="UniformToFill" ContentAlignment="Top"/>
+
+			<Page ux:Name="page1">
+				<PagePlaceholder File="Assets/screen1.png"/>
+				<WhileActive Threshold="0.5">
+					<Set shrinkIndicatorWidth.Value="false" />
+					<Set indicatorColorAttractor.Value="color0" />
+					<Set bgColorAttractor.Value="color0" />
+					<Set titleTextAttractor.Value="color0" />
+				</WhileActive>
+				<ActivatingAnimation>
+					<Change h1.Opacity="1" />
+					<Change col1.Width="2" />
+					<Change c1.Color="White" />
+				</ActivatingAnimation>
+			</Page>
+			<Page ux:Name="page2">
+				<PagePlaceholder File="Assets/screen2.png" />
+				<WhileActive Threshold="0.5">
+					<Set shrinkIndicatorWidth.Value="true" />
+					<Set indicatorColorAttractor.Value="color1" />
+					<Set bgColorAttractor.Value="color1" />
+					<Set titleTextAttractor.Value="color1" />
+				</WhileActive>
+				<ActivatingAnimation>
+					<Change h2.Opacity="1" />
+					<Change col2.Width="2" />
+					<Change c2.Color="White" />
+				</ActivatingAnimation>
+			</Page>
+			<Page ux:Name="page3">
+				<PagePlaceholder File="Assets/screen3.png" />
+				<WhileActive Threshold="0.5">
+					<Set shrinkIndicatorWidth.Value="true" />
+					<Set indicatorColorAttractor.Value="color2" />
+					<Set bgColorAttractor.Value="color2" />
+					<Set titleTextAttractor.Value="color2" />
+				</WhileActive>
+				<ActivatingAnimation>
+					<Change h3.Opacity="1" />
+					<Change col3.Width="2" />
+					<Change c3.Color="White" />
+				</ActivatingAnimation>
+			</Page>
+			<Page ux:Name="page4">
+				<PagePlaceholder File="Assets/screen4.png" />
+				<WhileActive Threshold="0.5">
+					<Set shrinkIndicatorWidth.Value="false" />
+					<Set indicatorColorAttractor.Value="color3" />
+					<Set bgColorAttractor.Value="color3" />
+					<Set titleTextAttractor.Value="color3" />
+				</WhileActive>
+				<ActivatingAnimation Scale="0.333">
+					<Move Target="indicator" X="1" RelativeTo="PositionOffset" RelativeNode="p4"/>
+				</ActivatingAnimation>
+				<ActivatingAnimation>
+					<Change h4.Opacity="1" />
+					<Change col4.Width="2" />
+					<Change c4.Color="White" />
+				</ActivatingAnimation>
+			</Page>
+		</PageControl>
+		<!-- snippet-end -->
+	</ClientPanel>
+</App>

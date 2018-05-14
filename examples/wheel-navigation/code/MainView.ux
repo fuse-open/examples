@@ -1,0 +1,128 @@
+<App Background="#192050">
+	<iOS.StatusBarConfig Style="Light" />
+	<ClientPanel>
+		<JavaScript File="MainView.js"/>
+
+		<Grid Rows="1*,1*" Height="70" Alignment="Top">
+			<Rectangle ux:Name="topBarBackground" Layer="Background" Color="#192050" Opacity="0"/>
+			<Panel ux:Name="topBarRect" Alignment="Bottom">
+				<Rectangle ux:Name="coverDot" Width="102" CornerRadius="7.5" Height="18" Color="#454C80"/>
+				<PageIndicator ux:Name="flatPageIndicator" Navigation="pageControl" Alignment="Center" Opacity="0">
+					<DefaultLayout />
+					<Rectangle ux:Template="Dot" ux:Name="fpid" Width="100" CornerRadius="7.5" Height="15" Color="{Page color}" Alignment="Bottom">
+						<EnteringAnimation>
+							<Move X="-1.2" RelativeTo="Size" />
+							<Change fpid.Opacity="0" />
+						</EnteringAnimation>
+						<ExitingAnimation>
+							<Move X="1.2" RelativeTo="Size" />
+							<Change fpid.Opacity="0" />
+						</ExitingAnimation>
+					</Rectangle>
+				</PageIndicator>
+			</Panel>
+			<PageIndicator ux:Name="pageIndicator" Navigation="pageControl"  Alignment="Center" Opacity="0">
+				<Circle ux:Template="Dot" ux:Name="dot" Width="10" Height="10" Color="{Page color}" Margin="2,0" Opacity="0.35">
+					<ActivatingAnimation>
+						<Change dot.Opacity="1" />
+					</ActivatingAnimation>
+				</Circle>
+			</PageIndicator>
+		</Grid>
+		<ScrollView>
+			<StackPanel ux:Name="allContent">
+				<Panel Height="270">
+					<Panel ux:Name="wheelPanel">
+						<Panel ux:Name="wheel" Height="150" Margin="10,50,10,10" >
+							<Panel Alignment="Center" Width="160" Height="160">
+								<Circle Color="#192050" Width="25%" Height="25%"/>
+								<Each Items="{items}">
+									<Rectangle Width="5" Color="#192050" Height="50%" TransformOrigin="Anchor" Anchor="50%,0%">
+										<Rotation Degrees="{endAngle} - 90"/>
+									</Rectangle>
+								</Each>
+								<Each Items="{items}">
+									<Circle ux:Name="piece" Color="{color}" StartAngleDegrees="{startAngle}" EndAngleDegrees="{endAngle}" Opacity=".3">
+										<WhileTrue Value="{isActive}">
+											<Change piece.Opacity="1" Duration="0.2"/>
+										</WhileTrue>
+									</Circle>
+
+								</Each>
+								<Rotation Degrees="{defaultRotation}" />
+							</Panel>
+						</Panel>
+					</Panel>
+
+				</Panel>
+
+				<ScrollingAnimation From="0" To="height(wheelPanel) - height(pageIndicator) - 100">
+					<Scale Target="wheel" Factor="0.2" />
+					<Scale Target="topBarRect" Factor="0.7" />
+
+					<Move Target="wheel" Y="0.55" RelativeTo="Size"/>
+					<Change wheel.Opacity="0" />
+				</ScrollingAnimation>
+
+				<ScrollingAnimation From="height(wheelPanel) - 30" To="height(wheelPanel)">
+					<Change pageIndicator.Opacity="1" />
+					<Change topBarBackground.Opacity="1" />
+					<Change coverDot.Opacity="0" />
+					<Change flatPageIndicator.Opacity="1" />
+				</ScrollingAnimation>
+
+
+				<PageControl ux:Name="pageControl" Transition="None" InactiveState="Disabled">
+					<Each Items="{items}">
+						<Grid ux:Name="item" Rows="100,auto">
+							<Activated>
+								<Callback Handler="{activated}" />
+							</Activated>
+
+							<Rectangle ux:Name="tabItem" Color="{color}" Width="35%" Height="15" CornerRadius="7.5" Margin="10" Opacity="0.3"/>
+
+							<ScrollingAnimation From="0" To="100">
+								<Scale Target="tabItem" Factor="0.7"/>
+								<Move Target="arrowRect" Y="0.3" X="0.3" RelativeTo="Size" />
+							</ScrollingAnimation>
+
+							<ResourceFloat4 Key="color" Value="{color}" />
+
+							<Panel ux:Name="mainContent" Color="{color}" Opacity="0">
+								<StackPanel>
+									<Each Count="15">
+										<Rectangle CornerRadius="10" Color="#fff5" Margin="15" Padding="20">
+											<StackPanel ItemSpacing="10">
+												<Rectangle Color="White" Alignment="Left" Height="14" CornerRadius="7" Width="80%"/>
+												<Rectangle Color="#fff8" Alignment="Left" Height="10" Width="50%" CornerRadius="5"/>
+											</StackPanel>
+										</Rectangle>
+									</Each>
+								</StackPanel>
+
+
+								<Rectangle ux:Name="arrowRect" Color="{color}" Width="25" Height="25" Alignment="Top" Layer="Background">
+									<Translation Y="-5" />
+									<Rotation Degrees="45" />
+								</Rectangle>
+							</Panel>
+							<ActivatingAnimation>
+								<Change mainContent.Opacity="1" />
+								<Change tabItem.Opacity="1" />
+							</ActivatingAnimation>
+							<EnteringAnimation>
+								<Rotate Target="wheel" Degrees="{wheelRotate}" />
+							</EnteringAnimation>
+							<EnteringAnimation Scale="0.5">
+								<Move X="-1" RelativeTo="Size"/>
+							</EnteringAnimation>
+							<ExitingAnimation Scale="0.5">
+								<Move X="1" RelativeTo="Size"/>
+							</ExitingAnimation>
+						</Grid>
+					</Each>
+				</PageControl>
+			</StackPanel>
+		</ScrollView>
+	</ClientPanel>
+</App>

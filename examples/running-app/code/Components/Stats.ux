@@ -1,0 +1,16 @@
+<Grid ux:Class="Stats" Columns="auto,1*" CellSpacing="6">
+	<BaseText ux:Class="StatLabel" FontSize="12" Alignment="Right" Margin="0,0,20,0" />
+	<BaseText ux:Class="StatValue" FontSize="12" Alignment="Left" />
+	
+	<StatLabel>CALORIES</StatLabel>
+	<StatValue>1,245</StatValue>
+	
+	<StatLabel>DISTANCE</StatLabel>
+	<StatValue>1.58 miles</StatValue>
+	
+	<StatLabel>TIME</StatLabel>
+	<StatValue>2hr 36m</StatValue>
+	
+	<StatLabel>STEPS</StatLabel>
+	<StatValue>5,934</StatValue>
+</Grid>

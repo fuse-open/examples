@@ -1,0 +1,11 @@
+<!-- snippet-begin:NoiseRectangle -->
+<Rectangle ux:Class="NoiseRectangle" Color="#fff" NoiseIntensity="0.12">
+	<float ux:Property="NoiseIntensity" />
+
+	<ImageFill File="../Assets/noise.png"
+	           StretchMode="PointPrecise"
+	           Density="2"
+	           ContentAlignment="TopLeft"
+	           Opacity="{ReadProperty NoiseIntensity}" />
+</Rectangle>
+<!-- snippet-end -->

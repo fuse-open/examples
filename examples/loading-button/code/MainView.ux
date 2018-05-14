@@ -1,0 +1,8 @@
+<App>
+	<JavaScript File="MainView.js"/>
+	<Grid Rows="1*,1*" Height="60%">
+		<Each Items="{buttons}">
+			<LoadButton/>
+		</Each>
+	</Grid>
+</App>

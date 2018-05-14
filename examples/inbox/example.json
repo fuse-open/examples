@@ -1,0 +1,22 @@
+{
+    "title": "Swipe actions",
+    "synopsis": "An Inbox with done and postpone actions",
+    "publishedAt": "2015-09-25",
+    "tags": [
+		"Gesture"
+    ],
+    "uxConcepts": [
+        "ScrollView",
+        "Set",
+		"SwipeGesture",
+        "Change",
+        "WhileActive",
+        "Callback",
+        "LayoutAnimation",
+        "RemovingAnimation"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "Event handler"
+    ]
+}

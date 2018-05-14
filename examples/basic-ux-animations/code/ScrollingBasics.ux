@@ -1,0 +1,22 @@
+<Panel ux:Class="ScrollingBasics" Background="#5AB2FF">
+
+	<Panel Width="300" Height="300">
+
+		<Rectangle Layer="Overlay" HitTestMode="None" Margin="0" CornerRadius="5">
+			<Stroke Width="5" Alignment="Outside" Color="#5AB2FF" />
+		</Rectangle>
+
+		<ScrollView ClipToBounds="true">
+			<StackPanel ux:Name="stackPanel">
+				<Rectangle ux:Class="WideRectangle" Height="75" CornerRadius="5" Margin="0, 5, 0, 5" Width="100%" Color="White" />
+
+				<WideRectangle />
+				<WideRectangle />
+				<WideRectangle />
+				<WideRectangle />
+				<WideRectangle />
+			</StackPanel>
+		</ScrollView>
+
+	</Panel>
+</Panel>

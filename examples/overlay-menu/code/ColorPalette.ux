@@ -1,0 +1,11 @@
+<Panel ux:Class="ColorPalette">
+	<float4 ux:Global="Red1"    ux:Value="#FF4241" />
+	<float4 ux:Global="Red2"    ux:Value="#F4A08A" />
+	<float4 ux:Global="Red3"    ux:Value="#880000"/>
+	<float4 ux:Global="White1"  ux:Value="#FFFEFE" />
+	<float4 ux:Global="Gray1"   ux:Value="#A89F9F" />
+	<float4 ux:Global="Gray2"   ux:Value="#DCD3D1" />
+	<float4 ux:Global="Orange1" ux:Value="#FBCE9A" />
+	<float4 ux:Global="Blue1"   ux:Value="#6A9BCD" />
+
+</Panel>

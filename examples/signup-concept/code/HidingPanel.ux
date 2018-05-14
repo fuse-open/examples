@@ -1,0 +1,7 @@
+<!-- snippet-begin:HidingPanel -->
+<Panel ux:Class="HidingPanel" Opacity="0" IsEnabled="false" HitTestMode="LocalBoundsAndChildren">
+	<WhileEnabled>
+		<Change this.Opacity="1" Duration="0.4" />
+	</WhileEnabled>
+</Panel>
+<!-- snippet-end -->

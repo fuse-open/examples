@@ -1,0 +1,78 @@
+<App>
+	<Panel>
+		<Font File="Fonts/Roboto-Bold.ttf" ux:Global="RobotoBold" />
+
+		<Text ux:Class="DarkText" Alignment="Center" FontSize="22" Font="RobotoBold" Color="#5A5A5A"/>
+		<Text ux:Class="LightText" Alignment="Center" FontSize="22" Font="RobotoBold" Color="#fff"/>
+		<Panel ux:Class="Arrow" Height="25" Width="36">
+			<Image File="Icons/arrow.png" Color="#5A5A5A" Width="25" Height="36" StretchMode="Fill" Offset="0,-15">
+				<Rotation Degrees="-90" />
+			</Image>
+		</Panel>
+
+		<Fuse.iOS.StatusBarConfig ux:Name="statusBar" Style="Light" Animation="Fade" />
+		<Panel Width="80" Height="80">
+			<!-- snippet-begin:InnerCircles -->
+			<Panel ClipToBounds="True" Height="90%" Width="90%">
+				<Panel ux:Name="textPanel">
+					<Arrow ux:Name="arrow"/>
+					<DarkText ux:Name="unupvotedText" Value="22" Offset="0,5"/>
+					<LightText ux:Name="upvotedText" Value="23">
+						<Translation Y="1" RelativeTo="ParentSize"/>
+					</LightText>
+				</Panel>
+			</Panel>
+			<Panel>
+				<Rectangle CornerRadius="40" Layer="Background">
+					<Shadow />
+				</Rectangle>
+				<Circle ux:Name="pinkCircle" Width="0" Height="0" Color="#FF4081" />
+				<Circle ux:Name="grayCircle" Width="0" Height="0" Color="#D7D7D7" />
+			</Panel>
+			<!-- snippet-end -->
+			<Clicked>
+				<Toggle Target="upvote" />
+			</Clicked>
+
+			<WhileTrue ux:Name="upvote">
+				<Change sg.Active="upvoted"/>
+			</WhileTrue>
+
+			<!-- snippet-begin:Animation -->
+			<StateGroup ux:Name="sg" Rest="unupvoted">
+				<State ux:Name="unupvoted">
+					<Change grayCircle.Width="80" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+					<Change grayCircle.Height="80" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+					<Change darkCircle.Width="1200" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+					<Change darkCircle.Height="1200" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+
+					<Change statusBar.Style="Light" Duration="0.4" DurationBack="0"/>
+
+					<BringToFront Target="grayCircle"/>
+					<BringToFront Target="darkCircle"/>
+				</State>
+				<State ux:Name="upvoted">
+					<Change pinkCircle.Width="80" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+					<Change pinkCircle.Height="80" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+
+					<Change lightCircle.Width="1200" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+					<Change lightCircle.Height="1200" Duration="0.4" DurationBack="0.2" DelayBack="0.4" Easing="CircularInOut"/>
+
+					<Change statusBar.Style="Dark" Duration="0.4" DurationBack="0"/>
+					<Move Target="arrow" RelativeTo="Size" Y="-1" Duration="0.4" DelayBack="0.2" Easing="CircularInOut"/>
+					<Move Target="textPanel" RelativeTo="Size" Y="-1" Duration="0.4" Delay="0.2" Easing="CircularInOut"/>
+
+					<BringToFront Target="pinkCircle"/>
+					<BringToFront Target="lightCircle"/>
+				</State>
+			</StateGroup>
+			<!-- snippet-end -->
+		</Panel>
+		<!-- snippet-begin:OuterCircles -->
+		<Panel>
+			<Circle ux:Name="lightCircle" Color="#D7D7D7" Width="0" Height="0" />
+			<Circle ux:Name="darkCircle" Color="#363F45" Width="0" Height="0" />
+		</Panel>
+		<!-- snippet-end -->
+	</Panel>
+</App>

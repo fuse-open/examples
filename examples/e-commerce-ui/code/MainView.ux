@@ -1,0 +1,160 @@
+<!--
+	https://dribbble.com/shots/2249964-Ecommerce-XU
+-->
+<App>
+	<!-- Classes, colors, assets, and javascript -->
+	<ux:Include File="Style.ux" />
+	<JavaScript File="MainView.js" />
+
+	<!-- App -->
+	<Viewport Perspective="300" CullFace="Back">
+		<DockPanel>
+			<BottomBarBackground Dock=Bottom />
+			<SolidColor Color="BackgroundColor" />
+			<SwipeGesture ux:Name="swipeGesture" Direction="Up" Length="200" Type="Active"/>
+			<Panel Alignment="Top">
+				<StackPanel>
+					<StatusBarBackground />
+					<iOS.StatusBarConfig Style="Light" />
+					<Panel>
+						<Panel ux:Name="closeBtn" Alignment="Left" Opacity="0">
+							<Icon>
+								<MultiDensityImageSource>
+									<FileImageSource Density="1" File="Assets/ic_close_white_24dp_2x.png" />
+									<FileImageSource Density="2" File="Assets/ic_close_white_24dp_4x.png" />
+								</MultiDensityImageSource>
+								<Clicked>
+									<SetSwipeActive Target="swipeGesture" Value="false" />
+								</Clicked>
+							</Icon>
+						</Panel>
+						<Panel ux:Name="menuBtn" Alignment="Left">
+							<Icon>
+								<MultiDensityImageSource>
+									<FileImageSource Density="1" File="Assets/ic_menu_white_24dp_2x.png" />
+									<FileImageSource Density="2" File="Assets/ic_menu_white_24dp_4x.png" />
+								</MultiDensityImageSource>
+							</Icon>
+						</Panel>
+						
+						<Icon Alignment="Right">
+							<MultiDensityImageSource>
+								<FileImageSource Density="1" File="Assets/ic_shopping_basket_white_24dp_2x.png" />
+								<FileImageSource Density="2" File="Assets/ic_shopping_basket_white_24dp_4x.png" />
+							</MultiDensityImageSource>
+						</Icon>
+						<SwipingAnimation Source="swipeGesture">
+							<Change menuBtn.Opacity="0" />
+							<Change closeBtn.Opacity="1" />
+						</SwipingAnimation>
+					</Panel>
+				</StackPanel>
+			</Panel>
+			<Panel>
+				<PageControl Transition="None">
+					<Each Items="{items}">
+						<Panel Margin="10,10,10,0" ux:Name="container" HitTestMode="LocalBoundsAndChildren">
+							<EnteringAnimation>
+								<Rotate Target="bottomPartOuter" DegreesY="70" Duration="1" />
+								<Change bottomPart.Opacity="0" Easing="ExponentialIn" Duration=".75" Delay=".0"/>
+								<Change topScaling.Factor="0.5" Duration="1" />
+								<Change topPart.Opacity="0" Duration="1" Easing="ExponentialOut" />
+								<Change pageIndicatorPart.Opacity="0" Duration="1" Easing="ExponentialOut" />
+							</EnteringAnimation>
+							<ExitingAnimation>
+								<Rotate Target="bottomPartOuter" DegreesY="-70" Duration="1" />
+								<Change bottomPart.Opacity="0" Easing="ExponentialIn" Duration=".75" Delay=".0"/>
+								<Change topScaling.Factor="0.5" Duration="1" />
+								<Change topPart.Opacity="0" Duration="1" Easing="ExponentialOut" />
+								<Change pageIndicatorPart.Opacity="0" Duration="1" Easing="ExponentialOut" />
+							</ExitingAnimation>
+							<WhileInactive>
+								<Change container.HitTestMode="None"/>
+							</WhileInactive>
+							<Panel ux:Name="bottomPartOuter" TransformOrigin="HorizontalBoxCenter">
+								<Panel ux:Name="bottomPart">
+									<Panel Alignment="Bottom">
+										<SquareButton Text="ADD TO CART" />
+									</Panel>
+									<Panel>
+										<SwipingAnimation Source="swipeGesture">
+											<Change pageTranslation.Y=".12" />
+											<Change moreDiv.Opacity="1" Easing="ExponentialOut" />
+											<Change infoPointPanel.Opacity="1" Easing="CubicIn" />
+											<Change ratingsGrid.Opacity="1" Easing="ExponentialIn" />
+										</SwipingAnimation>
+										<Translation Y="0.46" RelativeTo="ParentSize" ux:Name="pageTranslation" />
+										<StackPanel ItemSpacing="5">
+											<StackPanel Orientation="Horizontal" Alignment="Center">
+												<ColorCircle Color="ColorSelRed" />
+												<ColorCircle Color="ColorSelBlue" />
+												<ColorCircle Color="ColorSelGreen" />
+												<ColorCircleSelected Color="ColorSelYellow" />
+											</StackPanel>
+											<StyledLabel Value="{name}" FontSize="23" Alignment="Center" Font="HindBold" />
+											<StyledLabel Value="{price}" FontSize="20" Alignment="Center" />
+											<StackPanel Orientation="Horizontal" Alignment="Center">
+												<SizeButton Label="S" />
+												<SizeButtonSelected Label="M" />
+												<SizeButton Label="L" />
+											</StackPanel>
+											<StyledLabel Value="{description}" Alignment="Center" Margin="10,0,10,0" />
+											<Divider ux:Name="moreDiv" Opacity="0" />
+											<StackPanel ux:Name="infoPointPanel" Alignment="Center" Opacity="0">
+												<Each Items="{infoPoints}">
+													<BulletPointLabel Text="{= data() }" />
+												</Each>
+											</StackPanel>
+											<Grid ColumnCount="2" Margin="30,20,30,20" ux:Name="ratingsGrid" Opacity="0">
+												<GridEntry><StyledLabel Value="{favorites}" Alignment="Center" /></GridEntry>
+												<GridEntry><StyledLabel Value="{reviews}" Alignment="Center" /></GridEntry>
+											</Grid>
+										</StackPanel>
+										<Rectangle CornerRadius="8" Color="CardBackground" Layer="Background">
+											<Shadow Angle="90" Size="4" />
+										</Rectangle>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel ux:Name="pageIndicatorPart" Alignment="Top" Height="46%">
+								<PageIndicator Navigation="pictureNavigator" Alignment="BottomCenter">
+									<Panel ux:Template="Dot" Margin="5" Width="15" Height="15">
+										<Circle>
+											<Stroke Width="2" Color="HintColor" />
+											<Circle ux:Name="interiorCircle" Color="HintColor" Opacity="0" />
+											<ActivatingAnimation>
+												<Change interiorCircle.Opacity="1" />
+											</ActivatingAnimation>
+										</Circle>
+									</Panel>
+								</PageIndicator>
+							</Panel>
+							<Panel ux:Name="topPart" Alignment="Top" Height="60%" >
+								<SwipeGesture Direction="Up"/>
+								<Scaling ux:Name="topScaling" Factor="1" />
+								<PageControl Transition="None" ux:Name="pictureNavigator">
+									<Each Items="{images}">
+										<Panel ux:Name="imageContainer">
+											<WhileInactive>
+												<Change imageContainer.HitTestMode="None"/>
+											</WhileInactive>
+											<EnteringAnimation>
+												<Move X="-1" RelativeTo="ParentSize" Duration="1"/>
+												<Change imageContainer.Opacity="0" Easing="ExponentialOut" Duration="1"/>
+											</EnteringAnimation>
+											<ExitingAnimation>
+												<Scale Target="imageContainer" Factor="0.5" Duration="1"/>
+												<Change imageContainer.Opacity="0" Easing="ExponentialIn" Duration=".9"/>
+											</ExitingAnimation>
+											<Image File="{= data() }" StretchMode="UniformToFill" ContentAlignment="Top"/>
+										</Panel>
+									</Each>
+								</PageControl>
+							</Panel>
+						</Panel>
+					</Each>
+				</PageControl>
+			</Panel>
+		</DockPanel>
+	</Viewport>
+</App>

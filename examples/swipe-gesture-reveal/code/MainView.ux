@@ -1,0 +1,135 @@
+<App>
+	<ClientPanel>
+
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+		<JavaScript File="MainView.js" />
+
+		<LinearGradient StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#CED6DE" />
+            <GradientStop Offset="1" Color="#93ADBD" />
+        </LinearGradient>
+
+		<Grid ColumnCount="3" Height="20" Alignment="Top" Margin="20">
+			<Image File="Assets/Icons/search.png" Alignment="Left" />
+			<Text Value="INTEREST" Color="#fff" Alignment="Center" />
+			<Image File="Assets/Icons/gps.png" Alignment="Right" />
+		</Grid>
+		<Grid ColumnCount="3" Height="30" Alignment="Bottom" Margin="20">
+			<Image File="Assets/Icons/addlocation.png" />
+			<Image File="Assets/Icons/location.png" />
+			<Image File="Assets/Icons/person.png" />
+		</Grid>
+
+		<Panel ux:Class="Card" Opacity="0.4">
+			<Scaling ux:Name="pageScaling" Factor="0.95" />
+
+			<!-- snippet-begin:ActivatingAnim -->
+			<ActivatingAnimation>
+				<Change this.Opacity="1" Duration="0.5" />
+				<Change pageScaling.Factor="1" Duration="0.5" />
+			</ActivatingAnimation>
+			<!-- snippet-end -->
+			<!-- snippet-begin:EnterExit -->
+			<EnteringAnimation Scale="0.5">
+				<Move X="-1.4" RelativeTo="ParentSize" Duration="0.5" />
+			</EnteringAnimation>
+			<ExitingAnimation Scale="0.5">
+				<Move X="1.4" RelativeTo="ParentSize" Duration="0.5" />
+			</ExitingAnimation>
+			<!-- snippet-end -->
+
+			<!-- snippet-begin:SwipeGesture -->
+			<SwipeGesture ux:Name="swipe" Direction="Up" Type="Active" />
+			<!-- snippet-end -->
+			<!-- snippet-begin:SwipingAnimation -->
+			<SwipingAnimation Source="swipe">
+				<Move Target="topPanel" Y="-0.3" RelativeTo="Size" Duration="0.5" />
+				<Change bottomPanelScaling.X="1" Duration="0.5" />
+				<Change bottomPanelScaling.Y="1" Duration="0.5" />
+				<Change bottomPanel.Opacity="1" Duration="0.5" />
+			</SwipingAnimation>
+			<!-- snippet-end -->
+			<WhileInactive Threshold="0.2">
+				<SetSwipeActive Target="swipe" Value="false" />
+			</WhileInactive>
+
+			<Panel ux:Name="topPanel" Width="60%" Height="50%">
+				<Rectangle CornerRadius="5" Layer="Background">
+					<LinearGradient StartPoint="0,0" EndPoint="0,1">
+						<GradientStop Offset="0" Color="#0004" />
+						<GradientStop Offset="0.25" Color="#0000" />
+						<GradientStop Offset="0.7" Color="#0000" />
+						<GradientStop Offset="0.85" Color="#0007" />
+						<GradientStop Offset="1" Color="#0007" />
+					</LinearGradient>
+				</Rectangle>
+				<Text Value="{item.name}" FontSize="24" Color="#ddd" Alignment="HorizontalCenter" Margin="10">
+					<Shadow Mode="PerPixel" />
+				</Text>
+				<Grid ColumnCount="3" Margin="20" Alignment="Bottom">
+					<Text Value="{item.lat}" FontSize="10" Color="#fff" />
+					<Image File="Assets/Icons/location.png" Width="13" Height="13" />
+					<Text Value="{item.long}" FontSize="10" Color="#fff" Alignment="Right" />
+				</Grid>
+				<Rectangle ux:Name="topPanelRect" Layer="Background" CornerRadius="5">
+					<ImageFill File="{item.image}" StretchMode="UniformToFill" WrapMode="ClampToEdge" />
+					<Shadow/>
+				</Rectangle>
+
+			</Panel>
+
+			<Panel ux:Name="bottomPanel" Width="70%" Height="60%" Opacity="0">
+				<Rectangle Layer="Background" Color="#eee" CornerRadius="5">
+					<Shadow />
+				</Rectangle>
+				<Scaling ux:Name="bottomPanelScaling" Y="0.8" X="0.85" />
+
+				<Grid Rows="20,20,1*" ColumnCount="2" Alignment="Bottom" Height="30%" Padding="20,10">
+					<Text Color="#444" FontSize="14" Row="0" Column="0" ColumnSpan="2" Value="{item.location}" />
+					<Text Color="#444" FontSize="14" Row="1" Column="0"
+						  Value="{item.no}" Alignment="VerticalCenter" />
+
+					<StackPanel Orientation="Horizontal" Row="1" Column="1" Alignment="CenterRight">
+						<StackPanel Orientation="Horizontal">
+							<Each Count="{item.stars}">
+								<Image File="Assets/Icons/star.png" Width="20" Height="20" Color="#99f" />
+							</Each>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Each Count="{item.starsRest}">
+								<Image File="Assets/Icons/star.png" Width="20" Height="20" Color="#999" />
+							</Each>
+						</StackPanel>
+					</StackPanel>
+
+					<Grid ColumnCount="2" ColumnSpan="2" Row="2" Column="0">
+						<StackPanel Orientation="Horizontal">
+							<Each Items="{item.people}">
+								<Circle Width="30" Height="30" Color="Red" Margin="0,0,-6,0">
+									<Stroke Brush="#ddd" Width="2" />
+									<ImageFill File="{= data() }" WrapMode="ClampToEdge" />
+								</Circle>
+							</Each>
+						</StackPanel>
+						<StackPanel Alignment="CenterRight" ItemSpacing="2">
+							<Circle Width="4" Height="4" Color="#aaa" />
+							<Circle Width="4" Height="4" Color="#aaa" />
+							<Circle Width="4" Height="4" Color="#aaa" />
+						</StackPanel>
+					</Grid>
+				</Grid>
+			</Panel>
+		</Panel>
+
+		<Panel>
+			<!-- snippet-begin:PageControl -->
+			<PageControl InactiveState="Unchanged" Transition="None">
+				<NavigationMotion GotoEasing="QuadraticOut" GotoDuration="0.3" />
+				<Each Items="{pagesView}">
+					<Card />
+				</Each>
+			</PageControl>
+			<!-- snippet-end -->
+		</Panel>
+	</ClientPanel>
+</App>

@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "Inbox.ux:UXFile",
+    "Assets/Contacts/*.png:Bundle"
+  ]
+}

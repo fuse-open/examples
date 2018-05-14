@@ -1,0 +1,47 @@
+<Rectangle ux:Class="CycleButton" Padding="4" StrokeColor="BorderColor" StrokeWidth="2" Color="White" CornerRadius="2">
+	<object ux:Property="Modes" />
+	<int ux:Property="CurrentMode" />
+
+	<JavaScript>
+		var modes = this.Modes;
+		var currentMode = this.CurrentMode;
+
+		var currentModeLabel = currentMode.combineLatest(modes, function(idx, list) {
+			return list[idx].label;
+		});
+
+		function nextState() {
+			currentMode.value = (currentMode.value + 1) % modes.value.length;
+		}
+
+		module.exports = {
+			nextState: nextState,
+			currentMode: currentMode,
+			currentModeLabel: currentModeLabel
+		}
+	</JavaScript>
+	
+	<Clicked Handler="{nextState}" />
+
+	<WhilePressed>
+		<Scale Factor="0.98" />
+	</WhilePressed>
+
+	<Circle ux:Class="ModeIndicator" IsActive="false" Width="4" BoxSizing="FillAspect" Color="BorderColor">
+		<bool ux:Property="IsActive" />
+		<WhileTrue Value="{Property IsActive}">
+			<Change this.Color="LightBlue" />
+		</WhileTrue>
+	</Circle>
+
+	<DockPanel>
+		<Text Value="{currentModeLabel}" Alignment="Center" Dock="Fill" Color="LightBlue"/>
+		<Panel Margin="8,0,0,0" Width="16" Dock="Right">
+			<StackPanel Alignment="Center" ItemSpacing="2">
+				<Each Items="{ReadProperty Modes}">
+					<ModeIndicator IsActive="index() == {currentMode}" />
+				</Each>
+			</StackPanel>
+		</Panel>
+	</DockPanel>
+</Rectangle>

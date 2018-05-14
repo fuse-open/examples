@@ -1,0 +1,13 @@
+<Panel ux:Class="Resources">
+	<!-- snippet-begin:AllTheIcons -->
+	<Image ux:Class="Chat" File="Assets/chat.png"/>
+	<Image ux:Class="Feed" File="Assets/feed.png"/>
+	<Image ux:Class="Marker" File="Assets/marker.png"/>
+	<Image ux:Class="Mountain" File="Assets/mountain.png"/>
+	<Image ux:Class="MountainFill" File="Assets/mountainFill.png" />
+	<Image ux:Class="Phone" File="Assets/phone.png"/>
+	<Image ux:Class="PhoneHands" File="Assets/phoneHands.png"/>
+	<Image ux:Class="Tags" File="Assets/tags.png"/>
+	<Image ux:Class="Map" File="Assets/map.png" />
+	<!-- snippet-end -->
+</Panel>

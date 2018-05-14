@@ -1,0 +1,12 @@
+{
+	"Packages": [
+		"Fuse",
+		"FuseJS"
+	],
+	"Includes": [
+		"*",
+		"Assets/*.png:Bundle",
+		"Assets/*.jpg:Bundle",
+		"Assets/*.jpeg:Bundle"
+	]
+}

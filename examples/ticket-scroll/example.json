@@ -1,0 +1,14 @@
+{
+    "title": "Ticket scroll",
+    "synopsis": "Scratching the surface of what you can do with ScrollingAnimation",
+    "publishedAt": "2016-03-31",
+    "tags": [
+		"Animation"
+    ],
+    "uxConcepts": [
+        "ScrollView",
+        "ScrollingAnimation",
+        "Each.Count"
+    ],
+    "jsConcepts": []
+}

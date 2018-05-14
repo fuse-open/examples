@@ -1,0 +1,50 @@
+<App Background="#eee">
+    <iOS.StatusBarConfig Style="Light" />
+    <JavaScript>
+    var Observable = require("FuseJS/Observable");
+
+    function Item(id, title) {
+        this.id = id;
+        this.title = title;
+        this.selected = Observable(false);
+    }
+
+    var morning = Observable(
+        new Item(1, "Brush your teeth"),
+        new Item(2, "Take out the trash"),
+        new Item(3, "Take the stairs")
+    );
+    var day = Observable(
+        new Item(1, "Buy milk"),
+        new Item(2, "Make an app"),
+        new Item(3, "Learn something new")
+    );
+    var evening = Observable(
+        new Item(1, "Dinner with mom"),
+        new Item(2, "Play chess with a friend"),
+        new Item(3, "Watch TV")
+    );
+
+    module.exports = {
+        morning: morning,
+        day: day,
+        evening: evening
+    };
+    </JavaScript>
+
+    <DockPanel>
+        <StatusBarBackground Dock="Top" Background="#0D47A1" />
+        <BottomBarBackground Dock="Bottom" />
+        <Panel Dock="Top" Height="56" Color="#0D47A1">
+            <Text Value="Order of Things" TextColor="#fff" Alignment="Center" FontSize="18" Font="Bold" />
+        </Panel>
+        <ScrollView ux:Name="parentScrollView">
+            <StackPanel Margin="8,16" ItemSpacing="24">
+                <SortableList Items="{morning}" parentScrollView="parentScrollView" Label="Morning" />
+                <SortableList Items="{day}" parentScrollView="parentScrollView" Label="Day" />
+                <SortableList Items="{evening}" parentScrollView="parentScrollView" Label="Evening" />
+            </StackPanel>
+        </ScrollView>
+    </DockPanel>
+
+</App>

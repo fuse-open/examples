@@ -1,0 +1,14 @@
+{
+    "title": "Overlay menu",
+    "synopsis": "An animated overlay menu",
+    "publishedAt": "2016-04-13",
+    "tags": [
+		"Menu"
+    ],
+    "uxConcepts": [
+        "Change",
+        "Keyframe",
+        "StatusBarBackground"
+    ],
+    "jsConcepts": []
+}

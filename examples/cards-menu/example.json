@@ -1,0 +1,21 @@
+{
+    "title": "A new take on tabs",
+    "synopsis": "A new take on navigation between tabs",
+    "publishedAt": "2016-02-15",
+    "tags": [
+        "Cards",
+        "Menu",
+        "Tabs"
+    ],
+    "uxConcepts": [
+        "WhileTrue",
+        "Each",
+        "Clicked",
+        "Callback",
+        "LayoutAnimation",
+        "StateGroup"
+    ],
+    "jsConcepts": [
+        "Observable"
+    ]
+}

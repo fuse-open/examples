@@ -1,0 +1,19 @@
+<Rectangle ux:Class="HamburgerButton" Width="56" Height="56" HitTestMode="LocalBounds">
+	<bool ux:Property="IsOpen" />
+	
+	<WhileTrue Value="{ReadProperty IsOpen}">
+		<Move Target="top" Y="6"  Duration=".6" Delay="0.1" DelayBack="0" Easing="CubicInOut" />
+		<Move Target="bot" Y="-6" Duration=".6" Delay="0.1" DelayBack="0" Easing="CubicInOut" />
+		
+		<Rotate Target="top" Degrees="135" Duration=".6" Delay="0.1" DelayBack="0" Easing="CubicInOut" />
+		<Rotate Target="bot" Degrees="45"  Duration=".6" Delay="0.1" DelayBack="0" Easing="CubicInOut" />
+		
+		<Scale Target="mid" X="0" Duration=".5" Easing="QuarticInOut" />
+	</WhileTrue>
+	
+	<StackPanel ItemSpacing="4" Alignment="VerticalCenter" Width="25">
+		<Rectangle ux:Name="top" Color="#eee" Height="2" CornerRadius="1" />
+		<Rectangle ux:Name="mid" Color="#eee" Height="2" CornerRadius="1" />
+		<Rectangle ux:Name="bot" Color="#eee" Height="2" CornerRadius="1" />
+	</StackPanel>
+</Rectangle>

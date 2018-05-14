@@ -1,0 +1,14 @@
+{
+    "title": "Empty state",
+    "synopsis": "Easily present a message when there is no data to display",
+    "publishedAt": "2016-12-28",
+    "tags": [
+        "Basics"
+    ],
+    "uxConcepts": [
+        "WhileEmpty"
+    ],
+    "jsConcepts": [
+        "Observable"
+    ]
+}

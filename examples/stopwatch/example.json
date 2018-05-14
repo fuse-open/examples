@@ -1,0 +1,23 @@
+{
+    "title": "Stopwatch",
+    "synopsis": "A fully functioning stopwatch with dashing animations",
+    "publishedAt": "2015-11-05",
+    "tags": [
+        "Uno",
+        "Native module",
+        "Custom trigger",
+		"Reusable components"
+    ],
+    "uxConcepts": [
+        "Circle",
+        "Rotation",
+        "Translation",
+        "ImageFill",
+        "Timeline",
+        "Pulse"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "Timer"
+    ]
+}

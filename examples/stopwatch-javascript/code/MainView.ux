@@ -1,0 +1,94 @@
+<App Background="#ddd">
+	<Font ux:Global="DroidSans" File="DroidSans/DroidSansMono.ttf" />
+	<JavaScript File="MainView.js"/>
+	<DockPanel>
+		<Text ux:Class="FadeText" ux:Name="self" TextAlignment="Center" Alignment="Center" Font="DroidSans">
+			<AddingAnimation>
+				<Change self.Opacity="0" Delay="0.2" Duration="0.2"/>
+			</AddingAnimation>
+			<RemovingAnimation>
+				<Change self.Opacity="0" Duration="0.2"/>
+			</RemovingAnimation>
+		</Text>
+		<Fuse.iOS.StatusBarConfig Style="Light" />
+		<ImageFill File="background.png" WrapMode="ClampToEdge"/>
+
+		<Panel Dock="Top" Height="60">
+			<LinearGradient StartPoint="0,0" EndPoint="1,0">
+				<GradientStop Offset="0" Color="#3E4D86" />
+				<GradientStop Offset="1" Color="#395C8A" />
+			</LinearGradient>
+			<StackPanel Alignment="Center">
+				<StatusBarBackground DockPanel.Dock="Top" />
+				<FadeText Alignment="Center" Color="#7B9DFE">STOPWATCH</FadeText>
+			</StackPanel>
+		</Panel>
+		<ScrollView Dock="Fill" SnapMinTransform="false">
+			<StackPanel>
+				<StackPanel>
+					<WatchFace Margin="30,40,30,30" Dock="Top" Width="250" Height="250" ux:Name="watchFace">
+						<FadeText Value="{timeString}" Alignment="Center" Color="#fff" Font="DroidSans" FontSize="44"/>
+						<Panel Margin="30">
+							<Panel Clicked="{addLapOrReset}" Alignment="Bottom">
+								<Grid HitTestMode="LocalBoundsAndChildren" Rows="auto,25">
+									<Panel Height="25" Width="25" Grid.Row="0">
+										<Image File="Refresh.png"/>
+									</Panel>
+									<Match Value="{running}">
+										<Case Bool="false">
+											<FadeText Value="RESET" Grid.Row="1" FontSize="12" Color="#fff"/>
+										</Case>
+										<Case Bool="true">
+											<FadeText Value="LAP" Grid.Row="1" FontSize="12" Color="#fff"/>
+										</Case>
+									</Match>
+								</Grid>
+								<Clicked>
+									<Scale Factor="0.8" Duration="0.05" DurationBack="0.15" Easing="CircularInOut"/>
+								</Clicked>
+							</Panel>
+						</Panel>
+					</WatchFace>
+
+					<Button  Width="250" Height="50" Clicked="{stopStart}">
+						<Match Value="{running}">
+							<Case Bool="false">
+								<FadeText Value="START" Color="#999"/>
+							</Case>
+							<Case Bool="true">
+								<FadeText Value="STOP" Color="#999"/>
+							</Case>
+						</Match>
+						<Rectangle Layer="Background" CornerRadius="30" Color="#00FFFF"/>
+						<Clicked>
+							<Scale Factor="0.9" Duration="0.06" Easing="CircularInOut"/>
+						</Clicked>
+					</Button>
+				</StackPanel>
+
+				<!-- snippet-begin:LapsUX -->
+				<StackPanel Margin="20,40">
+					<Each Items="{laps}">
+						<Panel Height="50" Clicked="{removeLap}" HitTestMode="LocalBoundsAndChildren">
+							<DockPanel>
+								<FadeText Alignment="Center" FontSize="24" Color="#fff" Dock="Left" Value="{title}"/>
+								<FadeText Alignment="Center" FontSize="24" Color="#fff" Dock="Right" Value="{time}"/>
+							</DockPanel>
+							<Rectangle Color="#8FBFE8" Height="1" Alignment="Bottom"/>
+							<AddingAnimation>
+								<Move Y="-1" RelativeTo="Size" Duration="0.3"/>
+							</AddingAnimation>
+							<RemovingAnimation>
+								<Move X="1.4" RelativeTo="ParentSize" Duration="0.3"/>
+							</RemovingAnimation>
+							<LayoutAnimation>
+								<Move Y="1" RelativeTo="LayoutChange" Duration="0.3" Easing="CircularInOut"/>
+							</LayoutAnimation>
+						</Panel>
+					</Each>
+				</StackPanel>
+				<!-- snippet-end -->
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</App>

@@ -1,0 +1,9 @@
+<Panel ux:Class="TicketButton" Alignment="HorizontalCenter" Width="60%">
+	<string ux:Property="Text" />
+	<bool ux:Property="IsSelected" />
+
+	<Text ux:Name="ticketButtonText" Value="{ReadProperty this.Text}" Color="LightGray" Alignment="Center"/>
+	<WhileFalse Value="{ReadProperty this.IsSelected}">
+		<Change ticketButtonText.Color="LightGrayFaded" Duration="0.3"/>
+	</WhileFalse>
+</Panel>

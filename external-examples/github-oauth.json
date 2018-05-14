@@ -1,0 +1,7 @@
+{
+    "title": "Github login",
+    "synopsis": "Github login using OAuth 2.0.",
+    "publishedAt": "2016-06-15",
+    "url": "https://github.com/fusetools/fuse-samples/tree/master/Samples/GithubOAuth",
+    "tags": ["Code-Only"]
+}

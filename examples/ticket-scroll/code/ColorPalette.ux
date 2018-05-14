@@ -1,0 +1,13 @@
+<!-- snippet-begin:ColorPalette -->
+<Panel ux:Class="ColorPalette">
+	<float4 ux:Global="LightGray"       ux:Value="#FDFDFD"   />
+	<float4 ux:Global="LightGrayFaded"  ux:Value="#FDFDFD88" />
+	<float4 ux:Global="TicketPurple"    ux:Value="#3D206A"   />
+	<float4 ux:Global="FlagColor"       ux:Value="#973067"   />
+	<float4 ux:Global="MediumGray"      ux:Value="#A5A3A8"   />
+	<float4 ux:Global="FadedMediumGray" ux:Value="#A5A3A877" />
+	<float4 ux:Global="TicketRed"       ux:Value="#CC2421"   />
+	<float4 ux:Global="IndicatorColor"  ux:Value="#A34379"   />
+	<SolidColor ux:Global="FlagColorBrush" Color="FlagColor" />
+</Panel>
+<!-- snippet-end -->

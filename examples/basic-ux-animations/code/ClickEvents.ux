@@ -1,0 +1,22 @@
+<!-- snippet-begin:ClickEvents -->
+<Panel ux:Class="ClickEvents" Background="#FF8EB4">
+
+	<StackPanel Orientation="Horizontal" Alignment="Center">
+
+		<MyRectangle>
+			<Tapped>
+				<Scale Factor="0.8" Duration="0.3" Easing="QuadraticInOut"/>
+				<Move Y="0.3" Duration="0.3" Easing="QuadraticInOut" RelativeTo="Size"/>
+			</Tapped>
+		</MyRectangle>
+
+		<MyRectangle ux:Name="fillRectB" CornerRadius="50">
+			<WhilePressed>
+				<Rotate Degrees="180" Duration="0.5" Easing="QuadraticInOut"/>
+				<Change fillRectB.CornerRadius="5" Duration="0.5" Easing="QuadraticInOut"/>
+			</WhilePressed>
+		</MyRectangle>
+	</StackPanel>
+
+</Panel>
+<!-- snippet-end -->

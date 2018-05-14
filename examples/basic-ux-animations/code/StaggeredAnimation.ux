@@ -1,0 +1,15 @@
+<!-- snippet-begin:StaggeredAnimation -->
+<Panel ux:Class="StaggeredAnimation" Background="#FF5C3A">
+
+	<StackPanel Alignment="Center" Orientation="Horizontal">
+		<MyRectangle ux:Name="rec1"/>
+		<MyRectangle ux:Name="rec2" />
+		<WhilePressed>
+			<Rotate Target="rec1" Degrees="90" DelayBack="0.5" Duration="0.5" Easing="QuadraticOut" EasingBack="QuadraticIn" />
+			<Rotate Target="rec2" Degrees="90" Delay="0.5" Duration="0.5" EasingBack="QuadraticIn" Easing="QuadraticOut" />
+		</WhilePressed>
+
+	</StackPanel>
+
+</Panel>
+<!-- snippet-end -->

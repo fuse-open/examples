@@ -1,0 +1,21 @@
+{
+    "title": "A dynamic tab bar",
+    "synopsis": "A cool animated tab bar",
+    "publishedAt": "2016-05-11",
+    "tags": [
+        "Tabs",
+        "Navigation",
+		"Gesture",
+        "Reusable components"
+    ],
+    "uxConcepts": [
+        "PageControl",
+        "ZOffset",
+        "Clicked",
+        "Set",
+        "Change",
+        "WhileActive",
+        "NavigationMotion"
+    ],
+    "jsConcepts": []
+}

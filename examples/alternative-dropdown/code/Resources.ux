@@ -1,0 +1,8 @@
+<ux:Resources>
+	<float4 ux:Global="LightBlue" ux:Value="#22b8f1" />
+	<float4 ux:Global="BorderColor" ux:Value="#e0e0e0" />
+	<float4 ux:Global="DarkerTextColor" ux:Value="#181818" />
+	<float4 ux:Global="LighterTextColor" ux:Value="#969696" />
+	<float4 ux:Global="LightGray" ux:Value="#f4f4f4" />
+	<float4 ux:Global="LighterGray" ux:Value="#f9f9f9" />
+</ux:Resources>

@@ -1,0 +1,16 @@
+{
+    "title": "Pan- Zoom- and RotateGesture",
+    "synopsis": "How we can use PanGesture, ZoomGesture and RotateGesture to allow direct interaction with an element.",
+    "publishedAt": "2017-1-3",
+    "tags": [
+        "Gesture"
+    ],
+    "uxConcepts": [
+        "PanGesture",
+		"ZoomGesture",
+		"RotateGesture",
+		"InteractiveTransform",
+		"UX Expressions"
+    ],
+    "jsConcepts": []
+}

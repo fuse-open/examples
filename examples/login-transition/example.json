@@ -1,0 +1,16 @@
+{
+    "title": "A smooth login transition",
+    "synopsis": "A smooth login transition",
+    "publishedAt": "2016-01-21",
+    "tags": [
+        "Transition",
+		"Animation"
+    ],
+    "uxConcepts": [
+        "Toggle",
+        "Stroke",
+        "Scaling",
+        "UserEvent"
+    ],
+    "jsConcepts": []
+}

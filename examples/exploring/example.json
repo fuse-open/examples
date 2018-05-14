@@ -1,0 +1,17 @@
+{
+    "title": "Details view animation",
+    "synopsis": "List item to detail view animation",
+    "publishedAt": "2017-3-28",
+    "tags": [
+		"",
+    ],
+    "uxConcepts": [
+        "AddingAnimation",
+		"Resize",
+		"Change",
+		"PageIndicator",
+		"Selection"
+    ],
+    "jsConcepts": [
+    ]
+}

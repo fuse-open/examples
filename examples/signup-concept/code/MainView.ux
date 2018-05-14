@@ -1,0 +1,184 @@
+<App>
+	<Fuse.iOS.StatusBarConfig Style="Light" />
+
+	<ClientPanel Color="Purple">
+		<HidingPanel ux:Name="topPanel">
+			<GridLayout Rows="60,1*" />
+			<WhileEnabled>
+				<Change navBarTrans.Y="0" Duration="0.4" />
+			</WhileEnabled>
+			<Grid Columns="70,1*,70">
+				<Translation ux:Name="navBarTrans" RelativeTo="Size" Y="-0.2" />
+				<Panel HitTestMode="LocalBoundsAndChildren">
+					<Image File="Icons/menu.png" Width="30" Height="30" />
+					<Clicked>
+						<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
+						<Set state.Active="loginButtonState" />
+					</Clicked>
+				</Panel>
+				<Text Value="Feed" Color="White" FontSize="20" Alignment="VerticalCenter" />
+				<Image File="Icons/search.png" Width="30" Height="30" />
+			</Grid>
+			<HidingPanel ux:Name="mainPanel">
+				<JavaScript>
+					module.exports = {
+						mockItems: ["#FF4C81","#F9ED46","#47BDF9","#F97947","#FF4C81","#F9ED46","#47BDF9","#F97947"]
+					};
+				</JavaScript>
+				<ScrollView>
+					<StackPanel Margin="25">
+						<Each Items="{mockItems}">
+							<DockPanel Height="100">
+								<Circle Color="{= data() }" Width="50" Height="50" Dock="Left" />
+								<StackPanel ItemSpacing="15" Height="100" Margin="20,0" Alignment="VerticalCenter">
+									<Rectangle Color="Gray" Height="10" Width="100%" Alignment="Left" />
+									<Rectangle Color="Gray" Height="10" Width="80%" Alignment="Left" />
+								</StackPanel>
+							</DockPanel>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</HidingPanel>
+		</HidingPanel>
+
+		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
+			<Grid RowCount="3" Margin="30,40,30,60">
+				<TextInput ux:Name="usernameTI" PlaceholderText="Username" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+				<TextInput ux:Name="emailTI"    PlaceholderText="Email ID" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+				<TextInput ux:Name="passwordTI" PlaceholderText="Password" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+			</Grid>
+			<WhileEnabled>
+				<Change usernameTI.Opacity="1" Duration="0.4" />
+				<Change emailTI.Opacity="1"    Duration="0.4" Delay="0.15" />
+				<Change passwordTI.Opacity="1" Duration="0.4" Delay="0.3" />
+			</WhileEnabled>
+
+			<Panel>
+				<Panel ux:Name="submitButton" Width="100" Offset="0%,50%" Height="50" HitTestMode="LocalBoundsAndChildren">
+					<Text Value="DONE" Alignment="Center" Color="White" />
+					<Clicked>
+						<Set state.Active="mainState" />
+					</Clicked>
+				</Panel>
+				<Panel ux:Name="submitButtonCollapsed" Width="10" Offset="0%,50%" Height="10" />
+			</Panel>
+		</HidingPanel>
+
+		<HidingPanel ux:Name="startPanel" Alignment="Bottom" Height="30%" Padding="15,0,15,15">
+			<GridLayout Rows="1*,15,15" />
+			<Panel ux:Name="signupButton" Width="120" Height="50" Alignment="Top" HitTestMode="LocalBounds">
+				<Text Value="SIGNUP" Alignment="Center" Color="#5E2E91" HitTestMode="LocalBounds" />
+				<Clicked>
+					<Set state.Active="signupFormState" />
+				</Clicked>
+			</Panel>
+			<Rectangle Color="BottomGray" Height="2" Width="55%" />
+			<Rectangle Color="BottomGray" Height="2" Width="30%" />
+		</HidingPanel>
+
+		<Panel ux:Name="addButtonPanel">
+			<HidingPanel ux:Name="addButton" Width="50" Height="50" Alignment="BottomRight" Margin="40" HitTestMode="LocalBoundsAndChildren">
+				<Text Value="+" FontSize="30" Color="White" Alignment="Center" />
+			</HidingPanel>
+			<Rectangle ux:Name="greenRect" Color="Green" LayoutMaster="submitButtonCollapsed" CornerRadius="25" Opacity="0">
+				<Shadow />
+				<WhileTrue ux:Name="showGreenRect">
+					<Change greenRect.Opacity="1" Duration="0.2" />
+				</WhileTrue>
+			</Rectangle>
+		</Panel>
+
+		<Rectangle ux:Name="whiteRect" Color="White" LayoutMaster="signupButton" Layer="Background" CornerRadius="25" />
+		<Attractor ux:Name="whiteRectCornerRadiusAttractor" Target="whiteRect.CornerRadius" Value="25" Type="SmoothSnap" Unit="Points" />
+
+		<HidingPanel ux:Name="logoPanel" Alignment="Top" Height="70%" IsEnabled="true" HitTestMode="None" Layer="Background">
+			<StackPanel Alignment="Center">
+				<Image ux:Name="logo" File="Icons/mountains.png" Width="50%" />
+				<StackPanel ux:Name="logoMockText">
+					<Rectangle Color="TopGray"  Width="60%" Height="10" CornerRadius="5" Margin="0,40,0,0" />
+					<Rectangle Color="BottomGray" Width="50%" Height="10" CornerRadius="5" Margin="0,16,0,0" />
+				</StackPanel>
+			</StackPanel>
+			<WhileTrue ux:Name="moveLogo">
+				<Change logoMockText.Opacity="0" Duration="0.4" />
+				<Move Target="logo" Y="-0.6" RelativeTo="Size" Duration="0.5" Delay="0.3" Easing="CubicInOut" />
+			</WhileTrue>
+
+			<WhileKeyboardVisible>
+				<Change logoPanel.IsEnabled="false" />
+			</WhileKeyboardVisible>
+		</HidingPanel>
+
+		<StateGroup ux:Name="state" Transition="Exclusive" Rest="loginButtonState">
+			<State Name="loginButtonState">
+				<!-- snippet-begin:MoveResize -->
+				<Move Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupButton"
+						Vector="1" Duration="0.2" DurationBack="0" />
+				<Resize Target="whiteRect" RelativeTo="Size" RelativeNode="signupButton"
+						Vector="1" Duration="0.2" DurationBack="0" />
+				<!-- snippet-end -->
+				<Move Target="greenRect" RelativeTo="PositionOffset" RelativeNode="submitButtonCollapsed"
+						Vector="1" Duration="0.2" DurationBack="0" />
+				<Resize Target="greenRect" RelativeTo="Size" RelativeNode="submitButtonCollapsed"
+						Vector="1" Duration="0.2" DurationBack="0" />
+
+				<!-- snippet-begin:SetLayoutMaster -->
+				<Set whiteRect.LayoutMaster="signupButton" Delay="0.2" />
+				<!-- snippet-end -->
+				<Set greenRect.LayoutMaster="submitButtonCollapsed" Delay="0.2" />
+
+				<Set whiteRectCornerRadiusAttractor.Value="25" />
+				<Set showGreenRect.Value="false" />
+
+				<Change startPanel.IsEnabled="true" DelayBack="0" />
+				<Set moveLogo.Value="false" />
+				<SendToBack Target="addButtonPanel" />
+			</State>
+			<State Name="signupFormState">
+				<Set whiteRectCornerRadiusAttractor.Value="5" />
+				<Move Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupForm"
+						Vector="1" Duration="0.4" Delay="0.2" DurationBack="0" Easing="CubicInOut" />
+				<Resize Target="whiteRect" RelativeTo="Size" RelativeNode="signupForm"
+						Vector="1" Duration="0.4" Delay="0.2" DurationBack="0" Easing="CubicInOut" />
+				<Move Target="greenRect" RelativeTo="PositionOffset" RelativeNode="submitButton"
+						Vector="1" Duration="0.4" Delay="0.5" DurationBack="0" Easing="CubicInOut" />
+				<Resize Target="greenRect" RelativeTo="Size" RelativeNode="submitButton"
+						Vector="1" Duration="0.4" Delay="0.5" DurationBack="0" Easing="CubicInOut" />
+
+				<Set whiteRect.LayoutMaster="signupForm" Delay="0.6" />
+				<Set greenRect.LayoutMaster="submitButton" Delay="0.9" />
+
+				<Change signupForm.IsEnabled="true" Delay="0.6" DelayBack="0" />
+				<Set showGreenRect.Value="true" Delay="0.5" />
+				<Set moveLogo.Value="true" />
+			</State>
+			<State Name="mainState">
+				<Move Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="mainPanel"
+						Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0" />
+				<Resize Target="whiteRect" RelativeTo="Size" RelativeNode="mainPanel"
+						Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0" />
+				<Move Target="greenRect" RelativeTo="PositionOffset" RelativeNode="addButton"
+						Vector="1" Duration="0.4" Delay="0.4" DurationBack="0" Easing="CubicInOut" />
+				<Resize Target="greenRect" RelativeTo="Size" RelativeNode="addButton"
+						Vector="1" Duration="0.4" Delay="0.4" DurationBack="0" Easing="CubicInOut" />
+
+				<Set whiteRect.LayoutMaster="mainPanel" Delay="0.45" />
+				<Set greenRect.LayoutMaster="addButton" Delay="0.85" />
+
+				<Change whiteRect.CornerRadius="0" Duration="0.2" DurationBack="0" />
+				<Change logoPanel.IsEnabled="false" />
+				<Scale Target="greenRect" Delay="0.9" Factor="1.2" Duration="0.2" Easing="CubicInOut" />
+				<Set whiteRectCornerRadiusAttractor.Value="0" />
+
+				<Change mainPanel.IsEnabled="true" Delay="0.9" />
+				<Change topPanel.IsEnabled="true" />
+
+				<Change greenRect.Opacity="1" Duration="0" />
+				<Change addButton.IsEnabled="true" Delay="0.5" />
+
+				<BringToFront Target="addButtonPanel" />
+			</State>
+		</StateGroup>
+
+	</ClientPanel>
+</App>

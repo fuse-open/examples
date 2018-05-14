@@ -1,0 +1,23 @@
+{
+    "title": "Animated loading buttons",
+    "synopsis": "A loading button with different success and error animations",
+    "publishedAt": "2015-10-22",
+    "tags": [
+		"Custom control",
+        "Animation"
+    ],
+    "uxConcepts": [
+        "StateGroup",
+        "State",
+        "WhileTrue",
+        "StartAngleDegrees",
+        "EndAngleDegrees",
+        "Circle",
+        "AddingAnimation",
+        "RemovingAnimation"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "Event handler"
+    ]
+}

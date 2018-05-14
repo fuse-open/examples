@@ -1,0 +1,21 @@
+{
+    "title": "Rotating sidebar",
+    "synopsis": "A fancy rotating sidebar",
+    "publishedAt": "2015-08-25",
+    "tags": [
+        "Sidebar",
+		"Animation"
+    ],
+    "uxConcepts": [
+        "TransformOrigin",
+        "Clicked",
+        "ux:Class",
+        "Toggle",
+        "WhileTrue",
+        "Move",
+        "Change",
+        "Scale",
+        "Tapped"
+    ],
+    "jsConcepts": []
+}

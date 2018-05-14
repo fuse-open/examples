@@ -1,0 +1,99 @@
+<App>
+	<iOS.StatusBarConfig Style="Light" />
+
+	<JavaScript File="MainView.js" />
+
+	<!-- snippet-begin:FadeInPanel -->
+	<Panel ux:Class="FadeInPanel" ux:Name="fadeInPanel" Background="#fff">
+		<AddingAnimation>
+			<Change fadeInPanel.Opacity="0" Duration="0.5" />
+		</AddingAnimation>
+	</Panel>
+	<!-- snippet-end -->
+
+	<DockPanel>
+
+		<BottomBarBackground Dock="Bottom" />
+
+		<Grid Rows="6*,4*">
+			<Panel Row="1">
+				<Panel Alignment="Top">
+					<Panel Offset="0,-32.5" Width="65" Height="65">
+						<Clicked>
+							<Scale Factor="0.9" Duration="0.07" />
+							<Change cameraButtonColor.Color="#FF5788" Duration="0.07" />
+							<Callback Handler="{takePicture}" Delay="0.15" />
+						</Clicked>
+						<Image File="Icons/shape.png" Margin="18" />
+						<Circle Layer="Background">
+							<SolidColor ux:Name="cameraButtonColor" Color="#FC3768" />
+							<Shadow />
+						</Circle>
+					</Panel>
+				</Panel>
+
+				<!-- snippet-begin:TweakingWithSliders -->
+				<WhileTrue Value="{filterApplied}">
+					<Grid RowCount="3" Margin="0,30,0,10">
+						<FadeInPanel>
+							<MySlider Text="Intensity" Highlight="#50D2C2">
+								<ProgressAnimation>
+									<Change halftone.Intensity="2" />
+								</ProgressAnimation>
+							</MySlider>
+							<Rectangle Height="1" Color="#eee" Alignment="Bottom" />
+						</FadeInPanel>
+						<FadeInPanel>
+							<MySlider Text="Smoothness" Highlight="#FCAB53">
+								<ProgressAnimation>
+									<Change halftone.Smoothness="15" />
+								</ProgressAnimation>
+							</MySlider>
+							<Rectangle Height="1" Color="#eee" Alignment="Bottom" />
+						</FadeInPanel>
+						<FadeInPanel>
+							<MySlider Text="Spacing" Highlight="#BA77FD">
+								<ProgressAnimation>
+									<Change halftone.Spacing="15" />
+								</ProgressAnimation>
+							</MySlider>
+						</FadeInPanel>
+					</Grid>
+				</WhileTrue>
+				<!-- snippet-end -->
+				<WhileFalse Value="{filterApplied}">
+					<FadeInPanel>
+						<Panel Height="56" Width="165">
+							<Clicked>
+								<Scale Factor="0.9" Duration="0.07" />
+								<Change filterButtonColor.Color="#FF5788" Duration="0.07" />
+								<Callback Handler="{applyFilter}" Delay="0.15" />
+							</Clicked>
+							<Text Value="Apply Halftone" Alignment="Center" Color="#FFF" />
+							<Rectangle CornerRadius="2">
+								<SolidColor ux:Name="filterButtonColor" Color="#FC3768" />
+								<Shadow />
+							</Rectangle>
+						</Panel>
+					</FadeInPanel>
+				</WhileFalse>
+			</Panel>
+
+			<Panel Row="0">
+				<!-- snippet-begin:HalftoneEffect -->
+				<Image ux:Name="picture" File="{picture}" StretchMode="UniformToFill">
+					<WhileTrue Value="{filterApplied}">
+						<Halftone ux:Name="halftone" Intensity="0" Smoothness="0" Spacing="5" PaperTint="0" DotTint="0" />
+					</WhileTrue>
+					<AddingAnimation>
+						<Change picture.Opacity="0" Duration="0.5" />
+					</AddingAnimation>
+				</Image>
+				<!-- snippet-end -->
+			</Panel>
+
+		</Grid>
+
+	</DockPanel>
+
+</App>

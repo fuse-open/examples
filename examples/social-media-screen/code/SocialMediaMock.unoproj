@@ -1,0 +1,11 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "MyApp.ux:UXFile",
+    "NewsItem.ux:UXFile",
+    "Sidebar.ux:UXFile"
+  ]
+}

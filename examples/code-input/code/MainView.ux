@@ -1,0 +1,15 @@
+<App>
+    <float4 ux:Global="Highlight" ux:Value="#999" />
+
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+        var code = Observable("");
+        module.exports = {
+            code: code
+        };
+    </JavaScript>
+
+    <ClientPanel>
+        <SegmentedInput Label="Enter Code" Code="{code}" Alignment="Top" Margin="16,64,16,0" />
+    </ClientPanel>
+</App>

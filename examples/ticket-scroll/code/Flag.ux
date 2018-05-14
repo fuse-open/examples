@@ -1,0 +1,5 @@
+<Grid ux:Class="Flag" Rows="1*,2*,1*">
+	<Rectangle Color="FlagColor"/>
+	<Rectangle Color="White"/>
+	<Rectangle Color="FlagColor"/>
+</Grid>

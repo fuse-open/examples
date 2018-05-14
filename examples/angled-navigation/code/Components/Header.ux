@@ -1,0 +1,5 @@
+<Grid ux:Class="Header" Columns="1*,2*,1*" Height="80" Color="BackgroundColor">
+	<Image File="../Assets/Icons/menu.png" Margin="25,10" Width="30" Alignment="Left"/>
+	<Image File="../Assets/Images/foodstore.png" Margin="10,15" />
+	<Image File="../Assets/Icons/cart.png" Margin="25,10" Width="30" Alignment="Right"/>
+</Grid>

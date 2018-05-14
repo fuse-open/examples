@@ -1,0 +1,55 @@
+<!-- snippet-begin:ToggleControl -->
+<ToggleControl ux:Class="MySwitch" Margin="4,4,4,4"
+			   Width="80"
+			   Height="48" Focus.IsFocusable="true">
+	<!-- snippet-begin:Clicked -->
+	<Clicked>
+		<Toggle Target="this" />
+	</Clicked>
+	<!-- snippet-end -->
+
+	<!-- snippet-begin:SwipeGesture -->
+	<SwipeGesture ux:Name="swipe" Direction="Right" Length="38" Type="Active" IsActive="{Property Value}"/>
+	<!-- snippet-end -->
+
+	<!-- snippet-begin:SwipingAnimation -->
+	<SwipingAnimation Source="swipe">
+		<Move Target="thumb" X="38"/>
+		<Change thumb.Color="#fff"/>
+		<Change track.Color="#ffffff00"/>
+		<Change track.StrokeColor="#ffffffff"/>
+	</SwipingAnimation>
+	<!-- snippet-end -->
+
+	<Panel Layer="Background">
+		<!-- snippet-begin:SwitchThumb -->
+		<Circle ux:Name="thumb" Color="#fafafaff" 
+				Alignment="CenterLeft"
+				Width="34"
+				Height="34"
+				Margin="4,0,14,0">
+			<Shadow Angle="90" Distance="0" Size="2" />
+		</Circle>
+		<!-- snippet-end -->
+
+		<Rectangle ux:Name="track" Color="#e7e7e7" StrokeColor="#ffffff00"
+			CornerRadius="23"
+			Width="80"
+			Height="40"
+			Alignment="Center"/>
+	</Panel>
+
+	<WhileDisabled>
+		<Change thumb.Color="#bdbdbdff" Easing="QuadraticInOut" Duration="0.25" />
+		<Change track.Color="#0000001e" Easing="QuadraticInOut" Duration="0.25" />
+	</WhileDisabled>
+
+	<!-- snippet-begin:WhileTrue -->
+	<WhileTrue>
+		<Change thumb.Color="#fff" Easing="QuadraticInOut" Duration="0.25" />
+		<Change track.Color="#fff0" Easing="QuadraticInOut" Duration="0.25" />
+		<Change track.StrokeColor="#ffff" Easing="QuadraticInOut" Duration="0.25" />
+	</WhileTrue>
+	<!-- snippet-end -->
+</ToggleControl>
+<!-- snippet-end -->

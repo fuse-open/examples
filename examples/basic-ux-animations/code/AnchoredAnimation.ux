@@ -1,0 +1,11 @@
+<!-- snippet-begin:AnchoredAnimation -->
+<Panel ux:Class="AnchoredAnimation" Background="#FFC05A">
+
+	<MyRectangle Alignment="Center" TransformOrigin="TopLeft">
+		<WhilePressed>
+			<Rotate Degrees="90" Duration="1" Easing="BounceOut" EasingBack="BounceIn"/>
+		</WhilePressed>
+	</MyRectangle>
+
+</Panel>
+<!-- snippet-end -->

@@ -1,0 +1,18 @@
+<Panel ux:Class="AddButton" Alignment="Center" Height="32">
+	<string ux:Property="Text" />
+	
+	<StackPanel Orientation="Horizontal" Margin="20,0" ItemSpacing="10">
+		<PlusIcon />
+		<BaseText Value="{ReadProperty Text}" Alignment="Center" Color="BorderColor" FontSize="13" />
+	</StackPanel>
+	
+	<Rectangle Layer="Background" Color="#ffff00" CornerRadius="3">
+		<Stroke Width="2" Offset="0" Color="BorderColor" />
+		<HardShadow ux:Name="shadow" />
+	</Rectangle>
+	
+	<WhilePressed>
+		<Move X="3" Y="3" Duration="0.08" Easing="CubicOut" />
+		<Change shadow.Distance="0" Duration="0.08" Easing="CubicOut" />
+	</WhilePressed>
+</Panel>

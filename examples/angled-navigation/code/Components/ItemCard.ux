@@ -1,0 +1,34 @@
+<!-- snippet-begin:CardClass -->
+<Panel ux:Class="ItemCard" Width="150" Height="150" Opacity="0.4">
+	<FileSource ux:Property="ImageFile"/>
+
+	<ActivatingAnimation>
+		<Change this.Opacity="1" Duration="1" />
+	</ActivatingAnimation>
+
+	<EnteringAnimation Scale="0.25">
+		<Move RelativeTo="Size">
+			<Keyframe Time="0.25" X="-0.7" Y="0.7"/>
+			<Keyframe Time="0.5"  X="-1.4" Y="0"/>
+			<Keyframe Time="0.75" X="-2.1" Y="-0.7"/>
+			<Keyframe Time="1"    X="-3.8" Y="-1.4"/>
+		</Move>
+	</EnteringAnimation>
+
+	<ExitingAnimation Scale="0.25">
+		<Move RelativeTo="Size">
+			<Keyframe Time="0.25" X="0.7" Y="0.7"/>
+			<Keyframe Time="0.5"  X="1.4" Y="0"/>
+			<Keyframe Time="0.75" X="2.1" Y="-0.7"/>
+			<Keyframe Time="1"    X="3.8" Y="-1.4"/>
+		</Move>
+	</ExitingAnimation>
+
+	<!-- snippet-begin:ImageFile -->
+	<Image File="{ReadProperty ImageFile}" Width="55%"/>
+	<!-- snippet-end -->
+	<Panel Color="White" Margin="14" ClipToBounds="True">
+		<Rotation Degrees="45" />
+	</Panel>
+</Panel>
+<!-- snippet-end -->

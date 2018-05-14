@@ -1,0 +1,14 @@
+{
+    "title": "Custom toggle control",
+    "synopsis": "How you can use SwipeGesture to build a custom toggle control",
+    "publishedAt": "2016-12-28",
+    "tags": [
+        "Custom control",
+        "Swipe gesture"
+    ],
+    "uxConcepts": [
+        "SwipeGesture",
+        "SwipingAnimation"
+    ],
+    "jsConcepts": []
+}

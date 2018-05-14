@@ -1,0 +1,84 @@
+<App>
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<Button ux:Class="BottomButton" Height="75" />
+		<StackPanel Dock="Bottom">
+			<Panel>
+				<BottomButton Text="Center" Alignment="Center">
+					<Clicked>
+						<Set GreenPosition1.Value="0,0,0" />
+						<Set GreenPosition2.Value="0,0,0" Delay="0.05" />
+						<Set GreenPosition3.Value="0,0,0" Delay="0.1" />
+						<Set GreenPosition4.Value="0,0,0" Delay="0.15" />
+						<Set GreenPosition5.Value="0,0,0" Delay="0.2" />
+					</Clicked>
+				</BottomButton>
+				<Grid ColumnCount="2" >
+					<!-- snippet-begin:MoreRectangles -->
+					<BottomButton Text="TopLeft">
+						<Clicked>
+							<Set GreenPosition1.Value="-100,-100,0" />
+							<Set GreenPosition2.Value="-100,-100,0" Delay="0.05" />
+							<Set GreenPosition3.Value="-100,-100,0" Delay="0.1" />
+							<Set GreenPosition4.Value="-100,-100,0" Delay="0.15" />
+							<Set GreenPosition5.Value="-100,-100,0" Delay="0.2" />
+						</Clicked>
+					</BottomButton>
+					<!-- snippet-end -->
+					<BottomButton Text="TopRight">
+						<Clicked>
+							<Set GreenPosition1.Value="100,-100,0" />
+							<Set GreenPosition2.Value="100,-100,0" Delay="0.05" />
+							<Set GreenPosition3.Value="100,-100,0" Delay="0.1" />
+							<Set GreenPosition4.Value="100,-100,0" Delay="0.15" />
+							<Set GreenPosition5.Value="100,-100,0" Delay="0.2" />
+						</Clicked>
+					</BottomButton>
+					<BottomButton Text="BottomLeft">
+						<Clicked>
+							<Set GreenPosition1.Value="-100,100,0" />
+							<Set GreenPosition2.Value="-100,100,0" Delay="0.05" />
+							<Set GreenPosition3.Value="-100,100,0" Delay="0.1" />
+							<Set GreenPosition4.Value="-100,100,0" Delay="0.15" />
+							<Set GreenPosition5.Value="-100,100,0" Delay="0.2" />
+						</Clicked>
+					</BottomButton>
+					<BottomButton Text="BottomRight">
+						<Clicked>
+							<Set GreenPosition1.Value="100,100,0" />
+							<Set GreenPosition2.Value="100,100,0" Delay="0.05" />
+							<Set GreenPosition3.Value="100,100,0" Delay="0.1" />
+							<Set GreenPosition4.Value="100,100,0" Delay="0.15" />
+							<Set GreenPosition5.Value="100,100,0" Delay="0.2" />
+						</Clicked>
+					</BottomButton>
+				</Grid>
+			</Panel>
+			<BottomFrameBackground />
+		</StackPanel>
+
+		<Attractor Target="RawPosition1.Vector" ux:Name="GreenPosition1" />
+		<Attractor Target="RawPosition2.Vector" ux:Name="GreenPosition2" />
+		<Attractor Target="RawPosition3.Vector" ux:Name="GreenPosition3" />
+		<Attractor Target="RawPosition4.Vector" ux:Name="GreenPosition4" />
+		<Attractor Target="RawPosition5.Vector" ux:Name="GreenPosition5" />
+
+		<Panel>
+			<Rectangle CornerRadius="5" Width="25" Height="25" Color="#0f0">
+				<Translation ux:Name="RawPosition1"/>
+			</Rectangle>
+			<Rectangle CornerRadius="5" Width="23" Height="23" Color="#5f5">
+				<Translation ux:Name="RawPosition2"/>
+			</Rectangle>
+			<Rectangle CornerRadius="5" Width="21" Height="21" Color="#7f7">
+				<Translation ux:Name="RawPosition3"/>
+			</Rectangle>
+			<Rectangle CornerRadius="5" Width="15" Height="15" Color="#9f9">
+				<Translation ux:Name="RawPosition4"/>
+			</Rectangle>
+			<Rectangle CornerRadius="5" Width="10" Height="10" Color="#bfb">
+				<Translation ux:Name="RawPosition5"/>
+			</Rectangle>
+		</Panel>
+	</DockPanel>
+</App>

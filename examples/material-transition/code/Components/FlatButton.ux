@@ -1,0 +1,5 @@
+<Rectangle ux:Class="FlatButton" Color="AccentColor" CornerRadius="2">
+	<string ux:Property="Text" />
+	<Text Value="{ReadProperty Text}" Color="White" Font="RobotoMedium" FontSize="14" Margin="15,10" Alignment="VerticalCenter" />
+	<Shadow Distance="2" Size="2" Color="#0002" />
+</Rectangle>

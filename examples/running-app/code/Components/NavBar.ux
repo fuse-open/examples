@@ -1,0 +1,16 @@
+<Panel ux:Class="NavBar" Height="40" Color="#fff">
+	<WhileCanGoBack>
+		<BackButton Alignment="CenterLeft">
+			<Clicked>
+				<GoBack/>
+			</Clicked>
+			<AddingAnimation>
+				<Move X="-1" RelativeTo="Size" Duration="0.8" Easing="CubicIn" />
+			</AddingAnimation>
+			<RemovingAnimation>
+				<Move X="-1" RelativeTo="Size" Duration="0.8" Easing="CubicOut" />
+			</RemovingAnimation>
+		</BackButton>
+	</WhileCanGoBack>
+	<HorizontalLine Alignment="Bottom" Height="1" />
+</Panel>

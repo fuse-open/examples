@@ -1,0 +1,12 @@
+<!-- snippet-begin:Resources -->
+<Panel ux:Class="StaticResources">
+	<Font ux:Global="RobotoMedium" File="Assets/Roboto-Medium.ttf" />
+
+	<float4 ux:Global="PrimaryColor" ux:Value="#29B6F6" />
+	<float4 ux:Global="AccentColor" ux:Value="#E91E63" />
+	
+	<Text ux:Class="SmallHeaderText" Font="RobotoMedium" FontSize="17" Color="PrimaryColor" Margin="0,15,0,0" />
+	<Text ux:Class="BodyText" FontSize="14" Color="#263238" TextWrapping="Wrap" />
+	<BodyText ux:Class="MutedText" Color="#888" />
+</Panel>
+<!-- snippet-end -->

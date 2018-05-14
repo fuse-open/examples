@@ -1,0 +1,17 @@
+<!-- snippet-begin:CrossIcon -->
+<Panel Width="30" Height="30" ux:Class="CrossIcon" ux:Name="self">
+	<Rectangle ux:Name="crossRect1" Width="100%" Height="10%" Color="White">
+		<Rotation Degrees="-45"/>
+	</Rectangle>
+	<Rectangle ux:Name="crossRect2" Width="100%" Height="10%" Color="White">
+		<Rotation Degrees="45"/>
+	</Rectangle>
+	<AddingAnimation>
+		<Change crossRect1.Width="15" Duration="0" DurationBack="0.5" Easing="BounceIn"/>
+		<Change crossRect2.Width="15" Duration="0" DurationBack="0.5" Easing="BounceIn"/>
+	</AddingAnimation>
+	<RemovingAnimation>
+		<Change self.Opacity="0" Duration="0.1"/>
+	</RemovingAnimation>
+</Panel>
+<!-- snippet-end -->

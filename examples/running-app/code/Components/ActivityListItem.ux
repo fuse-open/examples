@@ -1,0 +1,16 @@
+<Panel ux:Class="ActivityListItem" Height="50" Color="#fff" ClipToBounds="true">
+	<float4 ux:Property="LegendColor" />
+	<string ux:Property="Text" />
+
+	<BaseText ux:Name="label" Value="{ReadProperty Text}" Margin="80,0,0,0" Alignment="CenterLeft" FontSize="16" />
+	<ForwardIcon Alignment="Right" Margin="15,0" />
+	<HorizontalLine Alignment="Bottom" Layer="Overlay" />
+	
+	<Circle ux:Name="legend" Alignment="CenterLeft" Color="{ReadProperty LegendColor}" Width="26" Height="26" Margin="30,0,0,0">
+		<Stroke ux:Name="legendStroke" Width="2" Color="BorderColor" />
+	</Circle>
+	
+	<WhilePressed>
+		<Change this.Color="{ReadProperty LegendColor}" Duration="0.07" />
+	</WhilePressed>
+</Panel>

@@ -1,0 +1,36 @@
+<BasePage ux:Class="ActivityPage">
+	<Router ux:Dependency="router" />
+	<Visual ux:Dependency="navBar" />
+	
+	<NavBarTitle navBar="navBar" BoldText="TODAY:" Text="RUNNING" />
+	
+	<DockPanel>
+		<StackPanel Dock="Top">
+			<Panel Height="250">
+				<RunningWoman Alignment="Right" Margin="12" />
+				<Panel Margin="0,35,80,35" Alignment="Top" Offset="-2,0">
+					<Stats Margin="30,15" />
+					<Rectangle Layer="Background" CornerRadius="2" Color="#fff">
+						<Stroke Width="2" Color="BorderColor" />
+					</Rectangle>
+				</Panel>
+			</Panel>
+			
+			<AddButton Text="Add Time" Alignment="BottomRight" Margin="15,0" Anchor="100%,-50%"/>
+			
+			<HorizontalLine>
+				<HardShadow />
+			</HorizontalLine>
+			
+			<NoiseRectangle Layer="Background" Color="#6AEAFF" NoiseIntensity="0.1" />
+		</StackPanel>
+		
+		<ScrollView>
+			<StackPanel Margin="35,25">
+				<ActivityTimeListItem />
+				<ActivityTimeListItem />
+				<ActivityTimeListItem />
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</BasePage>

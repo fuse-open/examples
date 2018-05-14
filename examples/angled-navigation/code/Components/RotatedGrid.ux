@@ -1,0 +1,29 @@
+<!-- snippet-begin:RotatedGrid -->
+<Panel ux:Class="RotatedGrid" Alignment="Top" Width="0" Height="0">
+	<Grid TransformOrigin="TopLeft" 
+		Columns="150,150,150,150,150,150" 
+		Rows="150,150,150,150,150,150" >
+<!-- snippet-end -->
+		<Translation Y="-200"/>
+		<Rotation Degrees="45" />
+
+		<Rectangle Color="White" Column="2" Row="2" ColumnSpan="4" RowSpan="4"/>
+
+		<Rectangle Row="1" Column="3" Color="Black" Margin="-2" HitTestMode="LocalBoundsAndChildren">
+			<Image File="../Assets/Icons/arrow.png" Width="30" Height="30" Alignment="BottomLeft" Margin="12">
+				<Rotation Degrees="-45"/>
+			</Image>
+		</Rectangle>
+
+		<Rectangle Row="3" Column="1" Color="Black" Margin="-2">
+			<Image File="../Assets/Icons/arrow.png" Width="30" Height="30" Alignment="TopRight" Margin="12">
+				<Rotation Degrees="135"/>
+			</Image>
+		</Rectangle>
+
+		<Rectangle Row="1" Column="1" ColumnSpan="2" RowSpan="2" Width="300" Height="300" StrokeWidth="2" StrokeColor="#fff9"/>
+
+		<Rectangle Row="0" Column="2" RowSpan="2" Color="#fff6"/>
+		<Rectangle Row="2" Column="0" ColumnSpan="2" Color="#fff6"/>
+	</Grid>
+</Panel>

@@ -1,0 +1,36 @@
+<!-- snippet-begin:TopBar -->
+<Grid ux:Class="TopBar" Dock="Top" Padding="10,10,10,0"  Color="TicketPurple" Rows="45,45">
+	<Grid Columns="80,1*,30" Alignment="Top" Height="60">
+		<Image File="Icons/arrow.png" Alignment="Left" Width="30" Height="30"/>
+		<Text Value="Ticket" FontSize="20" Color="LightGray" Alignment="VerticalCenter"/>
+		<Grid Rows="7,7,7" Alignment="VerticalCenter">
+			<Circle Color="LightGray" Width="4" Height="4"/>
+			<Circle Color="LightGray" Width="4" Height="4"/>
+			<Circle Color="LightGray" Width="4" Height="4"/>
+		</Grid>
+	</Grid>
+	<Grid Columns="1*,1*" Margin="0,10,0,0">
+		<Rectangle ux:Name="indicator" Color="IndicatorColor" Height="2" Alignment="Bottom" LayoutMaster="outboundSelectedIndicator">
+			<LayoutAnimation>
+				<Move X="1" Duration="0.3" RelativeTo="PositionChange" Easing="CubicIn" />
+			</LayoutAnimation>
+		</Rectangle>
+		<TicketButton ux:Name="outboundButton" Text="OUTBOUND" IsSelected="true">
+			<Clicked>
+				<Set indicator.LayoutMaster="outboundSelectedIndicator" />
+				<Set outboundButton.IsSelected="true" />
+				<Set returnButton.IsSelected="false" />
+			</Clicked>
+			<Panel ux:Name="outboundSelectedIndicator" Height="2" Alignment="Bottom"/>
+		</TicketButton>
+		<TicketButton ux:Name="returnButton" Text="RETURN" IsSelected="false">
+			<Clicked>
+				<Set indicator.LayoutMaster="returnSelectedIndicator" />
+				<Set outboundButton.IsSelected="false" />
+				<Set returnButton.IsSelected="true" />
+			</Clicked>
+			<Panel ux:Name="returnSelectedIndicator" Height="2" Alignment="Bottom"/>
+		</TicketButton>
+	</Grid>
+</Grid>
+<!-- snippet-end -->

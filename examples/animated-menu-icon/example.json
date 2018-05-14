@@ -1,0 +1,16 @@
+{
+    "title": "Animated hamburger icon",
+    "synopsis": "An example of how to animate a hamburger icon into a cross",
+    "publishedAt": "2015-10-09",
+    "tags": [
+        "Animation"
+    ],
+    "uxConcepts": [
+        "Clicked",
+        "Scale",
+        "WhileTrue",
+        "Move",
+        "Keyframe"
+    ],
+    "jsConcepts": []
+}

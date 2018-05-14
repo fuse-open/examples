@@ -1,0 +1,108 @@
+<DockPanel ux:Class="Card">
+	<string ux:Property="Title" />
+	<string ux:Property="Description" />
+	<string ux:Property="Artist" />
+	<string ux:Property="ArtistPic" />
+	<string ux:Property="Cover" />
+	<string ux:Property="Albums" />
+	<float4 ux:Property="TopColor" />
+	<float4 ux:Property="BottomColor" />
+
+	<WhileInactive>
+		<Set folderOpen.Value="false" />
+		<Set recordSpinning.Value="false" />
+	</WhileInactive>
+
+	<DockPanel>
+
+		<Panel Dock="Top" Height="200">
+
+			<Panel Margin="16" MaxWidth="320">
+				<WhileTrue ux:Name="folderOpen">
+					<Change folder.Alignment="Left" />
+					<Change vinyl.Alignment="Right" />
+				</WhileTrue>
+
+				<WhileTrue ux:Name="recordSpinning">
+					<Spin Target="disc" Frequency="0.8" />
+				</WhileTrue>
+
+				<Rectangle ux:Name="folder" CornerRadius="1" Color="#fff8" Alignment="HorizontalCenter" Width="168">
+					<LayoutAnimation>
+						<Move Vector="1" RelativeTo="PositionChange" DurationBack="0.4" Easing="QuarticOut" EasingBack="QuarticIn" />
+					</LayoutAnimation>
+					<Tapped>
+						<Toggle Target="folderOpen" />
+					</Tapped>
+					<ImageFill File="{ReadProperty Cover}" StretchMode="UniformToFill" WrapMode="ClampToEdge" />
+					<Stroke Width="1" Color="#FFF3" />
+					<Shadow />
+				</Rectangle>
+
+				<Panel ux:Name="vinyl" Alignment="HorizontalCenter" Width="168">
+					<LayoutAnimation>
+						<Move Vector="1" RelativeTo="PositionChange" DurationBack="0.4" Easing="QuarticOut" EasingBack="QuarticIn" />
+					</LayoutAnimation>
+					<Tapped>
+						<Toggle Target="recordSpinning" />
+					</Tapped>
+					<Circle ux:Name="disc" Margin="2">
+						<Image File="Assets/vinyl.png" />
+						<Circle Width="50%" Height="50%">
+							<ImageFill File="{ReadProperty Cover}" StretchMode="UniformToFill" WrapMode="ClampToEdge" />
+						</Circle>
+					</Circle>
+					<Circle Color="#0004" Smoothness="24" />
+				</Panel>
+
+			</Panel>
+
+			<Rectangle CornerRadius="4,4,0,0" Color="#0002" />
+			<Rectangle CornerRadius="4,4,0,0">
+				<LinearGradient StartPoint="0,0" EndPoint="0,1" AngleDegrees="72">
+					<GradientStop Offset="0" Color="{ReadProperty BottomColor}" />
+					<GradientStop Offset="1" Color="{ReadProperty TopColor}" />
+				</LinearGradient>
+			</Rectangle>
+
+		</Panel>
+
+		<Grid Rows="1*,auto">
+			<ScrollView Padding="24,0">
+				<StackPanel ItemSpacing="8" Margin="0,24,0,0">
+					<Text Value="{ReadProperty Title}" Color="#000" FontSize="22" TextWrapping="Wrap" />
+					<Text Value="{ReadProperty Description}" Color="#0008" FontSize="15" TextWrapping="Wrap" />
+				</StackPanel>
+			</ScrollView>
+			<StackPanel Margin="24" ItemSpacing="16">
+				<Grid Height="48" Columns="auto,1*,auto" CellSpacing="8">
+					<Rectangle Width="48" CornerRadius="4">
+						<ImageFill File="{ReadProperty ArtistPic}" StretchMode="UniformToFill" WrapMode="ClampToEdge" />
+					</Rectangle>
+					<Text Value="{ReadProperty Artist}" Alignment="CenterLeft" Color="#000a" FontSize="18" MaxWidth="120" TextWrapping="Wrap" />
+					<StackPanel Alignment="VerticalCenter" Orientation="Horizontal">
+						<Text Value="{ReadProperty Albums} Albums" Color="#000c" FontSize="15" />
+						<Panel Width="14">
+							<Rectangle Color="#fff" Width="7" Alignment="Left" />
+							<Rectangle Color="#759ae7" Width="10" Height="10">
+								<Rotation Degrees="45" />
+							</Rectangle>
+						</Panel>
+					</StackPanel>
+				</Grid>
+				<Panel Height="48">
+					<Text Value="ORDER VINYL" Alignment="Center" FontSize="20" Color="#fff" />
+					<Rectangle Color="#759ae7" CornerRadius="4" />
+				</Panel>
+			</StackPanel>
+			<Rectangle Layer="Background" CornerRadius="0,0,4,4" Color="#FFF" />
+		</Grid>
+
+		<Shadow Distance="32" Size="16" />
+
+	</DockPanel>
+
+	<BottomBarBackground Dock="Bottom" />
+	<Panel Height="56" Dock="Bottom" />
+
+</DockPanel>

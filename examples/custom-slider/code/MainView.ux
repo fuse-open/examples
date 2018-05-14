@@ -1,0 +1,19 @@
+<App>
+
+    <AttractorConfig ux:Global="RangeSnap" Unit="Normalized" Type="SmoothSnap" />
+
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+        var val = Observable(70);
+        module.exports = {
+            val: val
+        };
+    </JavaScript>
+
+    <ClientPanel>
+        <GooeySlider Val="{val}" Min="0" Max="200" SliderHeight="48"
+            TintColor="#565cff" FaceColor="#fff" Alignment="Center" Margin="24,0"
+            Label="You have chosen an arbitrary value of {= round({val})} between 0 and 200" />
+    </ClientPanel>
+
+</App>

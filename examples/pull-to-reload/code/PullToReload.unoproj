@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "CogWheelReload.ux:UXFile",
+    "MainView.ux:UXFile"
+  ]
+}

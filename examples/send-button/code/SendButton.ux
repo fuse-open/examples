@@ -1,0 +1,73 @@
+<!-- snippet-begin:SendButton -->
+<!-- snippet-begin:Declaration -->
+<Panel ux:Class="SendButton" Width="70" Height="70" IsLoading="false" PrimaryColor="#F73859" SecondaryColor="#fff">
+	<bool ux:Property="IsLoading" />
+	
+	<float4 ux:Property="PrimaryColor" />
+	<float4 ux:Property="SecondaryColor" />
+<!-- snippet-end -->
+
+	<!-- snippet-begin:Icon -->
+	<Image ux:Name="icon" StretchMode="Uniform" Width="24" Alignment="Center" Offset="-2,1" Color="{ReadProperty this.SecondaryColor}">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/fa-paper-plane@1x.png" />
+			<FileImageSource Density="2" File="Assets/fa-paper-plane@2x.png" />
+			<FileImageSource Density="4" File="Assets/fa-paper-plane@4x.png" />
+		</MultiDensityImageSource>
+	</Image>
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:TapOverlayCircle -->
+	<Circle ux:Name="tapOverlayCircle" Color="#fff6" Opacity="0" />
+	<WhilePressed>
+		<Change tapOverlayCircle.Opacity="1" Duration="0.05" DurationBack="0.15" />
+	</WhilePressed>
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:MainCircle -->
+	<Circle ux:Name="mainCircle" StartAngleDegrees="0" LengthAngleDegrees="360">
+		<Stroke ux:Name="mainCircleStroke" Width="100" Color="{ReadProperty this.PrimaryColor}"  />
+		<Rotation ux:Name="mainCircleRotation" />
+	</Circle>
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:StaticBackgroundCircles -->
+	<Circle>
+		<Stroke Width="5" Color="#6662" />
+		<Scaling Factor="0.85" />
+	</Circle>
+
+	<Circle Color="{ReadProperty this.SecondaryColor}" Margin="1">
+		<Shadow Angle="90" Size="5" Distance="3" Color="#0005" />
+	</Circle>
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:FlightAnimation -->
+	<Timeline ux:Name="flightAnimation">
+		<Move Target="icon" RelativeTo="Size" KeyframeInterpolation="Smooth">
+			<Keyframe Time="0" X="0" Y="0" />
+			<Keyframe TimeDelta="0.38" X="-0.8" Y="0.5" />
+			<Keyframe TimeDelta="0.3" X="20" Y="-12" />
+		</Move>
+		<Rotate Target="icon" Degrees="25" Duration="0.4" Easing="SinusoidalInOut" DurationBack="0" />
+		<Scale Target="icon" Factor="0" Easing="CubicIn" Delay="0.38" Duration="0.3" />
+		<Change icon.Opacity="0" Duration="0.25" Delay="0.38" Easing="CubicInOut" />
+	</Timeline>
+	<!-- snippet-end -->
+	<!-- snippet-begin:WhileTrue -->
+	<WhileTrue Value="{ReadProperty this.IsLoading}">
+		<PulseForward Target="flightAnimation" />
+		<Change icon.Opacity="0" Delay="0.68" DurationBack="0.1" Easing="CubicInOut" />
+		
+		<Scale Target="mainCircle" Factor="0.85" Duration="0.5" Easing="BackInOut" Delay="0.35" />
+		<Change mainCircleStroke.Width="5" Duration="0.2" Delay="0.35" Easing="SinusoidalInOut" />
+		<Change mainCircle.LengthAngleDegrees="90" Duration="0.5" Delay="0.75" DelayBack="0" Easing="CubicInOut" />
+		<Change spin.Value="true" Delay="1.4" />
+	</WhileTrue>
+	<WhileTrue ux:Name="spin">
+		<Cycle Target="mainCircleRotation.Degrees" Low="0" High="360" Frequency="0.666" Easing="CubicInOut" Waveform="Sawtooth" />
+		<Cycle Target="mainCircleRotation.Degrees" Low="0" High="360" Frequency="0.999" FrequencyBack="-1" Waveform="Sawtooth" MixOp="Add" />
+	</WhileTrue>
+	<!-- snippet-end -->
+</Panel>
+<!-- snippet-end -->

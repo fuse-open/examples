@@ -1,0 +1,149 @@
+<App Background="#F5F5F5">
+	<iOS.StatusBarConfig Style="Light" />
+	
+	<!-- snippet-begin:IncludeData -->
+	<JavaScript File="data.js" />
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:ContentPlaceholder -->
+	<Panel ux:Name="contentPlaceholder" />
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:OuterStructure -->
+	<DockPanel>
+		<StatusAndAppBar ux:Name="statusAndAppBar" Dock="Top" />
+		
+		<ScrollView ux:Name="mainScrollView" ClipToBounds="false" LayoutMode="PreserveVisual">
+			<StackPanel Margin="0,0,0,15">
+				<Selection MinCount="0" MaxCount="1" />
+				
+				<Each Items="{events}">
+					<EventCard layoutTarget="contentPlaceholder">
+						<Selectable Value="{id}" />
+						<WhileSelected>
+							<Change mainScrollView.UserScroll="false" DelayBack="0" />
+							<Move Target="statusAndAppBar" Y="-1" RelativeTo="Size" Duration="1.2" Delay="0.1" Easing="QuarticOut" EasingBack="QuarticIn" />
+						</WhileSelected>
+					</EventCard>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+		
+		<BottomBarBackground Dock="Bottom" />
+	</DockPanel>
+	<!-- snippet-end -->
+	
+	<!-- snippet-begin:CardSelectable -->
+	<StackPanel ux:Class="EventCard" ImageHeight="200">
+		<float ux:Property="ImageHeight" />
+		<Panel ux:Dependency="layoutTarget" />
+	<!-- snippet-end -->
+	
+		<OnBackButton>
+			<ToggleSelection Mode="RemoveOnly" />
+		</OnBackButton>
+		
+		<!-- snippet-begin:WhileSelected -->
+		<!-- snippet-begin:ChangeLayoutMaster -->
+		<WhileSelected>
+			<Change imageAndContent.LayoutMaster="layoutTarget" DelayBack="0" Delay="0" />
+		<!-- snippet-end -->
+			<BringToFront />
+			
+			<Change image.CornerRadius="0" Duration="0.1" DelayBack="0" />
+			<Change image.Margin="0" Duration="0.25" Delay="0" DelayBack="0" Easing="CubicInOut" />
+		</WhileSelected>
+		<!-- snippet-end -->
+		
+		<!-- snippet-begin:WhileNotSelected -->
+		<WhileSelected Invert="true">
+			<Change contentScrollView.Opacity="0.4" Duration="0.3" DelayBack="0" />
+			<Change content.Opacity="0.5" Duration="0.5" DelayBack="0" />
+			<Move Target="content" Y="30" Duration="0.7" DelayBack="0" Delay="0" Easing="QuadraticIn" />
+		
+			<Scale Target="plusButton" Factor="0.01" Delay="0" Duration="0.2" DelayBack="0.25" DurationBack="0.55" Easing="CubicInOut" />
+			<Rotate Target="plusButton" Degrees="-90" Delay="0" Duration="0.5" DelayBack="0.25" DurationBack="1.1" EasingBack="CubicIn" />
+			<Change plusButton.Opacity="0" Duration="0.2" DelayBack="0.2" DurationBack="0.5" />
+			
+			<Change detailNavigationBar.Opacity="0" Duration="0.2" Delay="0" />
+			<Change detailNavigationBar.HitTestMode="None" />
+		</WhileSelected>
+		<!-- snippet-end -->
+		
+		<!-- snippet-begin:ContentLimitPanel -->
+		<Panel ux:Name="contentLimitPanel" Height="{ReadProperty ImageHeight}">
+			<DockPanel ux:Name="imageAndContent" ClipToBounds="true" HitTestMode="LocalBoundsAndChildren">
+		<!-- snippet-end -->
+				<!-- snippet-begin:LayoutAnimation -->
+				<LayoutAnimation>
+					<Move X="1" RelativeTo="WorldPositionChange" DelayBack="0" Duration="0.2" Easing="QuadraticInOut" />
+					<Move Y="1" RelativeTo="WorldPositionChange" DelayBack="0" Duration="0.2" Easing="SinusoidalIn" />
+					<Resize X="1" Y="1" RelativeTo="SizeChange" DelayBack="0" Duration="0.25" Easing="QuadraticIn" />
+				</LayoutAnimation>
+				<!-- snippet-end -->
+				
+				<!-- snippet-begin:ImageAndTitlePanel -->
+				<Panel Dock="Top" Height="{ReadProperty ImageHeight}">
+				<!-- snippet-end -->
+					<StackPanel ux:Name="detailNavigationBar" Alignment="Top">
+						<StatusBarBackground />
+						<BackButton Alignment="Left">
+							<Clicked>
+								<ToggleSelection Mode="RemoveOnly" />
+							</Clicked>
+						</BackButton>
+					</StackPanel>
+				
+					<Panel>
+						<Clicked>
+							<ToggleSelection Mode="AddOnly" />
+						</Clicked>
+						
+						<StackPanel Margin="56,15,30,15" Alignment="BottomLeft">
+							<Text Value="{=toUpper({date})}" Color="#fffb" FontSize="14" />
+							<Text Value="{title}" Color="#fff" FontSize="27" TextWrapping="Wrap" Alignment="CenterLeft" />
+						</StackPanel>
+						
+						<Rectangle ux:Name="image" Layer="Background" CornerRadius="2,2,0,0" Margin="15,15,15,0">
+							<PlusButton ux:Name="plusButton" Layer="Overlay" Alignment="BottomLeft" Anchor="0%,50%" Margin="10,0" />
+							
+							<SolidColor Color="#444" />
+							<ImageFill File="{image}" StretchMode="UniformToFill" WrapMode="ClampToEdge"/>
+							<LinearGradient>
+								<GradientStop Color="0,0,0, 0.1" Offset="0" />
+								<GradientStop Color="0,0,0, 0.92" Offset="1" />
+							</LinearGradient>
+						</Rectangle>
+						
+					</Panel>
+				</Panel>
+				
+				<ScrollView ux:Name="contentScrollView" Background="#fff">
+					<StackPanel ux:Name="content" Margin="56,20,20,20" ItemSpacing="10">
+						<SmallHeaderText>VENUE</SmallHeaderText>
+						<BodyText Value="{venue}" />
+						
+						<SmallHeaderText>TICKETS</SmallHeaderText>
+						<Grid Columns="1*,auto">
+							<Text Color="#212121" FontSize="30" Alignment="VerticalCenter">${ticketPrice}</Text>
+							<FlatButton Text="BUY TICKETS" />
+						</Grid>
+						
+						<SmallHeaderText>ABOUT</SmallHeaderText>
+						<BodyText Value="{description}" />
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Panel>
+		
+		<StackPanel Margin="35,10" ItemSpacing="10">
+			<BodyText Value="{venue}" Font="RobotoMedium" Margin="0,10" />
+			<MutedText Value="{description}" />
+			<TextButton Alignment="Right" Text="ADD TO CALENDAR" />
+		</StackPanel>
+		
+		<Rectangle Layer="Background" Color="#fff" CornerRadius="2" Margin="15,15,15,0">
+			<Shadow Size="2" Distance="2" Color="#0003" />
+		</Rectangle>
+	</StackPanel>
+</App>

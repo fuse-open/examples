@@ -1,0 +1,68 @@
+<BasePage ux:Class="HomePage">
+	<Router ux:Dependency="router" />
+	<Visual ux:Dependency="navBar" />
+	
+	<NavBarTitle navBar="navBar" BoldText="TUESDAY" Text="January 1, 2016" />
+	
+	<JavaScript>
+		exports.gotoActivity = function() {
+			router.push("activity");
+		}
+	</JavaScript>
+	
+	<ScrollView>
+		<StackPanel>
+			<StackPanel Margin="35,25">
+				<BaseText FontSize="15">Hello, Tanya</BaseText>
+				<BaseText FontSize="22" Margin="0,0,0,7">TODAY'S STATS:</BaseText>
+
+				<BaseText FontSize="11" Margin="0,0,0,5">43 minutes left</BaseText>
+				
+				<Rectangle Color="#000" CornerRadius="0,50,50,0" Alignment="Left" Margin="0,0,0,10">
+					<BaseText Color="White" FontSize="12" Margin="8,6,12,6">46% Complete</BaseText>
+				</Rectangle>
+				
+				<Rectangle ux:Class="ProgressBarPiece">
+					<float ux:Property="Delay" />
+					<VerticalLine Alignment="Right"/>
+
+					<AddingAnimation>
+						<Change this.Width="0" Duration="0.5" DelayBack="{ReadProperty Delay}" Easing="CubicIn" />
+						<Change this.Color="#fff" Duration="1.5" DelayBack="{ReadProperty Delay}" Easing="CubicIn" />
+					</AddingAnimation>
+				</Rectangle>
+				
+				<StackPanel ux:Name="progressBar" Orientation="Horizontal" Height="40" Color="White">
+					<ProgressBarPiece Width="90" Color="#6AEAFF"  Delay="0.2" />
+					<ProgressBarPiece Width="120" Color="#463FFF" Delay="0.3" />
+					<ProgressBarPiece Width="30" Color="#FF3FE1"  Delay="0.4"/>
+					
+					<Rectangle Layer="Overlay">
+						<Stroke Width="2" Color="BorderColor" />
+					</Rectangle>
+
+					<AddingAnimation>
+						<Scale Y="0" Duration="0.3" Easing="CubicIn" />
+						<Change progressBar.Opacity="0" Duration="0.2" />
+					</AddingAnimation>
+				</StackPanel>
+
+				<Stats Margin="30,30,0,0" />
+			</StackPanel>
+			
+			<Panel>
+				<AddButton Layer="Overlay" Text="Add Activity" Alignment="TopRight" Anchor="100%,50%" Margin="20,0" />
+				
+				<BaseText FontSize="22" Alignment="Left" Margin="30,20">ACTIVITIES</BaseText>
+				<NoiseRectangle Layer="Background" Color="#e1fbff" NoiseIntensity="0.1" />
+				
+				<HorizontalLine Alignment="Top" />
+				<HorizontalLine Alignment="Bottom" />
+			</Panel>
+			
+			<ActivityListItem Text="RUNNING" LegendColor="#8CE7FC" Clicked="{gotoActivity}" />
+			<ActivityListItem Text="WALKING" LegendColor="#2F5EFC" Clicked="{gotoActivity}" />
+			<ActivityListItem Text="CYCLING" LegendColor="#E86AE2" Clicked="{gotoActivity}" />
+		</StackPanel>
+	</ScrollView>
+</BasePage>

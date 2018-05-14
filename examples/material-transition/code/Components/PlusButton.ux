@@ -1,0 +1,7 @@
+<Panel ux:Class="PlusButton" Width="36" Height="36">
+	<Rectangle Color="AccentColor" Width="2" Height="14" />
+	<Rectangle Color="AccentColor" Width="14" Height="2" />
+	<Circle Layer="Background" Color="White">
+		<Shadow Size="2" Distance="2" Color="#0003" />
+	</Circle>
+</Panel>

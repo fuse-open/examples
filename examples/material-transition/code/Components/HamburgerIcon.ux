@@ -1,0 +1,6 @@
+<StackPanel ux:Class="HamburgerIcon" ItemSpacing="3" HitTestMode="LocalBounds" Width="56" Height="56" ContentAlignment="Center" IconColor="#fff">
+	<float4 ux:Property="IconColor" />
+	<Each Count="3">
+		<Rectangle Width="22" Height="2" Color="{ReadProperty IconColor}" />
+	</Each>
+</StackPanel>

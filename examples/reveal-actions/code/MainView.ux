@@ -1,0 +1,80 @@
+<App Background="#093E64">
+	<ClientPanel>
+		<DockPanel Margin="20,50" >
+			<Rectangle Color="#FDFDFD" CornerRadius="8" Layer="Background"/>
+			<Fuse.iOS.StatusBarConfig Style="Light" />
+
+
+			<Grid  Dock="Top" Margin="15,0" Columns="auto,1*" Height="50">
+				<Text Value="$9.99 payment" Alignment="CenterLeft" Color="#1F1F1F" FontSize="14" Dock="Left" Margin="0,0,20,0"/>
+				<MenuButton />
+			</Grid>
+
+			<DockPanel>
+				<Rectangle ux:Class="Divider" Height="1" Color="#ddd"/>
+
+				<!-- snippet-begin:ListItems -->
+				<Grid ux:Class="Entry" Columns="40, 60, 1*" Padding="10,10">
+					<Image Source="{Resource icon}" Width="25" Alignment="CenterLeft" Color="#89C372"/>
+					<Text Value="{Resource name}" FontSize="15" Color="#777" Alignment="CenterLeft" />
+					<Text Value="{Resource text}" FontSize="15" Alignment="CenterLeft"/>
+				</Grid>
+
+				<Grid ux:Class="ButtonEntry" Columns="40, 1*, 40" Padding="10,10">
+					<Image Source="{Resource icon}" Width="25" Alignment="CenterLeft" Color="#018BDB"/>
+					<StackPanel>
+						<Text Value="{Resource name}" Alignment="CenterLeft" />
+						<Text Value="{Resource text}" Color="#777" FontSize="13" Alignment="CenterLeft"/>
+					</StackPanel>
+					<Image File="Icons/arrow.png" Width="20" Color="#018bdb"/>
+				</Grid>
+				<!-- snippet-end -->
+
+				<!-- snippet-begin:ListItemsInstances -->
+				<StackPanel Background="#eee" ClipToBounds="True" Dock="Top">
+					<Divider />
+					<Entry>
+						<string ux:Key="name" ux:Value="Date"/>
+						<string ux:Key="text" ux:Value="Apr 2, 2015, 9:41 AM"/>
+						<FileImageSource  ux:Key="icon" File="Icons/date.png"/>
+					</Entry>
+					<Divider />
+					<Entry>
+						<string ux:Key="name" ux:Value="Fee"/>
+						<string ux:Key="text" ux:Value="$0.31"/>
+						<FileImageSource  ux:Key="icon" File="Icons/credit_card.png"/>
+					</Entry>
+					<Divider />
+					<Entry>
+						<string ux:Key="name" ux:Value="Status"/>
+						<string ux:Key="text" ux:Value="Paid"/>
+						<FileImageSource  ux:Key="icon" File="Icons/info.png"/>
+					</Entry>
+					<Divider />
+					<Entry>
+						<string ux:Key="name" ux:Value="Desc."/>
+						<string ux:Key="text" ux:Value="Recurrent Pro Plan"/>
+						<FileImageSource  ux:Key="icon" File="Icons/menu.png"/>
+					</Entry>
+				</StackPanel>
+				<StackPanel>
+					<Rectangle Color="#FDFDFD" CornerRadius="8" Layer="Background"/>
+					<Divider />
+					<ButtonEntry>
+						<string ux:Key="name" ux:Value="Card"/>
+						<string ux:Key="text" ux:Value="Visa **** 4242"/>
+						<FileImageSource  ux:Key="icon" File="Icons/credit_card.png"/>
+					</ButtonEntry>
+					<Divider />
+					<ButtonEntry>
+						<string ux:Key="name" ux:Value="Customer"/>
+						<string ux:Key="text" ux:Value="example@example.com"/>
+						<FileImageSource  ux:Key="icon" File="Icons/account.png"/>
+					</ButtonEntry>
+				</StackPanel>
+			</DockPanel>
+			<!-- snippet-end -->
+
+		</DockPanel>
+	</ClientPanel>
+</App>

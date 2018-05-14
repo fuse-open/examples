@@ -1,0 +1,44 @@
+<Panel ux:Class="Trip">
+	<Grid Columns="50,1*" Padding="0,20" Height="150">
+		<Panel Alignment="Left">
+			<Grid Rows="1*,1*,2*,1*,1*">
+				<Circle Width="15" Row="0">
+					<Stroke Width="1" Brush="FlagColorBrush" />
+					<Circle Color="FlagColor" Margin="2"/>
+				</Circle>
+
+				<Panel Width="30" Height="36" Row="2">
+					<Grid Margin="6,12">
+						<Rectangle Height="3" Color="TicketRed" Alignment="VerticalCenter"/>
+						<Rectangle Height="3" Color="TicketRed" Alignment="VerticalCenter"/>
+					</Grid>
+					<Image Width="30" Height="30" File="Icons/directionLeft.png" Alignment="BottomRight" Color="TicketRed"/>
+					<Image Width="30" Height="30" File="Icons/directionLeft.png" Alignment="TopLeft" Color="TicketRed">
+						<Rotation Degrees="180" />
+					</Image>
+				</Panel>
+
+				<Circle Width="12" Row="4">
+					<Stroke Width="1" Brush="#222" />
+					<Circle Color="#222" Margin="2"/>
+				</Circle>
+			</Grid>
+			<VerticalStripedLine NSegments="15" Width="4" Margin="20"/>
+		</Panel>
+		<Grid Rows="1*,1*,2*,1*,1*" Columns="1*,3*">
+			<Text Value="11:07" Row="0" Column="0" Alignment="VerticalCenter"/>
+			<Text Value="12:33" Row="4" Column="0" Alignment="VerticalCenter"/>
+
+			<Text Value="Coach A Seat 26, 27, 28"  Row="2" Column="1" RowSpan="2" Alignment="VerticalCenter" Color="MediumGray" FontSize="14"/>
+
+			<Text Value="Manchester Piccadily" Alignment="VerticalCenter" Row="0" Column="1" />
+			<Text Value="MAN" Color="MediumGray" FontSize="13" Row="1" Column="1"/>
+			<Text Value="Birmingham New Street" Alignment="VerticalCenter" Row="4" Column="1"/>
+			<Text Value="BHM" Color="MediumGray" FontSize="13" Row="5" Column="1"/>
+		</Grid>
+	</Grid>
+	<Image File="Icons/directionLeft.png" Color="TicketPurple"  Width="40" Height="40" Alignment="Right" >
+		<Rotation Degrees="180" />
+	</Image>
+	<Rectangle Color="LightGray" Height="1" Margin="20,0" Alignment="Bottom"/>
+</Panel>

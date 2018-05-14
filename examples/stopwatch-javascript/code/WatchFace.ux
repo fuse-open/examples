@@ -1,0 +1,43 @@
+<Panel ux:Class="WatchFace">
+	<JavaScript>
+		this.resume = timeline.resume.bind(timeline);
+		this.pause = timeline.pause.bind(timeline);
+		this.seek = timeline.seek.bind(timeline);
+		this.playTo = timeline.playTo.bind(timeline);
+	</JavaScript>
+	<!-- snippet-begin:WatchFaceCircles -->
+	<Circle Width="10" Height="10" Color="#fff">
+		<Rotation ux:Name="trackerBall" Degrees="0" />
+		<Translation Y="-0.487" RelativeTo="ParentSize" />
+	</Circle>
+	<Circle ux:Name="clock" StartAngleDegrees="0" EndAngleDegrees="0">
+		<Rotation Degrees="-90" />
+		<Stroke Width="6" Alignment="Inside" Offset="-1" LineCap="Round">
+			<ImageFill File="gradient.png" WrapMode="ClampToEdge"/>
+		</Stroke>
+	</Circle>
+	<Circle>
+		<Stroke Width="6" Alignment="Inside" Offset="-1" Brush="#455493" />
+	</Circle>
+	<Circle ux:Name="tickCircle" Visibility="Hidden">
+		<Stroke Width="6" Alignment="Inside" Offset="-1">
+			<ImageFill File="gradient.png" WrapMode="ClampToEdge"/>
+		</Stroke>
+		<Scaling ux:Name="circleScale" />
+	</Circle>
+	<!-- snippet-end -->
+
+	<!-- snippet-begin:WatchFaceAnimation -->
+	<Timeline ux:Name="tickCircleAnimation">
+		<Change Target="tickCircle.Visibility" Value="Visible" />
+		<Change Target="tickCircle.Opacity" Value="0" Duration="0.5" Easing="QuadraticOut" DurationBack="0" />
+		<Change Target="circleScale.Factor" Value="1.3" Duration="0.5" Easing="QuadraticOut" DurationBack="0" />
+	</Timeline>
+
+	<Timeline ux:Name="timeline">
+		<Change Target="clock.EndAngleDegrees" Value="360" Duration="1" />
+		<Change Target="trackerBall.Degrees" Value="360" Duration="1" />
+		<Pulse Target="tickCircleAnimation" />
+	</Timeline>
+	<!-- snippet-end -->
+</Panel>

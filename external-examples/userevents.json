@@ -1,0 +1,7 @@
+{
+    "title": "UserEvents",
+    "synopsis": "Defining and raising UserEvents from custom UX components.",
+    "publishedAt": "2017-02-27",
+    "url": "https://github.com/fusetools/fuse-samples/tree/master/Samples/UserEvents",
+    "tags": ["Code-Only"]
+}

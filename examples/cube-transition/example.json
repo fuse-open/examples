@@ -1,0 +1,17 @@
+{
+    "title": "Cube transition",
+    "synopsis": "A neat 3D transition between two screens",
+    "publishedAt": "2017-03-10",
+    "tags": [
+        "3D",
+        "Menu",
+        "Transition"
+    ],
+    "uxConcepts": [
+        "Viewport",
+        "TransformOrigin",
+        "VerticalBoxCenter",
+        "LayoutAnimation"
+    ],
+    "jsConcepts": []
+}

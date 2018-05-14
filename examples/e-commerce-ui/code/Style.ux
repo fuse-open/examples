@@ -1,0 +1,71 @@
+<Panel Width="0" Height="0">
+  <Fuse.iOS.StatusBarConfig Style="Dark" />
+  
+  <!-- Colors -->
+  <float4 ux:Global="FontColor" ux:Value="#556E7A" />
+  <float4 ux:Global="LighterFontColor" ux:Value="#556D79" />
+  <float4 ux:Global="InactiveColor" ux:Value="#ABB5BC" />
+  <float4 ux:Global="HintColor" ux:Value="#DEEBF4" />
+
+  <float4 ux:Global="CardBackground" ux:Value="#FFF" />
+  <float4 ux:Global="BackgroundColor" ux:Value="#f3f3f5" />
+
+  <float4 ux:Global="ColorSelRed" ux:Value="#F25254" />
+  <float4 ux:Global="ColorSelBlue" ux:Value="#6389AF" />
+  <float4 ux:Global="ColorSelGreen" ux:Value="#70C1B3" />
+  <float4 ux:Global="ColorSelYellow" ux:Value="#FFE664" />
+
+  <!-- Fonts -->
+  <Font File="Assets/Hind-Bold.otf" ux:Global="HindBold" />
+  <Font File="Assets/Hind-Regular.otf" ux:Global="Hind" />
+
+  <!-- Styling -->
+  <Circle ux:Class="ColorCircle" Width="30" Height="30" Margin="13" />
+  <Circle ux:Class="ColorCircleSelected" Width="30" Height="30" Margin="13">
+    <Circle Width="20" Height="20" Alignment="Center">
+      <Stroke Width="2" Brush="#FFF" />
+    </Circle>
+  </Circle>
+  <Text ux:Class="StyledLabel" Color="FontColor" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" Font="Hind" />
+  <Circle ux:Class="SizeButton" Width="40" Height="40" Margin="15">
+    <string ux:Property="Label" />
+    <Text Alignment="Center" Value="{ReadProperty Label}" Color="FontColor" />
+    <Stroke Width="2">
+      <SolidColor Color="InactiveColor" />
+    </Stroke>
+  </Circle>
+  <Circle ux:Class="SizeButtonSelected" Width="40" Height="40" Margin="15">
+    <string ux:Property="Label" />
+    <Text Alignment="Center" Value="{ReadProperty Label}" Color="#FFF" Font="Hind" />
+    <SolidColor Color="FontColor" />
+    <Stroke Width="2">
+      <SolidColor Color="FontColor" />
+    </Stroke>
+  </Circle>
+  <Button ux:Class="SquareButton" Margin="30,5,30,25" Height="40">
+    <SolidColor Color="CardBackground" />
+    <Rectangle ux:Template="GraphicsAppearance">
+      <StyledLabel Value="{ReadProperty Text}" Alignment="Center" FontSize="15" Font="HindBold" />
+      <Stroke Width="2">
+	<SolidColor Color="FontColor" />
+      </Stroke>
+    </Rectangle>
+  </Button>
+  <Image ux:Class="Icon" Margin="15" Color="FontColor" Height="40" />
+  <Panel ux:Class="Divider" Height="1" Margin="30,15,30,15" Color="HintColor">
+    <!--<Blur Radius=".4" />-->
+  </Panel>
+  <Panel ux:Class="BulletPointLabel" Margin="0">
+    <string ux:Property="Text" />
+    <Circle Width="10" Height="10" Color="InactiveColor" Alignment="Left" Margin="10,5,5,5" />
+    <StyledLabel Value="{ReadProperty Text}" Margin="30,0,0,0" Alignment="Left" />
+  </Panel>
+  <Panel ux:Class="GridEntry" Height="45">
+    <Rectangle>
+      <!--<Blur Radius=".3" />-->
+      <Stroke Width="2">
+	<SolidColor Color="HintColor" />
+      </Stroke>
+    </Rectangle>
+  </Panel>
+</Panel>

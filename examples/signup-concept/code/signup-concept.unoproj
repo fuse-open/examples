@@ -1,0 +1,11 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "HidingPanel.ux:UXFile",
+    "MainView.ux:UXFile",
+    "Resources.ux:UXFile"
+  ]
+}

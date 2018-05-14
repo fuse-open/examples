@@ -1,0 +1,20 @@
+{
+    "title": "Material up-vote",
+    "synopsis": "An animated up-vote button",
+    "publishedAt": "2015-12-02",
+    "tags": [
+        "Custom control",
+        "Animation"
+    ],
+    "uxConcepts": [
+        "BringToFront",
+        "Translation",
+        "ClipToBounds",
+        "Circle",
+        "Scaling",
+        "StateGroup",
+        "State",
+        "Change"
+    ],
+    "jsConcepts": []
+}

@@ -1,0 +1,63 @@
+<!-- snippet-begin:LoadButton -->
+<Panel ux:Class="LoadButton" Width="150" Height="60">
+	<Text ux:Name="text" Alignment="Center" Value="Load" Color="#090" FontSize="16" Opacity="1"/>
+	<Panel>
+		<WhileTrue ux:Name="showCross">
+			<CrossIcon ux:Name="crossIcon" Opacity="0"/>
+			<Change crossIcon.Opacity="1" Duration="0.05"/>
+		</WhileTrue>
+	</Panel>
+	<Panel>
+		<WhileTrue ux:Name="showCheck">
+			<CheckIcon ux:Name="checkIcon" Opacity="0"/>
+			<Change checkIcon.Opacity="1" Duration="0.05"/>
+		</WhileTrue>
+	</Panel>
+
+	<Arc ux:Name="arc" StartAngleDegrees="-90" EndAngleDegrees="-90" Width="56" Height="56">
+		<Stroke ux:Name="arcStroke" Width="4" Alignment="Center" Color="#090" />
+	</Arc>
+
+	<Rectangle ux:Name="rect" CornerRadius="30" Width="146" Height="56">
+		<SolidColor ux:Name="rectColor" Color="#fff" />
+		<Stroke ux:Name="rectStroke" Width="4" Alignment="Center">
+			<SolidColor ux:Name="rectStrokeColor" Color="#090"/>
+		</Stroke>
+	</Rectangle>
+
+	<WhilePressed>
+		<Scale Target="text" Factor="0.9" Duration="0.05"/>
+	</WhilePressed>
+	<Clicked>
+		<Callback Handler="{startLoading}"/>
+	</Clicked>
+
+
+	<StateGroup Active="{finishState}" Rest="defaultState" Transition="Exclusive">
+		<State ux:Name="defaultState"/>
+		<State ux:Name="loadingState">
+			<Change DurationBack="0" rectStrokeColor.Color="#ddd" Duration="0.3" />
+			<Change DurationBack="0" text.Opacity="0" Duration="0.15"/>
+			<Change DurationBack="0" rect.Width="56" Duration="0.4" Easing="CircularInOut"/>
+			<Change DurationBack="0" rectColor.Color="#fff" Duration=".3"/>
+			<Change DurationBack="0" arc.EndAngleDegrees="269.9" Delay="0.4" Duration="1" />
+			<Callback Handler="{doneLoading}" Delay="1.4" When="Forward"/>
+		</State>
+		<State ux:Name="success">
+			<Change text.Opacity="0" DurationBack="0.2" DelayBack="0.3"/>
+			<Change rect.Width="56" Duration="0" DurationBack="0.4" Easing="CircularInOut"/>
+			<Change rectStrokeColor.Color="#090" Duration=".3"/>
+			<Change rectColor.Color="#090" Duration=".3"/>
+			<Change showCheck.Value="true"/>
+		</State>
+		<State ux:Name="error">
+			<Change text.Opacity="0" DurationBack="0.2" DelayBack="0.3"/>
+			<Change rect.Width="56" Duration="0" DurationBack="0.4" Easing="CircularInOut"/>
+			<Change arcStroke.Color="#900" Duration=".3"/>
+			<Change rectStrokeColor.Color="#900" Duration=".3"/>
+			<Change rectColor.Color="#900" Duration=".3"/>
+			<Change showCross.Value="true"/>
+		</State>
+	</StateGroup>
+</Panel>
+<!-- snippet-end -->

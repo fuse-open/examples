@@ -1,0 +1,19 @@
+{
+    "title": "Paged onboarding",
+    "synopsis": "An example of how to use PageControl to make a neat on-boarding experience",
+    "publishedAt": "2016-04-06",
+    "tags": [
+        "Navigation",
+		"Animation"
+    ],
+    "uxConcepts": [
+        "PageControl",
+        "Timeline",
+        "AddingAnimation",
+        "Move",
+        "Scale",
+        "Change",
+        "Keyframe"
+    ],
+    "jsConcepts": []
+}

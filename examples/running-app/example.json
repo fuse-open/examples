@@ -1,0 +1,20 @@
+{
+    "title": "Fitness app concept",
+    "synopsis": "Fitness app concept with a brutalist design",
+    "publishedAt": "2017-01-18",
+    "tags": [
+    	"Layout",
+    	"Navigation",
+    	"Animation",
+    	"Basics"
+    ],
+    "uxConcepts": [
+    	"WhileActive",
+    	"Change",
+    	"Easing",
+    	"Anchor",
+    	"ImageFill",
+    	"Rotation"
+    ],
+    "jsConcepts": []
+}

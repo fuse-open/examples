@@ -1,0 +1,17 @@
+{
+	"title": "Effects showcase",
+	"synopsis": "How you can effortlessly apply real-time visual effects to any element",
+	"publishedAt": "2016-12-15",
+	"tags": [
+		"Effects"
+	],
+	"uxConcepts": [
+		"Effects",
+		"Blur",
+		"Halftone",
+		"Desaturate",
+		"Mask",
+		"Shadow"
+	],
+	"jsConcepts": []
+}

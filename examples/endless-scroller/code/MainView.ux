@@ -1,0 +1,81 @@
+<App>
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+
+		var images = [
+			"eWFdaPRFjwE","_FjegPI89aU","_RBcxo9AU-U","PQvRco_SnpI","6hxvm0NzYP8",
+			"b-yEdfrvQ50","pHANr-CpbYM","45FJgZMXCK8","9wociMvaquU","tI_Odb7ZU6M",
+			"o0RZkkL072U","N-sxA8vEGDk","324ovGl1BwM","RSOxw9X-suY","qv5yb436qRI",
+			"iWFRUyqpCbQ","ZJ4yhJFIzaY","ze0tqwj86S4","gQR4STZ24kM","xMYnPo53ukE"
+		];
+
+		var list = Observable();
+		var offset = Observable(0);
+		var limit = 20;
+
+		function increaseOffset() {
+			changeOffset(5);
+		}
+
+		function decreaseOffset() {
+			changeOffset(-5);
+		}
+
+		function changeOffset(diff) {
+			var nextOffset = offset.value + diff;
+			if (nextOffset >= 0) {
+				offset.value = nextOffset;
+				if ((list.length - nextOffset) <= limit) {
+					loadItems().then(function() {
+						atEnd.check();
+					});
+				}
+			}
+		}
+
+		function loadItems() {
+			var p = new Promise(function(resolve) {
+				var items = images.map(function(i) {
+					return {image: "https://source.unsplash.com/" + i + "/416x208"};
+				});
+				list.addAll(items);
+				resolve();
+			});
+			return p;
+		}
+
+		loadItems();
+
+		module.exports = {
+			list: list,
+			offset: offset,
+			limit: limit,
+			increaseOffset: increaseOffset,
+			decreaseOffset: decreaseOffset
+		}
+	</JavaScript>
+
+	<Panel ux:Class="ListItem" Height="104">
+		<Deferred>
+			<Rectangle ux:Name="imageHolder" CornerRadius="2" Opacity="1">
+				<AddingAnimation>
+					<Change imageHolder.Opacity="0" Delay="0.16" Duration="0.32" />
+				</AddingAnimation>
+				<ImageFill Url="{image}" StretchMode="UniformToFill" WrapMode="ClampToEdge" MemoryPolicy="UnloadUnused" />
+			</Rectangle>
+		</Deferred>
+		<Rectangle CornerRadius="2" Color="#0003" />
+	</Panel>
+
+	<ClientPanel>
+		<ScrollView LayoutMode="PreserveVisual">
+			<Scrolled To="Start" Within="104" Handler="{decreaseOffset}" />
+			<Scrolled ux:Name="atEnd" To="End" Within="104" Handler="{increaseOffset}" />
+			<StackPanel Margin="8" ItemSpacing="8">
+				<Each Items="{list}" Offset="{offset}" Limit="{limit}">
+					<ListItem />
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</ClientPanel>
+</App>

@@ -1,0 +1,21 @@
+<!-- snippet-begin:CheckIcon -->
+<Panel ux:Class="CheckIcon" ux:Name="self" Width="25" Height="25">
+	<Panel Offset="-10%,30%">
+		<Panel Width="100%" Height="100%">
+			<Rotation Degrees="45" />
+			<Rectangle ux:Name="checkRect1" Alignment="Left" TransformOrigin="Anchor" Anchor="0%,50%" Width="50%" Height="10%" Color="White"/>
+		</Panel>
+		<Rectangle ux:Name="checkRect2" Offset="-5%,0%" TransformOrigin="Anchor" Anchor="100%,50%" Width="100%" Height="10%" Color="White">
+
+			<Rotation Degrees="135"/>
+		</Rectangle>
+		<AddingAnimation>
+			<Change checkRect2.Width="0" Duration="0.5" Easing="BounceIn"/>
+			<Change checkRect1.Width="0" Duration="0.15" Delay="0.5" Easing="QuadraticOut"/>
+		</AddingAnimation>
+		<RemovingAnimation>
+			<Change self.Opacity="0" Duration="0.1"/>
+		</RemovingAnimation>
+	</Panel>
+</Panel>
+<!-- snippet-end -->

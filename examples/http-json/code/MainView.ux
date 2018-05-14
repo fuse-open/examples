@@ -1,0 +1,35 @@
+<!-- snippet-begin:AppUX -->
+<App Background="#eee">
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+		<ScrollView>
+			<Grid ColumnCount="2">
+				<JavaScript>
+					var Observable = require("FuseJS/Observable");
+
+					var data = Observable();
+
+					fetch('https://gist.githubusercontent.com/petterroea/5ed146454706990ea8386f147d592eff/raw/b157cfed331da3cb88150051ab74aa131022fef8/colors.json')
+						.then(function(response) { return response.json(); })
+						.then(function(responseObject) { data.replaceAll(responseObject); });
+
+					module.exports = {
+						data: data
+					};
+				</JavaScript>
+				<Each Items="{data}">
+					<DockPanel Height="120" Margin="10">
+						<Panel DockPanel.Dock="Top" Margin="10" Height="30">
+							<Rectangle Layer="Background" CornerRadius="10" Color="#fff"/>
+							<Text Value="{colorName}" TextAlignment="Center" Alignment="Center" />
+						</Panel>
+
+						<Rectangle Layer="Background" CornerRadius="10" Color="{hexValue}"/>
+					</DockPanel>
+				</Each>
+			</Grid>
+		</ScrollView>
+	</DockPanel>
+</App>
+<!-- snippet-end -->

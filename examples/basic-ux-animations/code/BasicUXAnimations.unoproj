@@ -1,0 +1,17 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Mobile": {
+    "Orientations": "Portrait"
+  },
+  "Includes": [
+    "AnchoredAnimation.ux:UXFile",
+    "ClickEvents.ux:UXFile",
+    "FuseLogo.ux:UXFile",
+    "MainView.ux:UXFile",
+    "ScrollingBasics.ux:UXFile",
+    "StaggeredAnimation.ux:UXFile"
+  ]
+}

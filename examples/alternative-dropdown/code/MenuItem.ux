@@ -1,0 +1,10 @@
+<Panel ux:Class="MenuItem" Active="false">
+	<string ux:Property="Label" />
+	<bool ux:Property="Active" />
+	<WhileTrue Value="{ReadProperty Active}">
+		<Change label.Color="DarkerTextColor" />
+		<Change underline.Visibility="Visible" />
+	</WhileTrue>
+	<Text ux:Name="label" Value="{ReadProperty Label}" Alignment="Center" FontSize="14" Font="Medium" Color="LightBlue" />
+	<Rectangle ux:Name="underline" Alignment="Bottom" Height="3" Color="LightBlue" Visibility="Collapsed" />
+</Panel>

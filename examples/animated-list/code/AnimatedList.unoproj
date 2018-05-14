@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Fuse",
+    "Fuse.BasicTheme",
+    "FuseJS"
+  ],
+  "Includes": [
+    "AnimatedList.ux:UXFile"
+  ]
+}

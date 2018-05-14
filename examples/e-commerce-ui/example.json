@@ -1,0 +1,17 @@
+{
+    "title": "Rotating pages",
+    "synopsis": "An e-commerce design with 3D page transitions",
+    "publishedAt": "2016-07-04",
+    "tags": [
+        "3D",
+		"Navigation",
+		"Gesture"
+    ],
+    "uxConcepts": [
+        "Viewport",
+        "SwipeGesture",
+        "SwipingAnimation"
+    ],
+    "jsConcepts": [
+    ]
+}

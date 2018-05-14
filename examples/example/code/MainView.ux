@@ -1,0 +1,16 @@
+<App ClearColor="#eeeeeeff">
+	<DockPanel>
+		<StatusBarBackground DockPanel.Dock="Top" />
+		<!-- snippet-begin:StackPanelInsideScrollViewer -->
+		<ScrollView ClipToBounds="true">
+			<StackPanel>
+				<Slider />
+				<!-- strip-begin:the stackpanel also contains a button and a switch -->
+				<Button Text="Button" />
+				<Switch Alignment="Left" />
+				<!-- strip-end -->
+			</StackPanel>
+		</ScrollView>
+		<!-- snippet-end -->
+	</DockPanel>
+</App>

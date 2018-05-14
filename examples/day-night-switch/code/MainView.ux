@@ -1,0 +1,146 @@
+<App>
+	<ToggleControl ux:Class="DayNightSwitch" Width="130" Height="70" Focus.IsFocusable="true" ux:Name="_switch">
+		<Panel ux:Name="swipeGuide" Margin="35,0" />
+		<Clicked>
+			<ToggleSwipeActive Target="swipe" />
+		</Clicked>
+		<SwipeGesture Direction="Right" LengthNode="swipeGuide" Type="Active" ux:Name="swipe" />
+		<WhileSwipeActive Source="swipe">
+			<Change Target="_switch.Value" Value="true" />
+		</WhileSwipeActive>
+		<!-- snippet-begin:SwipingAnimation -->
+		<SwipingAnimation Source="swipe">
+			<!-- strip-begin: ...forward animations go here... -->
+			<Change background.Color="#9EE3FB" Duration=".1" />
+			<Change backgroundBorder.Color="#86C3D7" Duration=".1" />
+			
+			<Scale Target="star1" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star2" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star3" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star4" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star5" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star6" Factor="0" Easing="Linear" Duration=".2" />
+			<Scale Target="star7" Factor="0" Easing="Linear" Duration=".2" />
+			
+			<Move Target="thumb"       X="1" RelativeTo="Size" RelativeNode="swipeGuide" Duration=".25" />
+			<Move Target="thumbFollow" X="1" RelativeTo="Size" RelativeNode="swipeGuide" Duration=".25" Easing="SinusoidalIn" />
+			
+			<Rotate Target="thumb" Degrees="180" Duration=".25" />
+			<Change moonDot1.Opacity="0" Duration=".1" />
+			<Change moonDot2.Opacity="0" Duration=".1" />
+			<Change moonDot3.Opacity="0" Duration=".1" />
+			<Change thumbCircle.Color="#FFDF6D" Duration=".25" />
+			<Change thumbFollowFill.Color="#E1C348" Duration=".25" />
+			<Change thumbBorder.Color="#E1C348" Duration=".25" />
+			<Change Target="cloudScale.Factor">
+				<Keyframe Value=".0" Time=".1" />
+				<Keyframe Value="1" Time=".2" />
+				<Keyframe Value=".8" Time=".3" />
+			</Change>
+			<!-- strip-end -->
+			<TriggerAnimation ux:Binding="BackwardAnimation">
+				<!-- strip-begin:...and backward animations go here... -->
+				<Scale Target="star1" Easing="Linear">
+					<Keyframe Time="0.06297734840773045" Value="1" />
+					<Keyframe Time="0.08797734840773044" Value="1.3" />
+					<Keyframe Time="0.16297734840773045" Value="0" />
+				</Scale>
+				<Scale Target="star2" Easing="Linear">
+					<Keyframe Time="0.08450592323206364" Value="1" />
+					<Keyframe Time="0.10950592323206365" Value="1.3" />
+					<Keyframe Time="0.18450592323206366" Value="0" />
+				</Scale>
+				<Scale Target="star3" Easing="Linear">
+					<Keyframe Time="0.009550537448376417" Value="1" />
+					<Keyframe Time="0.03455053744837642" Value="1.3" />
+					<Keyframe Time="0.10955053744837642" Value="0" />
+				</Scale>
+				<Scale Target="star4" Easing="Linear">
+					<Keyframe Time="0.19082182273268697" Value="1" />
+					<Keyframe Time="0.21582182273268696" Value="1.3" />
+					<Keyframe Time="0.290821822732687" Value="0" />
+				</Scale>
+				<Scale Target="star5" Easing="Linear">
+					<Keyframe Time="0.09285966511815785" Value="1" />
+					<Keyframe Time="0.11785966511815785" Value="1.3" />
+					<Keyframe Time="0.19285966511815786" Value="0" />
+				</Scale>
+				<Scale Target="star6" Easing="Linear">
+					<Keyframe Time="0.09822635217569768" Value="1" />
+					<Keyframe Time="0.12322635217569769" Value="1.3" />
+					<Keyframe Time="0.19822635217569767" Value="0" />
+				</Scale>
+				<Scale Target="star7" Easing="Linear">
+					<Keyframe Time="0.0020507656037807463" Value="1" />
+					<Keyframe Time="0.02705076560378075" Value="1.3" />
+					<Keyframe Time="0.10205076560378075" Value="0" />
+				</Scale>
+				
+				<Change Target="cloudScale.Factor">
+					<Keyframe Value="0" Time=".2" />
+					<Keyframe Value=".8" Time=".25" />
+				</Change>
+				
+				<Move Target="thumb"       X="1" RelativeTo="Size" RelativeNode="swipeGuide" Duration=".25" />
+				<Move Target="thumbFollow" X="1" RelativeTo="Size" RelativeNode="swipeGuide" Duration=".25" Easing="SinusoidalOut" />
+				
+				<Rotate Target="thumb" Degrees="180" Duration=".25" />
+				<Change moonDot1.Opacity="0" Duration=".25" />
+				<Change moonDot2.Opacity="0" Duration=".25" />
+				<Change moonDot3.Opacity="0" Duration=".25" />
+				<Change thumbCircle.Color="#FFF" Duration=".17" />
+				<Change thumbFollowFill.Color="#FFF" Duration=".17" />
+				<Change thumbBorder.Color="#E3E7C7" Duration=".17" />
+				<Change background.Color="#9EE3FB" Duration=".1" Delay="0.15" />
+				<Change backgroundBorder.Color="#86c3d7" Duration=".1" Delay="0.15" />
+				<!-- strip-end -->
+			</TriggerAnimation>
+		</SwipingAnimation>
+		<!-- snippet-end -->
+		
+		<!-- snippet-begin:StarClass -->
+		<Circle ux:Class="Star" Height="5" Width="5" Alignment="Center" Color="#fff" />
+		<!-- snippet-end -->
+		
+		<!-- snippet-begin:Stars -->
+		<Panel Layer="Background">
+			<Star ux:Name="star1" Offset="-5,-20" />
+			<Star ux:Name="star2" Offset="5,20" />
+			<Star ux:Name="star3" Offset="15,-10" />
+			<Star ux:Name="star4" Offset="27,8" />
+			<Star ux:Name="star5" Offset="38,-23" />
+			<Star ux:Name="star6" Offset="48,0" />
+			<Star ux:Name="star7" Offset="45,15" />
+			<Rectangle ux:Name="background" CornerRadius="75" Color="#3c4145">
+				<Stroke ux:Name="backgroundBorder" Color="#1c1c1c" Width="5" />
+			</Rectangle>
+		</Panel>
+		<!-- snippet-end -->
+		
+		<Panel Alignment="Center" ux:Name="cloudPanel">
+			<Scaling Factor=".0" ux:Name="cloudScale" />
+			<Image File="cloud.png" />
+		</Panel>
+		
+		<!-- snippet-begin:MoonDotClass -->
+		<Circle ux:Class="MoonDot" Color="#fff">
+			<Stroke Width="5" Color="#e3e7c7" />
+		</Circle>
+		<!-- snippet-end -->
+		<!-- snippet-begin:Thumb -->
+		<Panel ux:Name="thumb" Alignment="CenterLeft" Margin="10,0,0,0" Width="50" Height="50">
+			<MoonDot ux:Name="moonDot1" Width="17" Height="17" Alignment="TopRight" Offset="-7,3" />
+			<MoonDot ux:Name="moonDot2" Width="11" Height="11" Alignment="TopLeft" Offset="13,8" />
+			<MoonDot ux:Name="moonDot3" Width="12" Height="12" Alignment="BottomRight" Offset="-12,-6" />
+			
+			<Circle Color="#fff" ux:Name="thumbCircle">
+				<Stroke ux:Name="thumbBorder" Width="3" Color="#e3e7c7" />
+			</Circle>
+		</Panel>
+		<Panel ux:Name="thumbFollow" Alignment="CenterLeft" Margin="10,0,0,0" Width="50" Height="50">
+			<Circle ux:Name="thumbFollowFill" Color="#fff" />
+		</Panel>
+		<!-- snippet-end -->
+	</ToggleControl>
+	<DayNightSwitch />
+</App>

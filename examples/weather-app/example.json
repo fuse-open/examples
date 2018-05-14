@@ -1,0 +1,20 @@
+{
+    "title": "A weather app",
+    "synopsis": "A weather app concept which uses clipping for a neat transition effect",
+    "publishedAt": "2016-01-05",
+    "tags": [
+        "Menu",
+		"Navigation",
+        "Animation"
+    ],
+    "uxConcepts": [
+        "ux:Class",
+        "Cycle",
+        "WhileTrue",
+        "EnteringAnimation",
+        "ExitingAnimation"
+    ],
+    "jsConcepts": [
+        "data-model"
+    ]
+}

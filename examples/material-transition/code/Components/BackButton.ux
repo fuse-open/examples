@@ -1,0 +1,8 @@
+<Panel ux:Class="BackButton" HitTestMode="LocalBounds">
+	<Image Width="24" Height="24" StretchMode="Uniform" Margin="16">
+		<MultiDensityImageSource>
+			<FileImageSource File="../Assets/ic_arrow_back_white_24dp_1x.png" Density="1" />
+			<FileImageSource File="../Assets/ic_arrow_back_white_24dp_2x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Image>
+</Panel>

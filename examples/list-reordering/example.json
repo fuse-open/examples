@@ -1,0 +1,30 @@
+{
+    "title": "Drag to reorder",
+    "synopsis": "How to add a drag-to-reorder behaviour on a list of items",
+    "publishedAt": "2017-09-19",
+    "tags": [
+        "Custom control",
+        "JavaScript",
+        "Reusable components",
+        "Animation"
+    ],
+    "uxConcepts": [
+        "ScrollView",
+        "StackPanel",
+        "WhileTrue",
+        "Change",
+        "Released",
+        "Callback",
+        "DockPanel",
+        "Pressed",
+        "Each",
+        "LayoutAnimation",
+        "Move",
+        "WhileHovering"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "Observable.replaceAll",
+        "data-binding"
+    ]
+}

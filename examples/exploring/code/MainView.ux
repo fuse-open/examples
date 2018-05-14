@@ -1,0 +1,172 @@
+<App>
+	<JavaScript File="MainView.js" />
+	<Grid Rows="auto,1*">
+		<iOS.StatusBarConfig Style="Light" />
+
+		<Panel ux:Class="ExploreItem" Margin="20" CardAlignment="Left" BoxSizing="FillAspect" Aspect="1.85" InDetailsMode="false">
+			<Panel ux:Dependency="detailsImagePanel" />
+			<Panel ux:Dependency="detailsPlacesPanel" />
+			<Panel ux:Dependency="detailsInfoPanel" />
+			<Panel ux:Dependency="detailsFactsPanel" />
+
+			<bool ux:Property="InDetailsMode" /> 
+
+			
+			<string ux:Property="ImageName" />
+			<string ux:Property="Country" />
+			<float4 ux:Property="ForegroundColor" />
+			<Alignment ux:Property="CardAlignment" />
+
+			<Panel ux:Name="placeContainer" Width="55%" Alignment="{ReadProperty CardAlignment}">
+				<Panel ux:Name="placeRect">
+					<StackPanel Width="80%" Alignment="CenterLeft" Margin="32,0,0,0">
+						<Text Value="{ReadProperty ImageName}" TextColor="#fff" FontSize="26 * (width(placeContainer) / 230)" TextWrapping="Wrap" />
+						<Text Value="{ReadProperty Country}" TextColor="#fff" FontSize="12 * (width(placeContainer) / 230)" Margin="0,20,0,0"/>
+					</StackPanel>
+
+					<Rectangle Color="{ReadProperty ForegroundColor}" Opacity="0.9" Layer="Background"/>
+				</Panel>
+			</Panel>
+
+			<Panel Width="60%" Alignment="{ReadProperty CardAlignment}">
+				<Panel ux:Name="infoRect" Color="#fff" Opacity="0">
+					<Grid ux:Name="infoRectContent" Rows="1*,1*" Padding="30" Opacity="0">
+						<Translation ux:Name="infoRectContentTrans" Y="0.15" RelativeTo="Size" />
+						<Each Items="{numbers}">
+							<Grid Rows="1*,1*" Height="60">
+								<Text Value="{title}" FontSize="20"/>
+								<Text Value="{fact}" FontSize="10" TextColor="#aaa"/>
+							</Grid>
+						</Each>
+					</Grid>
+				</Panel>
+			</Panel>
+
+			<Panel ux:Name="imgMaster" Height="85%">
+				<Image ux:Name="img" LayoutMaster="imgMaster" StretchMode="UniformToFill" File="{image}"/> 
+			</Panel>
+
+			<WhileTrue Value="{ReadProperty InDetailsMode}">
+				<Move   Easing="CubicInOut" Target="img" Vector="1" RelativeTo="PositionOffset" RelativeNode="detailsImagePanel" Duration="0.6" />
+				<Resize Easing="CubicInOut" Target="img" Vector="1" RelativeTo="Size" RelativeNode="detailsImagePanel" Duration="0.6" />
+
+
+				<Move   Easing="CubicInOut" Target="placeRect" Vector="1" RelativeTo="PositionOffset" RelativeNode="detailsPlacesPanel" Duration="0.6" />
+				<Resize Easing="CubicInOut" Target="placeRect" Vector="1" RelativeTo="Size"     RelativeNode="detailsPlacesPanel" Duration="0.6" />
+
+				<Move   Easing="CubicInOut" Target="infoRect" Vector="1" RelativeTo="PositionOffset" RelativeNode="detailsInfoPanel" Duration="0.6" />
+				<Resize Easing="CubicInOut" Target="infoRect" Vector="1" RelativeTo="Size"     RelativeNode="detailsInfoPanel" Duration="0.6" />
+
+				<Change img.LayoutMaster="detailsImagePanel" Delay="0.6"/>
+				<Change placeRect.LayoutMaster="detailsPlacesPanel" Delay="0.6"/>
+				<Change infoRect.LayoutMaster="detailsInfoPanel" Delay="0.6"/>
+
+
+				<Change infoRect.Opacity="1" Duration="0.6" />
+
+				<Change infoRectContent.Opacity="1" Delay="0.45" Duration="0.35" />
+				<Change infoRectContentTrans.Y="0" Duration="0.35" Delay="0.4" Easing="CubicInOut"/>
+
+				<Change factsPanel.Opacity="1" Duration="0.35" Delay="0.55" />
+				<Change factsPanelTrans.Y="0" Duration="0.35" Delay="0.55" Easing="CubicInOut" />
+				<Change factsPanel.HitTestMode="LocalBoundsAndChildren" />
+
+				<BringToFront /> 
+			</WhileTrue>
+
+			<Grid ux:Name="factsPanel" LayoutMaster="detailsFactsPanel" Opacity="0" HitTestMode="None" Rows="1*,50">
+				<Translation ux:Name="factsPanelTrans" Y="0.2" RelativeTo="Size" />
+				<PageControl ux:Name="factsPageControl">
+					<Each Items="{facts}">
+						<StackPanel Alignment="Top" Margin="30">
+							<Text Value="FACTS" TextColor="#fff"/>
+							<Text TextWrapping="Wrap" TextColor="#fff" Margin="0,15,0,0" FontSize="14"
+								  Value="{= data() }" />
+						</StackPanel>
+					</Each>
+				</PageControl>
+				<PageIndicator Navigation="factsPageControl" Alignment="Center">
+					<Circle ux:Template="Dot" Width="6" Height="6" Margin="5">
+						<SolidColor Color="1,1,1,0.3" ux:Name="TheColor"/>
+						<Stroke Width="1" Color="#fff" />
+						<ActivatingAnimation>
+							<Change TheColor.Color="#fff"/>
+							<Scale Factor="1.2" />
+						</ActivatingAnimation>
+					</Circle>
+				</PageIndicator>
+			</Grid>
+
+			<WhileTrue Value="{Read current} != {id} && {inDetailsMode}">
+				<Change this.Opacity="0" Duration=".4" />
+				<Change this.HitTestMode="None" />
+				<Move Y="100" Duration="0.4" />
+			</WhileTrue>
+		</Panel>
+
+
+		
+
+
+		<LinearGradient StartPoint="0,0" EndPoint="0,1">
+			<GradientStop Offset="0" Color="#9DA2B0" />
+			<GradientStop Offset="1" Color="#252A37" />
+		</LinearGradient>
+
+
+		<Panel Row="0" RowSpan="3">
+			<Grid Rows="3*,180,3*" Columns="1*,1*">
+				<Panel ux:Name="detailsImagePanel" ColumnSpan="2" Row="0" Column="0"/>
+				<Panel ux:Name="detailsPlacesPanel" Row="1" Column="0" />
+				<Panel ux:Name="detailsInfoPanel" Row="1" Column="1" />
+				<Panel ux:Name="detailsFactsPanel" Row="2" Column="0" ColumnSpan="2"/>
+			</Grid>
+		</Panel>
+
+		<StackPanel ux:Name="topBar" Row="0" Color="#5D6373">
+			<Panel Color="#5D6373">
+				<StatusBarBackground/>
+			</Panel>
+			<Panel Height="50">
+				<Text Value="Places" TextColor="#fff" Alignment="VerticalCenter" Margin="25,0" FontSize="20"/>
+			</Panel>
+			<WhileTrue Value="{inDetailsMode}">
+				<Move Y="-1" Duration="0.3" RelativeTo="Size" />
+			</WhileTrue>
+		</StackPanel>
+
+		<Panel Row="1">
+			<PageControl ux:Name="citiesPageControl" ClipToBounds="false">
+				<WhileFalse Value="{inDetailsMode}">
+					<Change sw.UserScroll="true" />
+				</WhileFalse>
+				<ScrollView ux:Name="sw" ClipToBounds="false" UserScroll="false">
+					<StackPanel HitTestMode="LocalBoundsAndChildren">
+						<Selection MinCount="0" MaxCount="1" Value="{Write current}"/>
+						<Each Items="{places}">
+							<ExploreItem ux:Name="topItem" ImageName="{name}" Country="{country}"
+										 ForegroundColor="{color}" Height="200" CardAlignment="{alignment}" 
+										 detailsImagePanel="detailsImagePanel"
+										 detailsPlacesPanel="detailsPlacesPanel"
+										 detailsInfoPanel="detailsInfoPanel"
+										 detailsFactsPanel="detailsFactsPanel">
+								<Shadow Mode="PerPixel" />
+								<Selectable Value="{id}" />
+
+								<WhileSelected>
+									<Change topItem.InDetailsMode="true" />
+								</WhileSelected>
+
+								<Tapped>
+									<!-- perhaps just toggle when clicking while not in details mode -->
+									<ToggleSelection />
+								</Tapped>
+
+							</ExploreItem>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</PageControl>
+		</Panel>
+	</Grid>
+</App>

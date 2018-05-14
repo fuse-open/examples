@@ -1,0 +1,12 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+  	"Fuse",
+  	"FuseJS"
+  ],
+  "Includes": [
+    "*",
+    "Assets/Authors/*.jpeg:Bundle",
+    "Assets/Images/*.jpg:Bundle"
+  ]
+}

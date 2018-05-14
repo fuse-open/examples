@@ -1,0 +1,13 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "CheckIcon.ux:UXFile",
+    "CrossIcon.ux:UXFile",
+    "LoadButton.ux:UXFile",
+    "MainView.js:File",
+    "MainView.ux:UXFile"
+  ]
+}

@@ -1,0 +1,61 @@
+<App Background="#212121">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var items = exports.items = Observable();
+		
+		exports.addItem = function() {
+			items.add(Math.random());
+		}
+		
+		exports.removeItem = function(arg) {
+			items.tryRemove(arg.data);
+		}
+	</JavaScript>
+	<iOS.StatusBarConfig Style="Light" />
+	<DockPanel>
+		<StackPanel Dock="Top" Color="#5E35B1">
+			<StatusBarBackground />
+			<Panel Height="56">
+				<Panel Alignment="Right" HitTestMode="LocalBounds" Width="56" Height="56" Clicked="{addItem}">
+					<Rectangle Height="2" Width="20" Color="#fff" />
+					<Rectangle Width="2" Height="20" Color="#fff" />
+				</Panel>
+			</Panel>
+			<Shadow Distance="1" Size="3" />
+		</StackPanel>
+		
+		<WhileEmpty Items="{items}">
+			<StackPanel ux:Name="emptyView" Alignment="Center" ItemSpacing="20">
+				<Text Alignment="Center" FontSize="20">Nothing to see here</Text>
+				<Text Alignment="Center">Add an item using the button above</Text>
+
+				<AddingAnimation>
+					<Change emptyView.Opacity="0" Duration="0.2" />
+					<Scale Factor="0.4" Duration="0.4" Easing="CubicInOut" />
+				</AddingAnimation>				
+				<RemovingAnimation>
+					<Change emptyView.Opacity="0" Duration="0.2" />
+				</RemovingAnimation>
+			</StackPanel>
+		</WhileEmpty>
+		
+		<ScrollView>
+			<StackPanel ItemSpacing="10" Margin="10">
+				<Each Items="{items}">
+					<Rectangle ux:Name="item" Color="#fff3" Height="80" CornerRadius="2" Clicked="{removeItem}">
+						<AddingAnimation>
+							<Change item.Opacity="0" Duration="0.3" />
+						</AddingAnimation>
+						<RemovingAnimation>
+							<Change item.Opacity="0" Duration="0.1" />
+						</RemovingAnimation>
+						<LayoutAnimation>
+							<Move Y="1" RelativeTo="PositionChange" Duration="0.15" Easing="CubicInOut" />
+						</LayoutAnimation>
+						<Shadow Distance="1" Size="2" />
+					</Rectangle>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</App>

@@ -1,0 +1,20 @@
+<!-- snippet-begin:SubPage -->
+<Page ux:Class="SubPage">
+	<JavaScript>
+		exports.title = this.Parameter.map(function(param) {
+			return param.title;
+		});
+	</JavaScript>
+	
+	<Text Value="{title}" FontSize="50" TextColor="#3C4663" Alignment="Center"/>
+	
+<!-- snippet-end -->
+<!-- snippet-begin:NavBarTitle -->
+	<Visual ux:Dependency="navBar" />
+	<Panel>
+		<AlternateRoot ParentNode="navBar">
+			<NavBarTitle Value="{title}" />
+		</AlternateRoot>
+	</Panel>
+</Page>
+<!-- snippet-end -->

@@ -1,0 +1,20 @@
+{
+    "title": "Scrolling animations",
+    "synopsis": "Creating neat animations in response to scrolling",
+    "publishedAt": "2015-07-10",
+    "tags": [
+		"Animation",
+		"Layout"
+    ],
+    "uxConcepts": [
+        "ScrollView",
+        "ScrollingAnimation",
+        "iOS.StatusBarConfig",
+        "MultiLayoutPanel",
+        "Placeholder",
+        "Move",
+        "RelativeNode",
+        "Move.RelativeTo"
+    ],
+    "jsConcepts": []
+}

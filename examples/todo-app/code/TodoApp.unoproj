@@ -1,0 +1,12 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "Assets/Roboto-Regular.ttf:File",
+    "MainView.js:File",
+    "MainView.ux:UXFile",
+    "Roboto-Regular.ttf:File"
+  ]
+}

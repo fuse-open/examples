@@ -1,0 +1,18 @@
+{
+    "title": "Material transition",
+    "synopsis": "A neat material design card animation",
+    "publishedAt": "2017-01-11",
+    "tags": [
+        "Material Design",
+		"Transition"
+    ],
+    "uxConcepts": [
+		"LayoutMaster",
+		"LayoutAnimation",
+		"UX Expressions",
+		"Selection",
+		"Change",
+		"BringToFront"
+	],
+    "jsConcepts": []
+}

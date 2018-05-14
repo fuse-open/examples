@@ -1,0 +1,61 @@
+<StackPanel ux:Class="NewsItem" Margin="0,14,0,10">
+	<Panel ux:Class="VerticalBar" Margin="8,0,8,2" Alignment="VerticalCenter">
+		<Rectangle Height="12" Width="2" Color="#dcdee3" />
+	</Panel>
+	<Panel ux:Class="HorizontalBar" Margin="46,10,0,10" Alignment="VerticalCenter">
+		<Rectangle Height="1" Color="#dcdee3" />
+	</Panel>
+
+	<!-- Text -->
+	<Text ux:Class="SubText" Alignment="VerticalCenter" FontSize="12" Color="#7a96b2" />
+	<Text ux:Class="Header" Margin="14,10,14,5" TextWrapping="Wrap" FontSize="22">
+		<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+	</Text>
+	<Text ux:Class="Article" Margin="14,0,14,0" TextWrapping="Wrap" FontSize="13">
+		<Font File="assets/fonts/Lato-Regular.ttf" />
+	</Text>
+	<Text ux:Class="Name" FontSize="15">
+		<Font File="assets/fonts/Roboto-Bold.ttf" />
+	</Text>
+
+	<!-- The header -->
+	<DockPanel Margin="10,0,0,15">
+		<Circle Dock="Left" Width="45" Height="45">
+			<ImageFill Url="{portrait}" WrapMode="ClampToEdge"/>
+		</Circle>
+
+		<DockPanel Margin="10,4,10,0">
+			<StackPanel Dock="Top" Orientation="Horizontal">
+				<Name Value="{author}" />
+			</StackPanel>
+			<StackPanel Dock="Bottom" Orientation="Horizontal">
+				<SubText Value="{postAge}" />
+				<VerticalBar />
+				<SubText Value="{source}" />
+				<VerticalBar />
+				<Image File="assets/icon/Location.png" Color="#333c48" Width="14" Height="14" Margin="0,0,2,2" Alignment="VerticalCenter" />
+				<SubText Value="{location}" />
+			</StackPanel>
+		</DockPanel>
+	</DockPanel>
+	
+	<!-- Main article body -->
+	<Image Url="{imageUrl}" />
+	<Header Value="{headline}" />
+	<Article Value="{body}" />
+
+	<Image ux:Class="ActionIcon" Height="22" Width="22" Alignment="VerticalCenter" Color="#c4d2e1" />
+	<Text ux:Class="Stat" Alignment="VerticalCenter"  Margin="5,0,17,0" FontSize="15" Color="#7a96b2">
+		<Font File="assets/fonts/Lato-Bold.ttf" />
+	</Text>
+
+	<StackPanel Orientation="Horizontal" Margin="14,10,14,8">
+		<ActionIcon File="assets/icon/Like.png" />
+		<Stat Value="{numLikes}" />
+		<ActionIcon File="assets/icon/Comment.png" />
+		<Stat Value="{numComments}" />
+		<ActionIcon File="assets/icon/Share.png" />
+	</StackPanel>
+
+	<HorizontalBar />
+</StackPanel>

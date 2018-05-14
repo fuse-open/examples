@@ -1,0 +1,101 @@
+<App>
+	<iOS.StatusBarConfig Style="Light" />
+
+	<JavaScript>
+		var cards = [
+			{
+				title: "FREE LIMITED LP",
+				description: "Despite the title, Hundredth's third LP Free doesn't feel liberating by any means. There hasn't been a reinvention of t...",
+				artist: "Hundredth",
+				artistPic: "Assets/artist1.jpeg",
+				cover: "Assets/1.jpg",
+				albums: "4",
+				topColor: "#cdb8b5",
+				bottomColor: "#4f3250"
+			},
+			{
+				title: "BETTER ASH THAN DUST",
+				description: "OC melodic-hardcore stalwarts band have never been ones to shy away from their poli...",
+				artist: "Stick To Your Guns",
+				artistPic: "Assets/artist2.jpeg",
+				cover: "Assets/2.jpg",
+				albums: "6",
+				topColor: "#8dabe1",
+				bottomColor: "#092759"
+			},
+			{
+				title: "SHOKKA",
+				description: "In short, the brutal beatdown crew have finally discovered a crucial element lifting their expression from a nonsens...",
+				artist: "Nasty",
+				artistPic: "Assets/artist3.jpeg",
+				cover: "Assets/3.jpg",
+				albums: "2",
+				topColor: "#ffd181",
+				bottomColor: "#7f2525"
+			}
+		];
+		module.exports = {
+			cards: cards
+		};
+	</JavaScript>
+
+	<DockPanel>
+
+		<StackPanel Dock="Top" Color="#0003">
+			<StatusBarBackground />
+			<Panel Height="56">
+				<StackPanel Orientation="Horizontal" Alignment="CenterLeft" Margin="16" ItemSpacing="4">
+					<Image File="Assets/back.png" />
+					<Text Value="Media" Alignment="VerticalCenter" Color="#fff" FontSize="16" />
+				</StackPanel>
+				<Text Value="Vinyls" Alignment="Center" Color="#FFF" FontSize="20" />
+				<Image File="Assets/star.png" Alignment="CenterRight" Margin="16" />
+			</Panel>
+		</StackPanel>
+
+		<PageControl ux:Name="cards" Padding="24,32,24,8">
+			<Each Items="{cards}">
+				<Card Title="{title}" Description="{description}" Artist="{artist}"
+						ArtistPic="{artistPic}" Cover="{cover}" Albums="{albums}"
+						TopColor="{topColor}" BottomColor="{bottomColor}">
+					<WhileActive Threshold="0.5">
+						<Set topColor.Value="{topColor}" />
+						<Set bottomColor.Value="{bottomColor}" />
+					</WhileActive>
+				</Card>
+			</Each>
+		</PageControl>
+
+		<StackPanel Layer="Background" Alignment="Bottom">
+			<PageIndicator Height="56" Navigation="cards" Alignment="Center">
+				<StackLayout ItemSpacing="12" Orientation="Horizontal" />
+				<Panel ux:Template="Dot">
+					<DeactivatingAnimation>
+						<Scale Factor="0.8" />
+						<Change indicator.Opacity="0.4" />
+						<Rotate Degrees="360" />
+					</DeactivatingAnimation>
+					<Circle ux:Name="indicator" Width="12" Height="12" Color="#fff">
+						<Rectangle Width="2" Height="7" Color="#0008" CornerRadius="1">
+							<Translation Vector="-2,-2,0" />
+							<Rotation Degrees="-45" />
+						</Rectangle>
+					</Circle>
+				</Panel>
+			</PageIndicator>
+			<BottomBarBackground />
+		</StackPanel>
+
+	</DockPanel>
+
+	<Attractor ux:Name="topColor" Target="colorTop.Color" Value="#cdb8b5" Type="Easing" Duration="0.2" DurationExp="0" />
+	<Attractor ux:Name="bottomColor" Target="colorBottom.Color" Value="#4f3250" Type="Easing" Duration="0.2" DurationExp="0" />
+
+	<Rectangle>
+		<LinearGradient StartPoint="0,0" EndPoint="0,1" AngleDegrees="72">
+			<GradientStop ux:Name="colorTop" Offset="0" />
+			<GradientStop ux:Name="colorBottom" Offset="1" />
+		</LinearGradient>
+	</Rectangle>
+
+</App>

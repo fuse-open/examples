@@ -1,0 +1,39 @@
+<App Background="BackgroundColor">
+	<Fuse.iOS.StatusBarConfig Style="Light" />
+
+	<float4 ux:Global="BackgroundColor" ux:Value="#C4708C"/>
+	<Font ux:Global="Lora" File="Assets/Fonts/Lora-Regular.ttf" />
+	<Text ux:Class="LoraText" Font="Lora"/>
+
+	<ClientPanel>
+		<DockPanel>
+			<Header Dock="Top"/>
+
+			<ScrollView>
+				<Panel ux:Name="scrollcontent">
+					<Panel HitTestMode="LocalBoundsAndChildren">
+						<LinearNavigation>
+							<NavigationMotion GotoEasing="CircularOut" />
+						</LinearNavigation>
+						<SwipeNavigate SwipeDirection="Left"/>
+
+						<JavaScript File="Foodstore.js"/>
+
+						<Each Items="{items}">
+							<Grid ux:Name="item" Rows="240,auto" >
+								<ItemCard ImageFile="{image}" >
+									<Clicked>
+										<NavigateTo Target="item" />
+									</Clicked>
+								</ItemCard>
+								<DescriptionPanel NameText="{name}" CategoryText="{category}" DescriptionText="{text}"/>
+							</Grid>
+						</Each>
+					</Panel>
+					<RotatedGrid/>
+				</Panel>
+			</ScrollView>
+			
+		</DockPanel>
+	</ClientPanel>
+</App>

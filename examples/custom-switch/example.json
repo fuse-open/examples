@@ -1,0 +1,22 @@
+{
+    "title": "Creating a custom switch",
+    "synopsis": "Style your controls using inline styles to make them unique",
+    "publishedAt": "2015-07-03",
+    "tags": [
+        "Custom control",
+        "Gesture"
+    ],
+    "uxConcepts": [
+        "ToggleControl",
+        "Timeline",
+        "SwipeGesture",
+        "WhileSwipeActive",
+        "ToggleSwipeActive",
+        "SwipingAnimation",
+        "DropShadow",
+        "WhileDisabled",
+        "WhileTrue",
+        "ClipToBounds"
+    ],
+    "jsConcepts": []
+}

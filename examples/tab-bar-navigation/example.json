@@ -1,0 +1,26 @@
+{
+    "title": "Tab bar navigation",
+    "synopsis": "Navigate between pages with a custom tab bar navigation setup",
+    "publishedAt": "2015-06-19",
+    "tags": [
+		"Tabs",
+        "Menu",
+		"Navigation",
+        "JavaScript"
+    ],
+    "uxConcepts": [
+        "DockPanel",
+        "Image",
+        "FileImageSource",
+        "Each",
+        "ux:Class",
+        "PageControl",
+        "PageIndicator",
+        "GridLayout",
+        "ActivatingAnimation",
+        "Clicked",
+        "Scale",
+        "NavigateTo"
+    ],
+    "jsConcepts": []
+}

@@ -1,0 +1,22 @@
+{
+    "title": "Social media example",
+    "synopsis": "See how easy it is to design a social media experience",
+    "publishedAt": "2015-06-18",
+    "tags": [
+        "Sidebar",
+		"JavaScript"
+    ],
+    "uxConcepts": [
+        "EdgeNavigator",
+        "Clicked",
+        "Translation",
+        "Rotation",
+        "Opacity",
+        "ImageFill"
+    ],
+    "jsConcepts": [
+        "Observable",
+        "fetch",
+        "promises"
+    ]
+}

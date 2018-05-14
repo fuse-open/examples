@@ -1,0 +1,140 @@
+<App Background="BackgroundColor">
+	<float4 ux:Global="BackgroundColor" ux:Value="#212121" />
+	<float4 ux:Global="ForegroundColor" ux:Value="#ECEFF1" />
+	
+	<iOS.StatusBarConfig Style="Light" />
+	
+	<!-- snippet-begin:Viewport -->
+	<Viewport Perspective="1.7" PerspectiveRelativeTo="Width" CullFace="Back">
+	<!-- snippet-end -->
+		<DockPanel>
+			<StatusBarBackground Dock="Top" />
+			
+			<!-- snippet-begin:MenuIsOpenTrigger -->
+			<WhileTrue ux:Name="menuIsOpen" Value="false">
+				<Rotate Target="box" DegreesY="-90" Duration=".7" Delay="0" DelayBack="0" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+				<Change content.Opacity="0" Duration=".7" DelayBack="0" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+				<Change menu.Opacity="1" Duration=".3" DelayBack="0" Easing="QuarticIn" EasingBack="QuarticIn" /> 
+				<Change hamburger.IsOpen="true" DelayBack="0" />
+			</WhileTrue>
+			<!-- snippet-end -->
+			
+			<Panel>
+				<HamburgerButton ux:Name="hamburger" Alignment="TopLeft">
+					<Clicked>
+						<Toggle Target="menuIsOpen" />
+					</Clicked>
+				</HamburgerButton>
+				
+				<!-- snippet-begin:Box -->
+				<Panel ux:Name="box" TransformOrigin="VerticalBoxCenter">
+					<Panel ux:Name="sidePage" TransformOrigin="VerticalBoxCenter">
+						<Rotation DegreesY="90" />
+				<!-- snippet-end -->
+						
+						<!-- snippet-begin:SearchFieldTransitionAndLayout -->
+						<WhileTrue ux:Name="searchFieldActive" Value="false">
+							<Change searchField.LayoutMaster="searchFieldLayoutMaster" Delay=".07" DelayBack=".07" />
+							<Change transitionToSearchLayout.TargetProgress="1" />
+						</WhileTrue>
+						
+						<Timeline ux:Name="transitionToSearchLayout">
+							<Move Target="normalMenuItems" Y="1" RelativeTo="Size" Delay=".1" Duration=".5" Easing="CubicInOut" />
+							<Change normalMenuItems.Opacity="0" Delay=".1" Duration=".3" Easing="CubicInOut" />
+							<Move Target="hamburger" Y="-2" RelativeTo="Size" Duration=".4" Easing="CubicIn" />
+							<Change searchInput.PlaceholderColor="#ccc6" Duration=".5" Easing="QuadraticInOut" />
+							<Change searchCloseButton.Opacity="1" Duration=".2" DelayBack="0" Easing="QuadraticInOut" />
+						</Timeline>
+						
+						<DockPanel ux:Name="searchLayout" Alignment="Top" Margin="30" Height="MenuItemHeight">
+							<Panel ux:Name="searchFieldLayoutMaster" />
+							<Rectangle ux:Name="searchCloseButton" Dock="Right" Opacity="0" HitTestMode="LocalBounds" Margin="15,0,0,0">
+								<Clicked>
+									<Set searchInput.Value="" />
+								</Clicked>
+						<!-- snippet-end -->
+								
+								<Rectangle Color="#bbb" Height="2" Width="15" CornerRadius="3">
+									<Rotation Degrees="45" />
+								</Rectangle>
+								<Rectangle Color="#bbb" Height="2" Width="15" CornerRadius="3">
+									<Rotation Degrees="-45" />
+								</Rectangle>
+							</Rectangle>
+						</DockPanel>
+						
+						<StackPanel ux:Name="menu" Opacity="0" ContentAlignment="VerticalCenter" ItemSpacing="50" Margin="70,0,0,0">
+							<!-- snippet-begin:MenuItem -->
+							<Size ux:Global="MenuItemHeight" ux:Value="40" />
+							<Panel ux:Class="MenuItem" Height="MenuItemHeight">
+								<Rectangle Alignment="Bottom" Height="2" Color="#fff2" />
+							</Panel>
+							<!-- snippet-end -->
+							
+							<Panel Height="MenuItemHeight" Alignment="CenterLeft">
+								<!-- snippet-begin:SearchField -->
+								<MenuItem ux:Name="searchField">
+									<TextInput ux:Name="searchInput" FontSize="28" PlaceholderText="search" PlaceholderColor="ForegroundColor" TextColor="ForegroundColor" CaretColor="#fffa" Alignment="Top">
+										<WhileFocused>
+											<Change searchFieldActive.Value="true" />
+										</WhileFocused>
+										<WhileString Test="IsNotEmpty" Value="{ReadProperty searchInput.Value}">
+											<Change searchFieldActive.Value="true" />
+										</WhileString>
+									</TextInput>
+									
+									<LayoutAnimation>
+										<Resize X="1" Y="1" RelativeTo="SizeChange" DurationBack=".3" DelayBack=".2" Easing="ExponentialInOut" />
+										<Move X="1" Y="1" RelativeTo="WorldPositionChange" DelayBack="0" Duration=".3" Easing="QuarticIn" />
+									</LayoutAnimation>
+								</MenuItem>
+								<!-- snippet-end -->
+							</Panel>
+							
+							<MenuItem ux:Class="MenuButton" Height="MenuItemHeight" HitTestMode="LocalBounds">
+								<string ux:Property="Text" />
+								
+								<Text ux:Name="label" Value="{ReadProperty Text}" FontSize="28" Color="ForegroundColor" Alignment="Top" />
+								
+								<WhilePressed>
+									<Scale Target="label" Factor=".85" Duration=".1" />
+								</WhilePressed>
+							</MenuItem>
+							
+							<StackPanel ux:Name="normalMenuItems" ItemSpacing="50">
+								<MenuButton Alignment="Left" Text="home">
+									<Clicked>
+										<Set menuIsOpen.Value="false" />
+									</Clicked>
+								</MenuButton>
+								<MenuButton Alignment="Left" Text="discover">
+									<Clicked>
+										<Set menuIsOpen.Value="false" />
+									</Clicked>
+								</MenuButton>
+								<MenuButton Alignment="Left" Text="settings">
+									<Clicked>
+										<Set menuIsOpen.Value="false" />
+									</Clicked>
+								</MenuButton>
+							</StackPanel>
+						</StackPanel>
+					</Panel>
+					
+					<DockPanel ux:Name="content">
+						<Panel Dock="Top" Height="56">
+							<Text Alignment="Center" FontSize="21" Color="ForegroundColor">boxify</Text>
+						</Panel>
+						<ScrollView Background="#f9f9f9">
+							<Grid ColumnCount="4" DefaultColumn="1*" CellSpacing="10" Margin="10,10">
+								<Each Count="23">
+									<Rectangle BoxSizing="FillAspect" Aspect="1" Color="#eee" CornerRadius="2" />
+								</Each>
+							</Grid>
+						</ScrollView>
+					</DockPanel>
+				</Panel>
+			</Panel>
+		</DockPanel>
+	</Viewport>
+</App>

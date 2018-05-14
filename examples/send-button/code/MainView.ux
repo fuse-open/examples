@@ -1,0 +1,111 @@
+<App>
+	<Font ux:Global="RobotoThin" File="Assets/Roboto-Thin.ttf" />
+	<Font ux:Global="RobotoLight" File="Assets/Roboto-Light.ttf" />
+	
+	<Text ux:Class="HeaderText" FontSize="42" Color="#fff" Font="RobotoThin" />
+	<Text ux:Class="BodyText" FontSize="18" Color="#fffa" Font="RobotoLight" />
+	<BodyText ux:Class="MutedText" Color="#eee" />
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		
+		var isLoading = Observable(false);
+		
+		function clicked() {
+			isLoading.value = true;
+			
+			setTimeout(function() {
+				isLoading.value = false;
+			}, 3000);
+		}
+		
+		module.exports = {
+			isLoading: isLoading,
+			clicked: clicked
+		};
+	</JavaScript>
+	
+	<Android.StatusBarConfig Color="#0000" />
+	<iOS.StatusBarConfig Style="Light" />
+	
+	<DockPanel Color="#384259">
+		<StackPanel Dock="Top">
+			<StatusBarBackground />
+		</StackPanel>
+		
+		<StackPanel Dock="Bottom">
+			<LayoutAnimation>
+				<Move RelativeTo="PositionChange" Y="1" Duration="0.5" Easing="QuadraticInOut" />
+			</LayoutAnimation>
+			<Panel Margin="20">
+				<SendButton Clicked="{clicked}" IsLoading="{isLoading}" Alignment="Center" />
+			</Panel>
+			<BottomBarBackground IncludesKeyboard="true" />
+		</StackPanel>
+		
+		<!-- MaxWidth="500" limits the size of the content on larger screens (i.e. tablets) -->
+		<Panel MaxWidth="500" Alignment="VerticalCenter">
+			<LayoutAnimation>
+				<Move RelativeTo="PositionChange" Y="1" Duration="0.2" Easing="QuadraticInOut" />
+			</LayoutAnimation>
+			<StackPanel Margin="25,0" Alignment="Top">
+				<WhileKeyboardVisible>
+					<Change titleContainer.Opacity="0" Duration="0.2" Easing="CubicInOut" />
+					<Move Y="-1" RelativeTo="Size" RelativeNode="titleContainer" Duration="0.2" Easing="CubicInOut" />
+				</WhileKeyboardVisible>
+				
+				<StackPanel ux:Name="titleContainer" ItemSpacing="10" ClipToBounds="true" Padding="0,20">
+					<HeaderText Alignment="Center">
+						Got feedback?
+					</HeaderText>
+					
+					<BodyText TextWrapping="Wrap" Alignment="Center">
+						We want to hear you out!
+					</BodyText>
+				</StackPanel>
+				
+				<StackPanel Margin="0,20">
+					<TextView ux:Name="messageTextView" Font="RobotoLight" CaretColor="#0004" TextColor="#000a" Height="130" TextWrapping="Wrap" Margin="10" AutoCapitalizationHint="Sentences" AutoCorrectHint="Enabled">
+						<WhileNotFocused>
+							<WhileString Value="{ReadProperty messageTextView.Value}" MaxLength="0">
+								<MutedText ux:Name="messagePlaceholder" Color="#0003" Alignment="Center">
+									Tell us what's on your mind
+									<AddingAnimation>
+										<Change messagePlaceholder.Opacity="0" Duration="0.2" />
+									</AddingAnimation>
+									<RemovingAnimation>
+										<Change messagePlaceholder.Opacity="0" Duration="0.2" />
+									</RemovingAnimation>
+								</MutedText>
+							</WhileString>
+						</WhileNotFocused>
+					</TextView>
+
+					<Rectangle Color="#0000002e" Height="1">
+						<Shadow Size="2" Distance="1" Color="#0005" />
+					</Rectangle>
+					<Panel>
+						<Rectangle Layer="Background" CornerRadius="0,0,3,3" Color="#eee" />
+						
+						<StackPanel Orientation="Horizontal" Alignment="Center" ItemSpacing="7" Margin="0,13">
+							<Image StretchMode="Uniform" Width="17" Height="17" Opacity="0.3">
+								<MultiDensityImageSource>
+									<FileImageSource File="Assets/fa-camera@1x.png" Density="1" />
+									<FileImageSource File="Assets/fa-camera@2x.png" Density="2" />
+									<FileImageSource File="Assets/fa-camera@4x.png" Density="4" />
+								</MultiDensityImageSource>
+							</Image>
+							<Text FontSize="14" TextColor="0,0,0,0.3" Margin="0,2,0,0">Add a picture</Text>
+						</StackPanel>
+					</Panel>
+					
+					<Rectangle Layer="Background" Color="#fff" CornerRadius="3">
+						<Shadow Distance="2" Size="3" Color="#0005" />
+					</Rectangle>
+				</StackPanel>
+				
+			</StackPanel>
+		</Panel>
+
+	</DockPanel>
+</App>

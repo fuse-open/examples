@@ -1,0 +1,58 @@
+<!-- snippet-begin:MainView -->
+<App Background="#eeeeeeff">
+	<DockPanel>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable");
+
+			var profiles = Observable(
+				{ resource : "Assets/profile_1.png" },
+				{ resource : "Assets/profile_2.png" },
+				{ resource : "Assets/profile_3.png" },
+				{ resource : "Assets/profile_6.png" },
+				{ resource : "Assets/profile_4.png" },
+				{ resource : "Assets/profile_5.png" },
+				{ resource : "Assets/profile_2.png" },
+				{ resource : "Assets/profile_5.png" },
+				{ resource : "Assets/profile_4.png" },
+				{ resource : "Assets/profile_1.png" },
+				{ resource : "Assets/profile_7.png" },
+				{ resource : "Assets/profile_3.png" },
+				{ resource : "Assets/profile_2.png" },
+				{ resource : "Assets/profile_5.png" },
+				{ resource : "Assets/profile_4.png" },
+				{ resource : "Assets/profile_1.png" },
+				{ resource : "Assets/profile_7.png" },
+				{ resource : "Assets/profile_3.png" }
+			);
+
+  			module.exports = {
+  				profiles : profiles
+  			}
+		</JavaScript>
+
+		<!-- strip-begin:... the rest ... -->
+
+		<StatusBarBackground DockPanel.Dock="Top" />
+
+		<Panel Margin="0,100">
+			<LinearNavigation>
+				<NavigationMotion GotoDuration="0.4" GotoEasing="CircularOut" />
+			</LinearNavigation>
+			<SwipeNavigate SwipeDirection="Left" />
+			<Each Items="{profiles}">
+				<Card Name="{resource}" CachingMode="Never">
+					<Image File="{resource}"/>
+					<Clicked>
+						<NavigateTo Target="{resource}"/>
+					</Clicked>
+				</Card>
+			</Each>
+
+		</Panel>
+		<!-- strip-end -->
+
+		<BottomBarBackground DockPanel.Dock="Bottom" />
+	</DockPanel>
+</App>
+
+<!-- snippet-end -->

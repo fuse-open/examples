@@ -1,0 +1,80 @@
+<App Background="LightGray">
+	<iOS.StatusBarConfig Style="Light" />
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var currentMode = Observable(0);
+
+		var modes = [
+			{label: "7 DAYS"},
+			{label: "30 DAYS"},
+			{label: "90 DAYS"},
+			{label: "1 YEAR"}
+		];
+
+		var data = [
+			{change: 492, total: 12774, unsubs: 327},
+			{change: 1279, total: 42891, unsubs: 1183},
+			{change: 2631, total: 99657, unsubs: 2478},
+			{change: 7395, total: 125758, unsubs: 5492}
+		];
+
+		var info = currentMode.map(function(x) {
+			return data[x];
+		});
+
+		module.exports = {
+			modes: modes,
+			currentMode: currentMode,
+			info: info
+		};
+	</JavaScript>
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" Background="#22b8f1" />
+		<BottomBarBackground Dock="Bottom" />
+		<Panel Dock="Top" Height="56" Color="LightBlue">
+			<Text Value="Alternative Dropdown" TextColor="White" Alignment="Center" FontSize="18" Font="Bold" />
+		</Panel>
+		<Panel Dock="Top" Height="48" Color="White">
+			<Grid ColumnCount="3" Margin="0,0,0,1">
+				<MenuItem Label="EXPLORE" />
+				<MenuItem Label="OVERVIEW" Active="true" />
+				<MenuItem Label="ACTIVITY" />
+			</Grid>
+			<Rectangle Alignment="Bottom" Height="1" Color="BorderColor" />
+		</Panel>
+		<ScrollView>
+			<StackPanel Margin="8">
+				<Text Value="Audience" FontSize="18" Color="DarkerTextColor" Margin="8" />
+				<StackPanel>
+					<Panel Height="152">
+						<Grid RowCount="2" ColumnCount="2" Margin="16">
+							<StackPanel Alignment="CenterLeft">
+								<Text Value="{info.change}" TextColor="DarkerTextColor" FontSize="24" />
+								<Text Value="Audience change" TextColor="LighterTextColor" FontSize="15" />
+							</StackPanel>
+
+							<CycleButton Width="100" Alignment="TopRight" Modes="{modes}" CurrentMode="{currentMode}" />
+							
+							<StackPanel Alignment="CenterLeft">
+								<Text Value="{info.total}" TextColor="DarkerTextColor" FontSize="18" />
+								<Text Value="Total audience" TextColor="LighterTextColor" FontSize="15" />
+							</StackPanel>
+							<StackPanel Alignment="CenterLeft">
+								<Text Value="{info.unsubs}" TextColor="DarkerTextColor" FontSize="18" />
+								<Text Value="Unsubs/Bounces" TextColor="LighterTextColor" FontSize="15" />
+							</StackPanel>
+						</Grid>
+						<Rectangle Color="White" CornerRadius="8,8,0,0" StrokeWidth="1" StrokeColor="BorderColor" />
+					</Panel>
+					<Panel Height="256">
+						<Text Value="A place for a chart" Alignment="Center" FontSize="14" />
+						<Rectangle Color="LighterGray" CornerRadius="0,0,8,8" StrokeWidth="1" StrokeColor="BorderColor" />
+					</Panel>
+				</StackPanel>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+
+</App>
