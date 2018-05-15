@@ -8,16 +8,10 @@ namespace Builder.Core
     public class MarkdownParser
     {
         private readonly ILogger<MarkdownParser> _logger;
-        private readonly string _apiHostname;
 
         public MarkdownParser(ILogger<MarkdownParser> logger)
         {
             _logger = logger;
-            _apiHostname = Environment.GetEnvironmentVariable("API_HOSTNAME");
-            if (string.IsNullOrEmpty(_apiHostname))
-            {
-                _apiHostname = "api.fusetools.com";
-            }
         }
 
         public Task<string> ParseAsync(string markdown)
