@@ -10,7 +10,7 @@ namespace Builder.Concepts
 {
     public class ConceptData
     {
-        private const string BaseUri = "https://docs.fusetools.com/";
+        private const string BaseUri = "https://fuse-open.github.io/docs/";
 
         private readonly string _type;
         private readonly List<ConceptDataEntry> _entries = new List<ConceptDataEntry>();
