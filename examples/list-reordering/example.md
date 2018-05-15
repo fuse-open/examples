@@ -16,7 +16,7 @@ Since we want to have code that we can reuse in multiple places, we build a cust
     };
     </JavaScript>
 ```
-Am important detail to keep in mind when [passing Observables through properties](https://www.fusetools.com/docs/ux-markup/properties#passing-observables-through-properties) is that the property itself is a [derived Observable](https://www.fusetools.com/docs/fusejs/observable-api#state-observables-and-derived-observables), so we need to use `.inner()` to get access to the Observable list.
+Am important detail to keep in mind when [passing Observables through properties](https://fuse-open.github.io/docs/ux-markup/properties#passing-observables-through-properties) is that the property itself is a [derived Observable](https://fuse-open.github.io/docs/fusejs/observable-api#state-observables-and-derived-observables), so we need to use `.inner()` to get access to the Observable list.
 
 The visual part of our component is relatively simple: it's a `StackPanel` that stacks the label and list of items. What's interesting is the `Each` tag with `IdentityKey="id"` property set. When the items in the data-bound list change, `Each` will check the property `id` on every item in the list and figure out which items are the same.
 ```

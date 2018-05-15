@@ -1,6 +1,6 @@
 In this example, we're creating a custom slider component, inspired by this beautifully designed [Fluid Slider](https://dribbble.com/shots/3868232-ios-Fluid-Slider-ui-ux) by [Virgil Pana](https://dribbble.com/virgilpana).
 
-The last time we published custom sliders was in our [Halftone effect](https://www.fusetools.com/examples/halftone-effect) example, so it's time for a re-do. With this new one we especially liked the gooey animation when the circle leaves the slider. Since we've introduced the `Curve` element in Fuse, we can make it work almost exactly like that. Let's dive in!
+The last time we published custom sliders was in our [Halftone effect](https://fuse-open.github.io/examples/halftone-effect) example, so it's time for a re-do. With this new one we especially liked the gooey animation when the circle leaves the slider. Since we've introduced the `Curve` element in Fuse, we can make it work almost exactly like that. Let's dive in!
 
 # Create the slider component
 
@@ -20,7 +20,7 @@ We start out by creating a `ux:Class` with a set of properties that allows us to
 
 </DockPanel>
 ```
-Next, we add labels on the left and right sides of the slider component to show the `Min` and `Max` values. In the middle, we put a `RangeControl` that occupies the remaining available space between the two labels. You can see how we take advantage of [UX expressions](https://www.fusetools.com/docs/ux-markup/expressions) to dynamically calculate the `Margin` for the `RangeControl`: `Margin="{ReadProperty SliderHeight}/2,0"`.
+Next, we add labels on the left and right sides of the slider component to show the `Min` and `Max` values. In the middle, we put a `RangeControl` that occupies the remaining available space between the two labels. You can see how we take advantage of [UX expressions](https://fuse-open.github.io/docs/ux-markup/expressions) to dynamically calculate the `Margin` for the `RangeControl`: `Margin="{ReadProperty SliderHeight}/2,0"`.
 ```
 <DockPanel Dock="Bottom" Height="{ReadProperty SliderHeight}">
     <Panel Dock="Left" Width="60">
@@ -67,7 +67,7 @@ Inside of the `RangeControl`, we need to have a handle that the slider can be mo
 
 </RangeControl>
 ```
-The interesting bit on the handle is how we set the `X` position of it to a UX expression: `X="attract({Property range.RelativeValue}, RangeSnap) * 100%"`. As the docs state, the [attract() UX expression](https://www.fusetools.com/docs/ux-markup/expressions#misc) _animates the change in a value by using an `AttractorConfig` to define the animation style_. In our use-case, this means that whenever the `Value` of our `RangeControl` changes by an increment of 10, the `RelativeValue` of it is updated too. This in turn changes the `X` coordinate of the handle with a smooth, snappy animation defined by the `AttractorConfig` that we have in our `MainView.ux`:
+The interesting bit on the handle is how we set the `X` position of it to a UX expression: `X="attract({Property range.RelativeValue}, RangeSnap) * 100%"`. As the docs state, the [attract() UX expression](https://fuse-open.github.io/docs/ux-markup/expressions#misc) _animates the change in a value by using an `AttractorConfig` to define the animation style_. In our use-case, this means that whenever the `Value` of our `RangeControl` changes by an increment of 10, the `RelativeValue` of it is updated too. This in turn changes the `X` coordinate of the handle with a smooth, snappy animation defined by the `AttractorConfig` that we have in our `MainView.ux`:
 ```
 <AttractorConfig ux:Global="RangeSnap" Unit="Normalized" Type="SmoothSnap" />
 ```

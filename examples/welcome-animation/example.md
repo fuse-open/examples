@@ -66,7 +66,7 @@ We need to animate the send icons image element, and so we define it inline inst
 
 ## Animating with Timeline
 
-We use a `Timeline` to define all our animation. The `Timeline` can be played by changing its `TargetProgress` property from 0 to 1. We do this when the `Page` becomes active using the [`WhileActive`](https://www.fusetools.com/learn/fuse#whileactive) trigger.
+We use a `Timeline` to define all our animation. The `Timeline` can be played by changing its `TargetProgress` property from 0 to 1. We do this when the `Page` becomes active using the [`WhileActive`](https://fuse-open.github.io/docs/fuse/navigation/whileactive.html) trigger.
 
 <!-- snippet-begin:code/MainView.ux:Timeline -->
 
@@ -102,6 +102,6 @@ We use a `Timeline` to define all our animation. The `Timeline` can be played by
 
 <!-- snippet-end -->
 
-Since we do use some absolute values in our animation, we surround the entire thing in a [`Viewbox`](https://www.fusetools.com/learn/fuse#viewbox). This lets us scale the content to different screen sizes without layout making our absolute values invalid.
+Since we do use some absolute values in our animation, we surround the entire thing in a [`Viewbox`](https://fuse-open.github.io/docs/fuse/controls/viewbox.html). This lets us scale the content to different screen sizes without layout making our absolute values invalid.
 
 That's it!
