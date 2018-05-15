@@ -1,4 +1,4 @@
-This example shows another use of `ScrollingAnimation` to make a collapsing and expanding top section for a scrolling list. The example is inspired by [this cool pice](https://dribbble.com/shots/2367675-Ticket-scroll) by [Cam Macbeth](https://dribbble.com/highfelt). Icons are taken from Google's excellent [Material Icons pack](https://design.google.com/icons/).
+This example shows another use of `ScrollingAnimation` to make a collapsing and expanding top section for a scrolling list. The example is inspired by [this cool pice](https://dribbble.com/shots/2367675-Ticket-scroll) by [Cam Macbeth](https://dribbble.com/cammacbeth). Icons are taken from Google's excellent [Material Icons pack](https://design.google.com/icons/).
 
 ## Defining our colors
 
