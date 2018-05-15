@@ -1,6 +1,6 @@
 In this example we create a stopwatch native-module which we use to create a cool stopwatch app.
 
-While this is a good example of how to make custom UX components, it can also be pulled off using pure JavaScript logic. You can check out the JavaScript implementation of the app [here.](stopwatch-javascript.md)
+While this is a good example of how to make custom UX components, it can also be pulled off using pure JavaScript logic. You can check out the JavaScript implementation of the app [here.](../stopwatch-javascript/example.md)
 
 # The Stopwatch module
 
