@@ -66,9 +66,9 @@ Our cards content is just an image asset. This is just to make the example small
 
 You can check out these examples to learn more about layout:
 
-- [Layout example](../layout/example.md)
-- [Inbox](../inbox/example.md)
-- [Reveal actions](../reveal-actions/example.md)
+- [Layout example](../layout/)
+- [Inbox](../inbox/)
+- [Reveal actions](../reveal-actions/)
 
 
 
