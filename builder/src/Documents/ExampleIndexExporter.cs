@@ -67,7 +67,7 @@ namespace Builder.Documents
             var sb = new StringBuilder();
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             sb.AppendLine("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">");
-            foreach (var doc in exportedDocuments) {
+            foreach (var doc in exportedDocuments.Where(e => !e.IsExternal)) {
                 sb.AppendLine("\t<url>");
                 sb.AppendLine($"\t\t<loc>{_baseUrl}{doc.Uri}</loc>");
                 sb.AppendLine($"\t\t<lastmod>{lastmod}</lastmod>");
