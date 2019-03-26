@@ -4,8 +4,8 @@ dotnet: 2.1.102
 
 script:
   - dotnet run -p builder/src/builder.csproj . "https://fuse-open.github.io/examples/"
-  - find generated -type f \( -iname "*.png" -or -iname "*.jpg" \) -exec mogrify -resize 450x450\> {} \;
-  - find generated -type f -iname "*.png" -exec pngquant {} \;
+  - find generated -type f \( -iname "*.png" -or -iname "*.jpg" \) -exec mogrify -strip -resize 450x450\> {} \;
+  - find generated -type f -iname "*.png" -exec pngquant {} \; -exec optipng -silent {} \;
   - find generated/bundles -maxdepth 1 ! -path generated/bundles -type d -exec zip -rq {}.zip {} \;
   - find generated/bundles -maxdepth 1 ! -path generated/bundles -type d -exec rm -rf {} \;
   - |
@@ -26,6 +26,7 @@ addons:
     packages:
       - imagemagick
       - pngquant
+      - optipng
 
 deploy:
   provider: pages
