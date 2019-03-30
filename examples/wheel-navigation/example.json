@@ -1,7 +1,7 @@
 {
     "title": "Interactive infographic",
     "synopsis": "Playing with PageControl and PageIndicator to implement an interactive infographic.",
-    "publishedAt": "2017-02-9",
+    "publishedAt": "2017-02-09",
     "tags": [
 		"Tabs",
         "Menu"
