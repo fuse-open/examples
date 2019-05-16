@@ -1,7 +1,0 @@
-{
-    "title": "FileBrowser",
-    "synopsis": "Showing how to work with FuseJS/FileSystem.",
-    "publishedAt": "2017-03-11",
-    "url": "https://github.com/fusetools/fuse-samples/tree/master/Samples/FileBrowser",
-    "tags": ["Code-Only"]
-}

@@ -1,8 +1,0 @@
-{
-	"generatorType": "example",
-	"cssPrefix": "example",
-	"uriFormat": "/{0}",
-	"baseUri": "/examples",
-    "documentExtension": "html",
-    "explicitSearchBodies": true
-}
