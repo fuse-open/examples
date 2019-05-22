@@ -1,7 +1,0 @@
-{
-    "title": "Foreign accelerometer",
-    "synopsis": "How to wrap native OS functionality using foreign code.",
-    "publishedAt": "2017-03-13",
-    "url": "https://github.com/fusetools/fuse-samples/tree/master/Samples/ForeignAccelerometer",
-    "tags": ["Code-Only"]
-}

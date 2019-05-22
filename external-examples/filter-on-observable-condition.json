@@ -1,7 +1,0 @@
-{
-    "title": "Observable condition filter",
-    "synopsis": "Showing how to filter a list based on an observable condition.",
-    "publishedAt": "2017-03-12",
-    "url": "https://github.com/fusetools/fuse-samples/tree/master/Samples/FilterOnObservableCondition",
-    "tags": ["Code-Only"]
-}
