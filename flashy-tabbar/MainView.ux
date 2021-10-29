@@ -41,7 +41,7 @@
 								Offset="-5,5"/>
 					</Image>
 				</Panel>
-				<StackPanel  Alignment="Center" ItemSpacing="5" Height="50">
+				<StackPanel Alignment="Center" ItemSpacing="5" Height="50">
 					<Text Value="{ReadProperty this.Title}" Color="{Resource AccentColor}"/>
 					<Circle ux:Name="dot" Size="0" Color="{Resource AccentColor}" Anchor="50%,50%"/>
 				</StackPanel>
@@ -63,7 +63,7 @@
 	<ClientPanel Color="{Resource AccentColor}">
 		<StackPanel Orientation="Horizontal" ItemSpacing="15" Height="50" Alignment="BottomCenter" Margin="10" Padding="15, 0">
 			<Rectangle Layer="Background" Color="{Resource BarBgColor}" CornerRadius="0,0,15,15"/>
-			<Selection  MaxCount="1"/>
+			<Selection MaxCount="1"/>
 			<TabBarItem IconFilePath="Assets/Events.png" Title="Events"  />
 			<TabBarItem IconFilePath="Assets/Search.png" Title="Search" />
 			<TabBarItem IconFilePath="Assets/Highlights.png" Title="Actions" />
