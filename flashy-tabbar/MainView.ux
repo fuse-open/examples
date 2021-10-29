@@ -1,0 +1,73 @@
+<App>
+
+	<float4 ux:Global="AccentColor" ux:Value="#1E1E6E" />
+	<float4 ux:Global="BarBgColor" ux:Value="#fff" />
+
+	<Panel ux:Class="TabBarItem">
+		<string ux:Property="IconFilePath"/>
+		<string ux:Property="Title"/>
+
+		<Selectable Value="{ReadProperty this.Title}"/>
+
+		<WhileSelected>
+			<ScrollTo Target="scroll" RelativePosition="1" />
+			<Change dot.Size="5" Duration=".2" Delay="0.2" Easing="CubicIn"/>
+			<Change circle.Size="40" Duration=".3" />
+		</WhileSelected>
+		<WhileSelected Invert="true">
+			<ScrollTo Target="scroll" RelativePosition="0" />
+		</WhileSelected>
+
+		<ScrollView ux:Name="scroll"
+					UserScroll="false"
+					AllowedScrollDirections="Vertical">
+
+			<ScrollViewMotion GotoType="SmoothSnap"
+							SnapDuration="0"
+							GotoDuration="0.3"
+							GotoEasing="CubicInOut"/>	
+
+			<StackPanel ux:Name="body" ItemSpacing="10" Alignment="Top" Width="100%" HitTestMode="LocalBoundsAndChildren">
+				<Panel Height="50" HitTestMode="LocalBoundsAndChildren">
+					<Image ux:Name="icon"
+							File="{ReadProperty this.IconFilePath}"
+							Alignment="Center"
+							Size="24">
+						<Circle ux:Name="circle"
+								Size="0"
+								Color="{Resource BarBgColor}"
+								Layer="Overlay"
+								Alignment="BottomLeft"
+								Offset="-5,5"/>
+					</Image>
+				</Panel>
+				<StackPanel  Alignment="Center" ItemSpacing="5" Height="50">
+					<Text Value="{ReadProperty this.Title}" Color="{Resource AccentColor}"/>
+					<Circle ux:Name="dot" Size="0" Color="{Resource AccentColor}" Anchor="50%,50%"/>
+				</StackPanel>
+				<Clicked>
+					<ToggleSelection />
+					<Change pulse.Size="80%" Duration=".2" DurationBack="0"/>
+					<Change pulse.Opacity="0" Duration=".2" DurationBack="0"/>
+				</Clicked>
+			</StackPanel>
+		</ScrollView>
+		<Circle ux:Name="pulse"
+				Size="0"
+				Layer="Overlay"
+				Alignment="Center">
+			<Stroke Width="3" Color="{Resource AccentColor}"/>
+		</Circle>
+	</Panel>
+
+	<ClientPanel Color="{Resource AccentColor}">
+		<StackPanel Orientation="Horizontal" ItemSpacing="15" Height="50" Alignment="BottomCenter" Margin="10" Padding="15, 0">
+			<Rectangle Layer="Background" Color="{Resource BarBgColor}" CornerRadius="0,0,15,15"/>
+			<Selection  MaxCount="1"/>
+			<TabBarItem IconFilePath="Assets/Events.png" Title="Events"  />
+			<TabBarItem IconFilePath="Assets/Search.png" Title="Search" />
+			<TabBarItem IconFilePath="Assets/Highlights.png" Title="Actions" />
+			<TabBarItem IconFilePath="Assets/Settings.png" Title="Settings" />
+		</StackPanel>
+	</ClientPanel>
+</App>
