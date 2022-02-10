@@ -1,0 +1,4 @@
+.uno/
+build/
+node_modules/
+.vscode

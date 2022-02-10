@@ -1,0 +1,54 @@
+<App>
+    
+    <!-- Static Indicator -->
+    <!-- <Circle Size="100" Color="Black">
+        <Stroke Width="4" Color="#00c000"/>
+        <Circle Size="84">
+            <Mask File="whiteCircle.png" Mode="Alpha" />
+            <Rectangle Layer="Background" Size="150%" CornerRadius="50" Color="#00ca00" Y="45">
+                <WhileEnabled>
+                    <Spin Frequency=".2"/>
+                </WhileEnabled>
+                <Shadow Color="#00ff00" Size="20" Distance="0" />
+            </Rectangle>
+        </Circle>
+        <Text Value="50%" Alignment="Center" FontSize="24" Layer="Overlay" Color="#00ff00"/>
+    </Circle> -->
+
+
+    <!-- Dynamic Indicator -->
+    <Circle ux:Class="FluidIndicator" Size="{ReadProperty Diameter}" Color="Black">
+        <int ux:Property="Diameter"/>
+        <float ux:Property="Max"/>
+        <float ux:Property="Value"/>
+        <float4 ux:Property="Color"/>
+        <float4 ux:Property="TextColor"/>
+
+        <Stroke Width="4" Color="{ReadProperty Color} * 0.9"/>
+        <Circle Size="84">
+            <Mask File="whiteCircle.png" Mode="Alpha" />
+            <Rectangle Layer="Background" 
+                Size="175%"
+                CornerRadius="40"
+                Color="{ReadProperty Color}"
+                Opacity=".8"
+                Y="{ReadProperty Diameter} * (1 - {ReadProperty Value} / {ReadProperty Max})">
+                <WhileEnabled>
+                    <Spin Frequency=".2"/>
+                </WhileEnabled>
+                <Shadow Color="{ReadProperty Color}" Size="20" Distance="0" />
+            </Rectangle>
+        </Circle>
+        <Text Value="{ReadProperty Value}%"
+            Alignment="Center"
+            FontSize="24"
+            Layer="Overlay"
+            Color="{ReadProperty TextColor}"/>
+    </Circle>
+
+    <!-- Usage -->
+    <StackPanel Alignment="Center" Width="200">
+        <Slider Name="sl" Alignment="Top" Minimum="0" Maximum="100" Value="0" UserStep="1"/>
+        <FluidIndicator Diameter="100" Max="100" Value="{Property sl.Value}" Color="#0f0" TextColor="Red"/>
+    </StackPanel>
+</App> 
